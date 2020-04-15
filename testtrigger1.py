@@ -50,15 +50,10 @@ class test_cases (aetest.Testcase):
     @aetest.test
     def conf_int_e01_cmd(self, uut):
         # Get device output
-        #uut.execute('configure terminal')
-        uut.execute('interface ethernet0/1')
-        uut.execute('ip address 192.168.1.5 255.2355.255.0')
-        uut.execute('no sh')
-        uut.execute('exit')
-        uut.execute('end')
-        uut.execute('exit')
+        uut.configure("interface ethernet0/1\n" " ip address 192.168.1.5 255.2355.255.0\n" " no sh\n")
+        time.sleep(15)
         check = uut.parse('show ip int brief ethernet0/1')
-        #if check[ip_address] != '192.168.1.5': self.failed("wrong ip address")
+        if check[ip_address] != '192.168.1.5': self.failed("wrong ip address")
 
 
 ### cleanup actions ###
