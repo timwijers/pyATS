@@ -29,7 +29,7 @@ class common_setup(aetest.CommonSetup):
         testscript.parameters['uut'] = device
 
 ### test cases ###
-class test_up_interface(aetest.Testcase):
+class test_cases (aetest.Testcase):
     """ This is user Testcases section """
 
     # Testcases are divided into 3 sections
@@ -45,7 +45,19 @@ class test_up_interface(aetest.Testcase):
     @aetest.test
     def send_show_int_cmd(self, uut):
         # Get device output
-        self.output = uut.execute('show interface')
+        self.output = uut.execute('show ip interface brief')
+
+    @aetest.test
+    def conf_int_e01_cmd(self, uut):
+        # Get device output
+        uut.execute('configure terminal')
+        uut.execute('interface ethernet0/1')
+        uut.execute('ip address 192.168.1.5 255.2355.255.0')
+        uut.execute('no sh')
+        uut.execute('exit')
+        check = uut.parse('show ip int brief ethernet0/1')
+        if check[ip_address] != '192.168.1.5': self.failed("wrong ip address")
+
 
 ### cleanup actions ###
 class common_cleanup(aetest.CommonCleanup):
