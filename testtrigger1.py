@@ -11,7 +11,7 @@ log = logging.getLogger()
 class connectionTrigger(Trigger):
 
    @aetest.setup
-    def prerequisites(self, uut):
+   def prerequisites(self, uut):
         '''Check current IP'''
 
         # Parse output
@@ -19,12 +19,12 @@ class connectionTrigger(Trigger):
         self.ip = output['ip_address']
 
    @aetest.test
-    def setIP(self, uut):
+   def setIP(self, uut):
         '''Set IP'''
         uut.configure("interface ethernet0/1\n" " ip address 192.168.1.2 255.255.255.0")
 
    @aetest.test
-    def verifyIP(self, uut):
+   def verifyIP(self, uut):
         '''Verify if the IP address is correctly set'''
 
         output = uut.parse('show ip interface brief ethernet0/1')
