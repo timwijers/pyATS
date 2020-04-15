@@ -52,7 +52,7 @@ class test_cases (aetest.Testcase):
         # Get device output
         uut.configure("interface ethernet0/1\n" " ip address 192.168.1.5 255.2355.255.0\n" " no sh\n")
         time.sleep(15)
-        check = uut.parse('show ip int brief ethernet0/1')
+        check = uut.execute('show ip int brief ethernet0/1')
         if check[ip_address] != '192.168.1.5': self.failed("wrong ip address")
 
 
