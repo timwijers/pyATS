@@ -56,7 +56,7 @@ class test_cases (aetest.Testcase):
         uut.execute('no sh')
         uut.execute('exit')
         uut.execute('end')
-        #uut.execute('exit')
+        uut.execute('exit')
         check = uut.parse('show ip int brief ethernet0/1')
         if check[ip_address] != '192.168.1.5': self.failed("wrong ip address")
 
