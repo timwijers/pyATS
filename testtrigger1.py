@@ -50,7 +50,7 @@ class test_cases (aetest.Testcase):
     @aetest.test
     def conf_int_e01_cmd(self, uut):
         # Get device output
-        uut.execute('configure terminal')
+        #uut.execute('configure terminal')
         uut.execute('interface ethernet0/1')
         uut.execute('ip address 192.168.1.5 255.2355.255.0')
         uut.execute('no sh')
