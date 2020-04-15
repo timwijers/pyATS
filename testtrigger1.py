@@ -7,33 +7,8 @@ from pyats import aetest
 from genie.harness.base import Trigger
 
 log = logging.getLogger()
-"""
-class connectionTrigger(Trigger):
 
-   @aetest.setup
-   def connect(self):
-        '''Check current IP'''
-
-        # Parse output
-        log.info(parse('show interface brief ethernet0/1'))
-        self.ip = output['ip_address']
-
-   @aetest.test
-   def setIP(self):
-        '''Set IP'''
-        uut.configure("interface ethernet0/1\n" " ip address 192.168.1.2 255.255.255.0")
-
-   @aetest.test
-   def verifyIP(self):
-        '''Verify if the IP address is correctly set'''
-
-        output = uut.parse('show ip interface brief ethernet0/1')
-
-
-        if output[ip_address] != "192.168.1.2":
-            self.failed("IP is not correctly set")
-"""
-
+### setup actions ###
 class common_setup(aetest.CommonSetup):
     """ Common Setup section """
 
@@ -53,7 +28,7 @@ class common_setup(aetest.CommonSetup):
         # test sections
         testscript.parameters['uut'] = device
 
-
+### test cases ###
 class test_up_interface(aetest.Testcase):
     """ This is user Testcases section """
 
@@ -62,10 +37,17 @@ class test_up_interface(aetest.Testcase):
 
     # This is how to create a setup section
     @aetest.setup
-    def send_command(self, uut):
+    def setup_testCases(self, section):
+        """ Testcase Setup section """
+        log.info("Preparing the test")
+        log.info(section)
+
+    @aetest.test
+    def send_show_int_cmd(self, uut):
         # Get device output
         self.output = uut.execute('show interface')
 
+### cleanup actions ###
 class common_cleanup(aetest.CommonCleanup):
     """ Common Cleanup for Sample Test """
 
