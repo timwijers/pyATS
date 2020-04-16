@@ -22,11 +22,11 @@ class common_setup(aetest.CommonSetup):
         log.info("Aetest Common Setup ")
         for device in testbed:
             # Connecting to the devices using the default connection
-            device.connect(alias='routeriol_uut', via='cli')
+            device.connect(alias='routeriol2_uut', via='cli')
 
         # Save it in testscript parmaeters to be able to use it from other
         # test sections
-        testscript.parameters['routeriol_uut'] = device
+        testscript.parameters['routeriol2_uut'] = device
 
 ### test cases ###
 class test_cases (aetest.Testcase):
