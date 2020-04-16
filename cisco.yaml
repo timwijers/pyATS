@@ -2,7 +2,7 @@ devices:
  routeriol:
      type: 'router'
      os: 'ios'
-     alias: 'routeriol_uut'
+     alias: 'uut'
      credentials:
          default:
              username: cisco
