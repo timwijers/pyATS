@@ -1,3 +1,4 @@
+devices:
  Router:
      type: 'router'
      os: 'iosxe'
