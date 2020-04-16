@@ -14,3 +14,9 @@ devices:
              port: 830
              username: admin
              password: admin
+         cli:
+             protocol : ssh
+             ip: "10.100.244.137"
+             port: 830
+             username: admin
+             password: admin
