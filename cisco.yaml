@@ -14,31 +14,3 @@ devices:
              username: cisco
              password: cisco
 
-# routeriol2:
-#      type: 'router'
-#      os: 'ios'
-#      alias: 'routeriol2_uut'
-#      credentials:
-#          default:
-#              username: cisco
-#              password: cisco
-#      connections:
-#          cli:
-#              protocol: ssh
-#              ip: "10.100.244.144"
-
- Router:
-     type: 'router'
-     os: 'iosxe'
-     alias: 'uutxe'
-     credentials:
-         default:
-             username: admin
-             password: admin
-     connections:
-         netconf:
-             class: yang.connector.Netconf
-             ip: "10.100.244.137"
-             port: 830
-             username: admin
-             password: admin
