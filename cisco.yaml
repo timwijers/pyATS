@@ -27,19 +27,18 @@ devices:
 #              protocol: ssh
 #              ip: "10.100.244.144"
 
-
-# routerxe:
-#     type: 'router'
-#     os: 'iosxe'
-#     alias: 'routerxe_uut'
-#     credentials:
-#         default:
-#             username: admin
-#             password: admin
-#     connections:
-#         netconf:
-#             class: yang.connector.Netconf
-#             ip: "10.100.244.137"
-#             port: 830
-#             username: admin
-#             password: admin
+ Router:
+     type: 'router'
+     os: 'iosxe'
+     alias: 'routerxe_uut'
+     credentials:
+         default:
+             username: admin
+             password: admin
+     connections:
+         netconf:
+             class: yang.connector.Netconf
+             ip: "10.100.244.137"
+             port: 830
+             username: admin
+             password: admin
