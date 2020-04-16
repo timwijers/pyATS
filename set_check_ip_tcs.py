@@ -21,15 +21,13 @@ class common_setup(aetest.CommonSetup):
     def connect(self, testscript, testbed):
         """ Common Setup subsection """
         log.info("Aetest Common Setup ")
+        for device in testbed:
+            # Connecting to the devices using the default connection
+            device.connect(via='cli')
 
-        dev = testbed.devices['routeriol']
-        dev.connect(alias= 'uut', via='cli')
-
-        dev2 = testbed.devices['routeriol2']
-        dev2.connect(alias='uut2', via='cli')
-
-        testscript.parameters['uut'] = dev
-        testscript.parameters['uut2'] = dev2
+        # Save it in testscript parmaeters to be able to use it from other
+        # test sections
+        testscript.parameters['uut'] = device
 
 
 ### test cases ###
@@ -61,6 +59,9 @@ class test_cases(aetest.Testcase):
 class common_cleanup(aetest.CommonCleanup):
     """ Common Cleanup for Sample Test """
 
+    # CommonCleanup follow exactly the same rule as CommonSetup regarding
+    # subsection
+    # You can have 1 to as many subsection as wanted
 
     @aetest.subsection
     def disconnect(self, uut):
