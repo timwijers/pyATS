@@ -32,31 +32,7 @@ class common_setup(aetest.CommonSetup):
 
 ### test cases ###
 class test_cases(aetest.Testcase):
-    """ This is user Testcases section """
 
-    # Testcases are divided into 3 sections
-    # Setup, Test and Cleanup.
-
-    # This is how to create a setup section
-    @aetest.setup
-    def setup_testCases(self, section):
-        """ Testcase Setup section """
-        log.info("Preparing the test")
-        log.info(section)
-
-    @aetest.test
-    def send_show_int_cmd(self, uut):
-        # Get device output
-        self.output = uut.execute('show ip interface brief')
-
-    @aetest.test
-    def conf_int_e01_cmd(self, uut):
-        # Get device output
-        check_pre = uut.execute('show ip int brief ethernet0/1')
-        uut.configure("interface ethernet0/1\n" " ip address 192.168.1.6 255.255.255.0\n" " no sh\n")
-        time.sleep(15)
-        check_post = uut.execute('show ip int brief ethernet0/1')
-        if check_post == check_pre: self.failed("wrong ip address")
 
 
 ### cleanup actions ###
