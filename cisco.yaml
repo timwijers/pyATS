@@ -6,11 +6,13 @@ devices:
      credentials:
          default:
              username: cisco
-             password: ci
+             password: cisco
      connections:
          cli:
              protocol: ssh
              ip: "10.100.244.169"
+             username: cisco
+             password: cisco
 
 
  routerxe:
