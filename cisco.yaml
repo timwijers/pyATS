@@ -2,7 +2,7 @@ devices:
  routeriol:
      type: 'router'
      os: 'ios'
-     alias: 'uut'
+     alias: 'routeriol_uut'
      credentials:
          default:
              username: cisco
@@ -16,7 +16,7 @@ devices:
  routerxe:
      type: 'router'
      os: 'iosxe'
-     alias: 'uutxe'
+     alias: 'routerxe_uut'
      credentials:
          default:
              username: admin
