@@ -1,18 +1,18 @@
 devices:
- routeriol:
-     type: 'router'
-     os: 'ios'
-     alias: 'routeriol_uut'
-     credentials:
-         default:
-             username: cisco
-             password: cisco
-     connections:
-         cli:
-             protocol: ssh
-             ip: "10.100.244.169"
-             username: cisco
-             password: cisco
+ # routeriol:
+ #    type: 'router'
+ #    os: 'ios'
+ #    alias: 'routeriol_uut'
+ #    credentials:
+ #        default:
+ #            username: cisco
+ #            password: cisco
+ #    connections:
+ #        cli:
+ #            protocol: ssh
+ #            ip: "10.100.244.169"
+ #            username: cisco
+ #            password: cisco
 
  routeriol2:
       type: 'router'
