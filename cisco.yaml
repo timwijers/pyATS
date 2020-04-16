@@ -30,7 +30,7 @@ devices:
  Router:
      type: 'router'
      os: 'iosxe'
-     alias: 'routerxe_uut'
+     alias: 'uutxe'
      credentials:
          default:
              username: admin

@@ -21,12 +21,15 @@ class common_setup(aetest.CommonSetup):
     def connect(self, testscript, testbed):
         """ Common Setup subsection """
         log.info("Aetest Common Setup ")
-        for device in testbed:
-            device.connect()
 
+        routeriol = testbed.devices['routeriol']
+        routerxe = testbed.devices['Router']
+
+        routeriol.connect(alias='uut', via='cli')
+        routerxe.connect(alias='uutxe', via='netconf')
         # Save it in testscript parmaeters to be able to use it from other
         # test sections
-        testscript.parameters['uut'] = device
+        testscript.parameters['uut'] = routeriol
 
 
 ### test cases ###
