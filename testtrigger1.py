@@ -49,15 +49,15 @@ class test_cases(aetest.Testcase):
     @aetest.test
     def send_show_int_cmd(self, uut):
         # Get device output
-        self.output = uut.execute('show ip interface brief')
+        self.output = uut.parse('show ip interface brief')
 
     @aetest.test
     def conf_int_e01_cmd(self, uut):
         # Get device output
-        check_pre = uut.execute('show ip int brief ethernet0/1')
+        check_pre = uut.parse('show ip int brief ethernet0/1')
         uut.configure("interface ethernet0/1\n" " ip address 192.168.1.6 255.255.255.0\n" " no sh\n")
         time.sleep(15)
-        check_post = uut.execute('show ip int brief ethernet0/1')
+        check_post = uut.parse('show ip int brief ethernet0/1')
         if check_post == check_pre: self.failed("wrong ip address")
 
 
