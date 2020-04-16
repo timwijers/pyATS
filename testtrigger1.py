@@ -8,6 +8,7 @@ from genie.harness.base import Trigger
 
 log = logging.getLogger()
 
+
 ### setup actions ###
 class common_setup(aetest.CommonSetup):
     """ Common Setup section """
@@ -21,15 +22,15 @@ class common_setup(aetest.CommonSetup):
         """ Common Setup subsection """
         log.info("Aetest Common Setup ")
         for device in testbed:
-            # Connecting to the devices using the default connection
-            device.connect(alias='routeriol_uut', via='cli')
+            device = device.connect(alias='routeriol_uut', via='cli')
 
         # Save it in testscript parmaeters to be able to use it from other
         # test sections
-        testscript.parameters['routeriol_uut'] = device
+        testscript.parameters['uut'] = device
+
 
 ### test cases ###
-class test_cases (aetest.Testcase):
+class test_cases(aetest.Testcase):
     """ This is user Testcases section """
 
     # Testcases are divided into 3 sections
@@ -53,7 +54,7 @@ class test_cases (aetest.Testcase):
         check_pre = uut.execute('show ip int brief ethernet0/1')
         uut.configure("interface ethernet0/1\n" " ip address 192.168.1.6 255.255.255.0\n" " no sh\n")
         time.sleep(15)
-        check_post= uut.execute('show ip int brief ethernet0/1')
+        check_post = uut.execute('show ip int brief ethernet0/1')
         if check_post == check_pre: self.failed("wrong ip address")
 
 
