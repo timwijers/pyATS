@@ -22,7 +22,7 @@ class common_setup(aetest.CommonSetup):
         """ Common Setup subsection """
         log.info("Aetest Common Setup ")
         for device in testbed:
-            device = device.connect(via='cli')
+            device.connect(via='cli')
 
         # Save it in testscript parmaeters to be able to use it from other
         # test sections
