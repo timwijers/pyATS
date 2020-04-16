@@ -26,7 +26,7 @@ class common_setup(aetest.CommonSetup):
 
         # Save it in testscript parmaeters to be able to use it from other
         # test sections
-        testscript.parameters['uut'] = device
+        testscript.parameters['routeriol_uut'] = device
 
 ### test cases ###
 class test_cases (aetest.Testcase):

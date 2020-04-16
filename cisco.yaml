@@ -6,7 +6,7 @@ devices:
      credentials:
          default:
              username: cisco
-             password: cisco
+             password: ci
      connections:
          cli:
              protocol: ssh
