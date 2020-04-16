@@ -26,7 +26,7 @@ class common_setup(aetest.CommonSetup):
 
         # Save it in testscript parmaeters to be able to use it from other
         # test sections
-        testscript.parameters['uut'] = device
+        testscript.parameters['routeriol_uut'] = device
 
 
 ### test cases ###
@@ -44,17 +44,17 @@ class test_cases(aetest.Testcase):
         log.info(section)
 
     @aetest.test
-    def send_show_int_cmd(self, uut):
+    def send_show_int_cmd(self, routeriol_uut):
         # Get device output
-        self.output = uut.execute('show ip interface brief')
+        self.output = routeriol_uut.execute('show ip interface brief')
 
     @aetest.test
-    def conf_int_e01_cmd(self, uut):
+    def conf_int_e01_cmd(self, routeriol_uut):
         # Get device output
-        check_pre = uut.execute('show ip int brief ethernet0/1')
-        uut.configure("interface ethernet0/1\n" " ip address 192.168.1.6 255.255.255.0\n" " no sh\n")
+        check_pre = routeriol_uut.execute('show ip int brief ethernet0/1')
+        routeriol_uut.configure("interface ethernet0/1\n" " ip address 192.168.1.6 255.255.255.0\n" " no sh\n")
         time.sleep(15)
-        check_post = uut.execute('show ip int brief ethernet0/1')
+        check_post = routeriol_uut.execute('show ip int brief ethernet0/1')
         if check_post == check_pre: self.failed("wrong ip address")
 
 
@@ -67,6 +67,6 @@ class common_cleanup(aetest.CommonCleanup):
     # You can have 1 to as many subsection as wanted
 
     @aetest.subsection
-    def disconnect(self, uut):
+    def disconnect(self, routeriol_uut):
         """ Common Cleanup Subsection """
-        uut.disconnect()
+        routeriol_uut.disconnect()
