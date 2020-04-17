@@ -1,9 +1,11 @@
 # Python imports
+import os
 import time
 import logging
 
 # pyATS import
 from pyats import aetest
+from pyats import topology
 from genie.harness.base import Trigger
 
 log = logging.getLogger()
@@ -23,7 +25,7 @@ class common_setup(aetest.CommonSetup):
         log.info("Aetest Common Setup ")
         for device in testbed:
             # Connecting to the devices using the default connection
-            device.connect(alias='uut', via='cli')
+            device.connect(via='cli')
 
         # Save it in testscript parmaeters to be able to use it from other
         # test sections

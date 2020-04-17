@@ -5,6 +5,6 @@ from pyats.easypy import run
 
 def main():
      test_path = os.path.dirname(os.path.abspath(__file__))
-     testscript = os.path.join(test_path, 'set_check_ip_tcs.py')
-
+     testscript = os.path.join(test_path, 'config_routeriol1.py')
+     testscript2 = os.path.join(test_path, 'config_routeriol2.py')
      run(testscript=testscript)
