@@ -49,78 +49,128 @@ class test_cases(aetest.Testcase):
         uut.configure("interface ethernet0/1\n" " ip address 192.168.2.1 255.255.255.0\n" " no sh\n")
         uut.configure("interface serial1/1\n" " ip address 10.0.2.1 255.255.255.254\n" " no sh\n")
         uut.configure("interface serial1/2\n" " ip address 10.0.3.1 255.255.255.254\n" " no sh\n")
-        uut.configure("router eigrp 1\n" "eigrp router-id 1.1.1.1\n" " network 10.0.2.0\n" " network 10.0.3.0\n" 
-                      "network 192.168.5.0\n" "network 192.168.2.0\n" "passive-interface ethernet0/2\n "  
-                      "passive-interface ethernet0/1\n " " exit\n")
+        uut.configure("router eigrp 1\n" "eigrp router-id 1.1.1.1\n" " network 10.0.2.0\n" " network 10.0.3.0\n"
+                      "network 192.168.5.0\n" "network 192.168.2.0\n" "passive-interface ethernet0/2\n "
+                      "passive-interface ethernet0/0\n " "passive-interface ethernet0/1\n " " exit\n")
 
         uut2.configure("interface ethernet0/2\n" " ip address 192.168.6.1 255.255.255.0\n" " no sh\n")
         uut2.configure("interface ethernet0/1\n" " ip address 192.168.3.1 255.255.255.0\n" " no sh\n")
         uut2.configure("interface serial1/1\n" " ip address 10.0.2.2 255.255.255.254\n" " no sh\n")
         uut2.configure("interface serial1/0\n" " ip address 10.0.1.1 255.255.255.254\n" " no sh\n")
-        uut2.configure("router eigrp 1\n" "eigrp router-id 2.2.2.2\n"" network 10.0.2.0\n" " network 10.0.1.0\n" 
-                       "network 192.168.6.0\n" "network 192.168.3.0\n" "passive-interface ethernet0/2\n "  
-                       "passive-interface ethernet0/1\n " " exit\n")
+        uut2.configure("router eigrp 1\n" "eigrp router-id 2.2.2.2\n"" network 10.0.2.0\n" " network 10.0.1.0\n"
+                       "network 192.168.6.0\n" "network 192.168.3.0\n" "passive-interface ethernet0/2\n "
+                       "passive-interface ethernet0/0\n " "passive-interface ethernet0/1\n " " exit\n")
 
-        uut3.configure("interface ethernet0/1\n" " ip address 192.168.7.1 255.255.255.0\n" " no sh\n")
+        uut3.configure("interface ethernet0/2\n" " ip address 192.168.7.1 255.255.255.0\n" " no sh\n")
         uut3.configure("interface ethernet0/1\n" " ip address 192.168.4.1 255.255.255.0\n" " no sh\n")
         uut3.configure("interface serial1/0\n" " ip address 10.0.1.2 255.255.255.254\n" " no sh\n")
         uut3.configure("interface serial1/2\n" " ip address 10.0.3.2 255.255.255.254\n" " no sh\n")
-        uut3.configure("router eigrp 1\n" "eigrp router-id 3.3.3.3\n" " network 10.0.1.0\n" " network 10.0.3.0\n" 
-                       " network 192.168.7.0\n" "network 192.168.4.0\n" "passive-interface ethernet0/2\n "  
-                       "passive-interface ethernet0/1\n " " exit\n")
+        uut3.configure("router eigrp 1\n" "eigrp router-id 3.3.3.3\n" " network 10.0.1.0\n" " network 10.0.3.0\n"
+                       " network 192.168.7.0\n" "network 192.168.4.0\n" "passive-interface ethernet0/2\n "
+                       "passive-interface ethernet0/0\n " "passive-interface ethernet0/1\n " " exit\n")
 
     @aetest.test
     def check_interfaces_not_down_routeriol1(self, uut):
         var = uut.parse('show ip interface brief ethernet0/1')
         var2 = uut.parse('show ip interface brief ethernet0/2')
+        var3 = uut.parse('show ip interface brief serial1/1')
+        var4 = uut.parse('show ip interface brief serial1/2')
         if var['interface']['Ethernet0/1']['status'] != 'up': self.failed('interface ethernet0/1 on router IOL 1 is '
                                                                           'not up')
         if var2['interface']['Ethernet0/2']['status'] != 'up': self.failed('interface ethernet0/2 on router IOL 1 is '
                                                                            'not up')
+        if var3['interface']['serial1/1']['status'] != 'up': self.failed('interface serial1/1 on router IOL 1 is '
+                                                                         'not up')
+        if var4['interface']['serial1/2']['status'] != 'up': self.failed('interface serial1/2 on router IOL 1 is '
+                                                                         'not up')
 
     @aetest.test
     def check_interfaces_not_down_routeriol2(self, uut2):
         var = uut2.parse('show ip interface brief ethernet0/1')
         var2 = uut2.parse('show ip interface brief ethernet0/2')
+        var3 = uut2.parse('show ip interface brief serial1/0')
+        var4 = uut2.parse('show ip interface brief serial1/1')
         if var['interface']['Ethernet0/1']['status'] != 'up': self.failed('interface ethernet0/1 on router IOL 2 is '
                                                                           'not up')
         if var2['interface']['Ethernet0/2']['status'] != 'up': self.failed('interface ethernet0/2 on router IOL 2 is '
                                                                            'not up')
+        if var3['interface']['serial1/0']['status'] != 'up': self.failed('interface serial1/0 on router IOL 2 is '
+                                                                         'not up')
+        if var4['interface']['serial1/1']['status'] != 'up': self.failed('interface serial1/1 on router IOL 2 is '
+                                                                         'not up')
 
     @aetest.test
     def check_interfaces_not_down_routeriol3(self, uut3):
         var = uut3.parse('show ip interface brief ethernet0/1')
         var2 = uut3.parse('show ip interface brief ethernet0/2')
+        var3 = uut3.parse('show ip interface brief serial1/2')
+        var4 = uut3.parse('show ip interface brief serial1/0')
         if var['interface']['Ethernet0/1']['status'] != 'up': self.failed('interface ethernet0/1 on router IOL 3 is '
                                                                           'not up')
         if var2['interface']['Ethernet0/2']['status'] != 'up': self.failed('interface ethernet0/2 on router IOL 3 is '
                                                                            'not up')
+        if var3['interface']['serial1/2']['status'] != 'up': self.failed('interface serial1/2 on router IOL 3 is '
+                                                                         'not up')
+        if var4['interface']['serial1/0']['status'] != 'up': self.failed('interface serial1/0 on router IOL 3 is '
+                                                                         'not up')
 
     @aetest.test
     def check_ip_correct_routeriol1(self, uut):
         var = uut.parse('show ip interface brief ethernet0/1')
         var2 = uut.parse('show ip interface brief ethernet0/2')
-        if var['interface']['Ethernet0/1']['ip_address'] != '192.168.2.2': self.failed('interface ethernet0/1 on '
+        var3 = uut.parse('show ip interface brief serial1/1')
+        var4 = uut.parse('show ip interface brief serial1/2')
+        if var['interface']['Ethernet0/1']['ip_address'] != '192.168.2.1': self.failed('interface ethernet0/1 on '
                                                                                        'router IOL 1 does not have a '
                                                                                        'correct ip address')
-        if var2['interface']['Ethernet0/2']['ip_address'] != '192.168.3.2': self.failed('interface ethernet0/2 on '
+        if var2['interface']['Ethernet0/2']['ip_address'] != '192.168.5.1': self.failed('interface ethernet0/2 on '
                                                                                         'router IOL 1 does not have a'
                                                                                         ' correct ip address')
+        if var3['interface']['serial1/1']['ip_address'] != '10.0.2.1': self.failed('interface ethernet0/1 on '
+                                                                                   'router IOL 1 does not have a '
+                                                                                   'correct ip address')
+        if var4['interface']['serial1/2']['ip_address'] != '10.0.3.1': self.failed('interface ethernet0/2 on '
+                                                                                   'router IOL 1 does not have a'
+                                                                                   ' correct ip address')
 
     @aetest.test
     def check_ip_correct_routeriol2(self, uut2):
         var = uut2.parse('show ip interface brief ethernet0/1')
         var2 = uut2.parse('show ip interface brief ethernet0/2')
-        if var['interface']['Ethernet0/1']['ip_address'] != '192.168.2.3': self.failed('interface ethernet0/1 on '
+        var3 = uut2.parse('show ip interface brief serial1/0')
+        var4 = uut2.parse('show ip interface brief serial1/1')
+        if var['interface']['Ethernet0/1']['ip_address'] != '192.168.3.1': self.failed('interface ethernet0/1 on '
                                                                                        'router IOL 2 does not have a '
                                                                                        'correct ip address')
-        if var2['interface']['Ethernet0/2']['ip_address'] != '192.168.3.3': self.failed('interface ethernet0/2 on '
+        if var2['interface']['Ethernet0/2']['ip_address'] != '192.168.6.1': self.failed('interface ethernet0/2 on '
                                                                                         'router IOL 2 does not have a'
                                                                                         ' correct ip address')
+        if var3['interface']['serial1/0']['ip_address'] != '10.0.1.1': self.failed('interface serial1/0 on '
+                                                                                   'router IOL 1 does not have a '
+                                                                                   'correct ip address')
+        if var4['interface']['serial1/1']['ip_address'] != '10.0.2.2': self.failed('interface serial1/1 on '
+                                                                                   'router IOL 1 does not have a'
+                                                                                   ' correct ip address')
 
-    ### cleanup actions ###
-
-
+    @aetest.test
+    def check_ip_correct_routeriol2(self, uut3):
+        var = uut3.parse('show ip interface brief ethernet0/1')
+        var2 = uut3.parse('show ip interface brief ethernet0/2')
+        var3 = uut3.parse('show ip interface brief serial1/0')
+        var4 = uut3.parse('show ip interface brief serial1/2')
+        if var['interface']['Ethernet0/1']['ip_address'] != '192.168.4.1': self.failed('interface ethernet0/1 on '
+                                                                                       'router IOL 3 does not have a '
+                                                                                       'correct ip address')
+        if var2['interface']['Ethernet0/2']['ip_address'] != '192.168.7.1': self.failed('interface ethernet0/2 on '
+                                                                                        'router IOL 3 does not have a'
+                                                                                        ' correct ip address')
+        if var3['interface']['serial1/0']['ip_address'] != '10.0.1.2': self.failed('interface ethernet0/1 on '
+                                                                                   'router IOL 3 does not have a '
+                                                                                   'correct ip address')
+        if var4['interface']['serial1/2']['ip_address'] != '10.0.3.2': self.failed('interface ethernet0/2 on '
+                                                                                   'router IOL 3 does not have a'
+                                                                                   ' correct ip address')
+### cleanup actions ###
 class common_cleanup(aetest.CommonCleanup):
     """
     @aetest.subsection
@@ -146,6 +196,7 @@ class common_cleanup(aetest.CommonCleanup):
         uut3.configure('no router eigrp 1');
 
     """
+
     @aetest.subsection
     def disconnect(self, uut, uut2, uut3):
         """ Common Cleanup Subsection """
