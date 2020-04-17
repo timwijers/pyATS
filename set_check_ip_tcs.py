@@ -23,7 +23,7 @@ class common_setup(aetest.CommonSetup):
         log.info("Aetest Common Setup ")
         for device in testbed:
             # Connecting to the devices using the default connection
-            device.connect(via='cli')
+            device.connect(alias='uut', via='cli')
 
         # Save it in testscript parmaeters to be able to use it from other
         # test sections
