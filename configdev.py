@@ -7,9 +7,8 @@
 import os
 from pyats import topology
 
-testbedfile = os.path.join(os.path.dirname(topology.__file__),
-                           'routerIOL_tb.yaml')
-testbed = topology.loader.load(testbedfile)
+
+testbed = topology.loader.load('routerIOL_tb.yaml')
 
 # pick a device
 
