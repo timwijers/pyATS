@@ -29,7 +29,7 @@ devices:
              username: cisco
              password: cisco
 
- routeriol2:
+ routeriol3:
      type: 'router'
      os: 'ios'
      alias: 'uut3'
