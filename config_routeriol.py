@@ -141,9 +141,9 @@ class common_cleanup(aetest.CommonCleanup):
         uut3.configure("interface serial1/0\n" " no ip address\n" " sh\n")
         uut3.configure("interface serial1/2\n" " no ip address\n" " sh\n")
 
-        uut.configure('no router rip');
-        uut2.configure('no router rip');
-        uut3.configure('no router rip');
+        uut.configure('no router eigrp 1');
+        uut2.configure('no router eigrp 1');
+        uut3.configure('no router eigrp 1');
 
 
     @aetest.subsection
