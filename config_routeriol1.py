@@ -23,14 +23,17 @@ class common_setup(aetest.CommonSetup):
     def connect(self, testscript, testbed):
         """ Common Setup subsection """
         log.info("Aetest Common Setup ")
-        for device in testbed:
-            # Connecting to the devices using the default connection
-            device.connect(via='cli')
 
-        # Save it in testscript parmaeters to be able to use it from other
-        # test sections
-        testscript.parameters['uut'] = device
+        routeriol1 = testbed.devices['routeriol']
+        routeriol2 = testbed.devices['routeriol2']
 
+        routeriol1.connect()
+        routeriol1.default
+        routeriol2.connect()
+        routeriol2.default
+
+        testscript.parameters['uut'] = routeriol1
+        testscript.parameters['uut2'] = routeriol2
 
 ### test cases ###
 class test_cases(aetest.Testcase):
@@ -42,8 +45,9 @@ class test_cases(aetest.Testcase):
         log.info("Preparing the test")
         log.info(section)
 
+
     @aetest.test
-    def send_show_int_cmd(self, uut):
+    def check_if_not_down(self, uut):
 
         self.output = uut.execute('show ip interface brief')
 
