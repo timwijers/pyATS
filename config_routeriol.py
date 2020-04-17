@@ -21,7 +21,7 @@ class common_setup(aetest.CommonSetup):
         """ Common Setup subsection """
         log.info("Aetest Common Setup ")
 
-        # testbed = load('routerIOL_tb.yaml')
+        testbed = load('routerIOL_tb.yaml')
         routeriol1 = testbed.devices['routeriol']
         routeriol2 = testbed.devices['routeriol2']
         routeriol3 = testbed.devices['routeriol2']
