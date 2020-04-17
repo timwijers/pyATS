@@ -50,6 +50,7 @@ class test_cases(aetest.Testcase):
     @aetest.test
     def check_if_not_down_routeriol1(self, uut):
         var = uut.parse('show ip interface brief ethernet0/2')
+        print(var)
         if var['status'] != 'up': self.failed('interface ethernet0/2 is not up')
 
     @aetest.test
