@@ -28,4 +28,4 @@ routeriol2.default.configure("interface ethernet0/2\n" " ip address 192.168.2.3 
 routeriol1.default.execute('show ip int brief')
 routeriol2.default.execute('show ip int brief')
 
-routeriol1.default.parse('show ip int brief')
+routeriol1.parse('show ip interface brief ethernet0/2')
