@@ -24,7 +24,7 @@ class common_setup(aetest.CommonSetup):
         testbed = load('routerIOL_tb.yaml')
         routeriol1 = testbed.devices['routeriol']
         routeriol2 = testbed.devices['routeriol2']
-        routeriol3 = testbed.devices['routeriol2']
+        routeriol3 = testbed.devices['routeriol3']
 
         routeriol1.connect()
         routeriol2.connect()
