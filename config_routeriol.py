@@ -49,15 +49,18 @@ class test_cases(aetest.Testcase):
         uut.configure("interface ethernet0/1\n" " ip address 192.168.2.1 255.255.255.0\n" " no sh\n")
         uut.configure("interface serial1/1\n" " ip address 10.0.2.1 255.255.255.254\n" " no sh\n")
         uut.configure("interface serial1/2\n" " ip address 10.0.3.1 255.255.255.254\n" " no sh\n")
-        uut.configure("router eigrp 1\n" "eigrp router-id 1.1.1.1\n" " network 10.0.2.0\n" " network 10.0.3.0\n"
-                      "network 192.168.5.0\n" "network 192.168.2.0\n" "passive-interface ethernet0/2\n "
+        uut.configure("router eigrp 1\n" "eigrp router-id 1.1.1.1\n" " network 10.0.2.0\n"  " no auto-summary\n" 
+                      "redistribute static\n" 
+                      " ip route 0.0.0.0 0.0.0.0 ethernet0/0\n"" network 10.0.3.0\n "
+                      "network 192.168.5.0\n" "network 192.168.2.0\n" "passive-interface ethernet0/2\n " 
                       "passive-interface ethernet0/0\n " "passive-interface ethernet0/1\n " " exit\n")
 
         uut2.configure("interface ethernet0/2\n" " ip address 192.168.6.1 255.255.255.0\n" " no sh\n")
         uut2.configure("interface ethernet0/1\n" " ip address 192.168.3.1 255.255.255.0\n" " no sh\n")
         uut2.configure("interface serial1/1\n" " ip address 10.0.2.2 255.255.255.254\n" " no sh\n")
         uut2.configure("interface serial1/0\n" " ip address 10.0.1.1 255.255.255.254\n" " no sh\n")
-        uut2.configure("router eigrp 1\n" "eigrp router-id 2.2.2.2\n"" network 10.0.2.0\n" " network 10.0.1.0\n"
+        uut2.configure("router eigrp 1\n" "eigrp router-id 2.2.2.2\n"" network 10.0.2.0\n" " network 10.0.1.0\n" "no "
+                       "auto-summary\n "
                        "network 192.168.6.0\n" "network 192.168.3.0\n" "passive-interface ethernet0/2\n "
                        "passive-interface ethernet0/0\n " "passive-interface ethernet0/1\n " " exit\n")
 
@@ -65,7 +68,8 @@ class test_cases(aetest.Testcase):
         uut3.configure("interface ethernet0/1\n" " ip address 192.168.4.1 255.255.255.0\n" " no sh\n")
         uut3.configure("interface serial1/0\n" " ip address 10.0.1.2 255.255.255.254\n" " no sh\n")
         uut3.configure("interface serial1/2\n" " ip address 10.0.3.2 255.255.255.254\n" " no sh\n")
-        uut3.configure("router eigrp 1\n" "eigrp router-id 3.3.3.3\n" " network 10.0.1.0\n" " network 10.0.3.0\n"
+        uut3.configure("router eigrp 1\n" "eigrp router-id 3.3.3.3\n" " network 10.0.1.0\n" " network 10.0.3.0\n" "no "
+                       "auto-summary\n "
                        " network 192.168.7.0\n" "network 192.168.4.0\n" "passive-interface ethernet0/2\n "
                        "passive-interface ethernet0/0\n " "passive-interface ethernet0/1\n " " exit\n")
 
