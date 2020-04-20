@@ -15,9 +15,15 @@
       pip:
         name: docker
 
-    - name: Pull default Docker image
+    - name: Pull pyATS Docker image
       docker_image:
         name: ciscotestautomation/pyats:latest
         source: pull
+
+    - name : Create pyATS Container
+      docker_container:
+        name: pyats_cont1
+        image: ciscotestautomation/pyats:latest
+        state: present
 
 
