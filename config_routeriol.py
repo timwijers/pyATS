@@ -79,9 +79,9 @@ class test_cases(aetest.Testcase):
                                                                           'not up')
         if var2['interface']['Ethernet0/2']['status'] != 'up': self.failed('interface ethernet0/2 on router IOL 1 is '
                                                                            'not up')
-        if var3['interface']['serial1/1']['status'] != 'up': self.failed('interface serial1/1 on router IOL 1 is '
+        if var3['interface']['Serial1/1']['status'] != 'up': self.failed('interface serial1/1 on router IOL 1 is '
                                                                          'not up')
-        if var4['interface']['serial1/2']['status'] != 'up': self.failed('interface serial1/2 on router IOL 1 is '
+        if var4['interface']['Serial1/2']['status'] != 'up': self.failed('interface serial1/2 on router IOL 1 is '
                                                                          'not up')
 
     @aetest.test
@@ -94,9 +94,9 @@ class test_cases(aetest.Testcase):
                                                                           'not up')
         if var2['interface']['Ethernet0/2']['status'] != 'up': self.failed('interface ethernet0/2 on router IOL 2 is '
                                                                            'not up')
-        if var3['interface']['serial1/0']['status'] != 'up': self.failed('interface serial1/0 on router IOL 2 is '
+        if var3['interface']['Serial1/0']['status'] != 'up': self.failed('interface serial1/0 on router IOL 2 is '
                                                                          'not up')
-        if var4['interface']['serial1/1']['status'] != 'up': self.failed('interface serial1/1 on router IOL 2 is '
+        if var4['interface']['Serial1/1']['status'] != 'up': self.failed('interface serial1/1 on router IOL 2 is '
                                                                          'not up')
 
     @aetest.test
@@ -109,9 +109,9 @@ class test_cases(aetest.Testcase):
                                                                           'not up')
         if var2['interface']['Ethernet0/2']['status'] != 'up': self.failed('interface ethernet0/2 on router IOL 3 is '
                                                                            'not up')
-        if var3['interface']['serial1/2']['status'] != 'up': self.failed('interface serial1/2 on router IOL 3 is '
+        if var3['interface']['Serial1/2']['status'] != 'up': self.failed('interface serial1/2 on router IOL 3 is '
                                                                          'not up')
-        if var4['interface']['serial1/0']['status'] != 'up': self.failed('interface serial1/0 on router IOL 3 is '
+        if var4['interface']['Serial1/0']['status'] != 'up': self.failed('interface serial1/0 on router IOL 3 is '
                                                                          'not up')
 
     @aetest.test
@@ -126,10 +126,10 @@ class test_cases(aetest.Testcase):
         if var2['interface']['Ethernet0/2']['ip_address'] != '192.168.5.1': self.failed('interface ethernet0/2 on '
                                                                                         'router IOL 1 does not have a'
                                                                                         ' correct ip address')
-        if var3['interface']['serial1/1']['ip_address'] != '10.0.2.1': self.failed('interface ethernet0/1 on '
+        if var3['interface']['Serial1/1']['ip_address'] != '10.0.2.1': self.failed('interface ethernet0/1 on '
                                                                                    'router IOL 1 does not have a '
                                                                                    'correct ip address')
-        if var4['interface']['serial1/2']['ip_address'] != '10.0.3.1': self.failed('interface ethernet0/2 on '
+        if var4['interface']['Serial1/2']['ip_address'] != '10.0.3.1': self.failed('interface ethernet0/2 on '
                                                                                    'router IOL 1 does not have a'
                                                                                    ' correct ip address')
 
@@ -145,15 +145,15 @@ class test_cases(aetest.Testcase):
         if var2['interface']['Ethernet0/2']['ip_address'] != '192.168.6.1': self.failed('interface ethernet0/2 on '
                                                                                         'router IOL 2 does not have a'
                                                                                         ' correct ip address')
-        if var3['interface']['serial1/0']['ip_address'] != '10.0.1.1': self.failed('interface serial1/0 on '
+        if var3['interface']['Serial1/0']['ip_address'] != '10.0.1.1': self.failed('interface serial1/0 on '
                                                                                    'router IOL 1 does not have a '
                                                                                    'correct ip address')
-        if var4['interface']['serial1/1']['ip_address'] != '10.0.2.2': self.failed('interface serial1/1 on '
+        if var4['interface']['Serial1/1']['ip_address'] != '10.0.2.2': self.failed('interface serial1/1 on '
                                                                                    'router IOL 1 does not have a'
                                                                                    ' correct ip address')
 
     @aetest.test
-    def check_ip_correct_routeriol2(self, uut3):
+    def check_ip_correct_routeriol3(self, uut3):
         var = uut3.parse('show ip interface brief ethernet0/1')
         var2 = uut3.parse('show ip interface brief ethernet0/2')
         var3 = uut3.parse('show ip interface brief serial1/0')
@@ -164,10 +164,10 @@ class test_cases(aetest.Testcase):
         if var2['interface']['Ethernet0/2']['ip_address'] != '192.168.7.1': self.failed('interface ethernet0/2 on '
                                                                                         'router IOL 3 does not have a'
                                                                                         ' correct ip address')
-        if var3['interface']['serial1/0']['ip_address'] != '10.0.1.2': self.failed('interface ethernet0/1 on '
+        if var3['interface']['Serial1/0']['ip_address'] != '10.0.1.2': self.failed('interface ethernet0/1 on '
                                                                                    'router IOL 3 does not have a '
                                                                                    'correct ip address')
-        if var4['interface']['serial1/2']['ip_address'] != '10.0.3.2': self.failed('interface ethernet0/2 on '
+        if var4['interface']['Serial1/2']['ip_address'] != '10.0.3.2': self.failed('interface ethernet0/2 on '
                                                                                    'router IOL 3 does not have a'
                                                                                    ' correct ip address')
 ### cleanup actions ###
