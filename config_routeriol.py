@@ -124,7 +124,7 @@ class test_cases(aetest.Testcase):
 
 ### cleanup actions ###
 class common_cleanup(aetest.CommonCleanup):
-
+    """
     @aetest.subsection
     def clean_device_config(self, uut, uut2, uut3):
         uut.configure("interface ethernet0/1\n" " no ip address\n" " sh\n")
@@ -145,7 +145,7 @@ class common_cleanup(aetest.CommonCleanup):
         uut.configure('no router eigrp 1');
         uut2.configure('no router eigrp 1');
         uut3.configure('no router eigrp 1');
-
+    """
     @aetest.subsection
     def disconnect(self, uut, uut2, uut3):
         """ Common Cleanup Subsection """
