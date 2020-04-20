@@ -49,10 +49,9 @@ class test_cases(aetest.Testcase):
         uut.configure("interface ethernet0/1\n" " ip address 192.168.2.1 255.255.255.0\n" " no sh\n")
         uut.configure("interface serial1/1\n" " ip address 10.0.2.1 255.255.255.254\n" " no sh\n")
         uut.configure("interface serial1/2\n" " ip address 10.0.3.1 255.255.255.254\n" " no sh\n")
-        uut.configure("router eigrp 1\n" "eigrp router-id 1.1.1.1\n" " network 10.0.2.0\n"  " no auto-summary\n" 
-                      "redistribute static\n" 
-                      " ip route 0.0.0.0 0.0.0.0 ethernet0/0\n"" network 10.0.3.0\n "
-                      "network 192.168.5.0\n" "network 192.168.2.0\n" "passive-interface ethernet0/2\n " 
+        uut.configure(" ip route 0.0.0.0 0.0.0.0 ethernet0/0\n" "router eigrp 1\n" "eigrp router-id 1.1.1.1\n"
+                      "network 10.0.2.0\n"  " no auto-summary\n " "redistribute static\n" " network 10.0.3.0\n "
+                      "network 192.168.5.0\n" "network 192.168.2.0\n" "passive-interface ethernet0/2\n "
                       "passive-interface ethernet0/0\n " "passive-interface ethernet0/1\n " " exit\n")
 
         uut2.configure("interface ethernet0/2\n" " ip address 192.168.6.1 255.255.255.0\n" " no sh\n")
@@ -150,6 +149,7 @@ class common_cleanup(aetest.CommonCleanup):
         uut2.configure('no router eigrp 1');
         uut3.configure('no router eigrp 1');
     """
+
     @aetest.subsection
     def disconnect(self, uut, uut2, uut3):
         """ Common Cleanup Subsection """
