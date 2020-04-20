@@ -125,8 +125,17 @@ class test_cases(aetest.Testcase):
         assert var['interface']['Serial1/2']['ip_address'] == '10.0.3.2', "interface serial1/2 on router IOL 3 does " \
                                                                           "not have a correct ip address "
 
+    @aetest.test
+    def check_eigrp_proto_isActive(self,uut,uut2,uut3):
+        var = uut.parse('show ip protocols')
+        var2 = uut2.parse('show ip protocols')
+        var3 = uut3.parse('show ip protocols')
 
-### cleanup actions ###
+        assert var['protocols']['eigrp'] is not None, "EIGRP routing protocol is not active on router IOL 1"
+        assert var2['protocols']['eigrp'] is not None, "EIGRP routing protocol is not active on router IOL 2"
+        assert var3['protocols']['eigrp'] is not None, "EIGRP routing protocol is not active on router IOL 3"
+
+    ### cleanup actions ###
 class common_cleanup(aetest.CommonCleanup):
     """
     @aetest.subsection
