@@ -1,0 +1,23 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+
+    - name: Install docker package
+      apt: docker.io python3-docker -y
+
+    - name: Install required system packages
+      apt: name={{ item }} state=latest update_cache=yes
+      loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
+
+    - name: Install Docker Module for Python
+      pip:
+        name: docker
+
+    - name: Pull default Docker image
+      docker_image:
+        name: ciscotestautomation/pyats:latest
+        source: pull
+
+
