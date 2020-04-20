@@ -2,12 +2,14 @@
 import os
 import time
 import logging
+import custom_error
 
 # pyATS import
 from pyats import aetest
 from pyats import topology
 from genie.harness.base import Trigger
 from genie.testbed import load
+
 
 log = logging.getLogger()
 
