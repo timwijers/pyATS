@@ -71,8 +71,19 @@ class test_cases(aetest.Testcase):
 
     @aetest.test
     def check_interfaces_not_down_routeriol1(self, uut):
+        var = uut.parse('show ip interface brief')
+        assert var['interface']['Ethernet0/1']['status'] == 'up', "interface ethernet0/1 on router IOL 1 is not up"
+        assert var['interface']['Ethernet0/2']['status'] == 'up', "interface ethernet0/2 on router IOL 1 is not up"
+        assert var['interface']['Serial1/1']['status'] == 'up', "interface Serial1/1 on router IOL 1 is not up"
+        assert var['interface']['Serial1/2']['status'] == 'up', "interface Serial1/2 on router IOL 1 is not up"
+
+    """
+    @aetest.test
+    def check_interfaces_not_down_routeriol1(self, uut):
         var = uut.parse('show ip interface brief ethernet0/1')
+        assert var['interface']['Ethernet0/1']['status'] == 'up', "interface ethernet0/1 on router IOL 1 is not up"
         var2 = uut.parse('show ip interface brief ethernet0/2')
+        assert var2['interface']['Ethernet0/2']['status'] == 'up', "interface ethernet0/2 on router IOL 1 is not up"
         var3 = uut.parse('show ip interface brief serial1/1')
         var4 = uut.parse('show ip interface brief serial1/2')
         if var['interface']['Ethernet0/1']['status'] != 'up': self.failed('interface ethernet0/1 on router IOL 1 is '
@@ -82,8 +93,8 @@ class test_cases(aetest.Testcase):
         if var3['interface']['Serial1/1']['status'] != 'up': self.failed('interface serial1/1 on router IOL 1 is '
                                                                          'not up')
         if var4['interface']['Serial1/2']['status'] != 'up': self.failed('interface serial1/2 on router IOL 1 is '
-                                                                         'not up')
-
+                                                                      'not up')
+    """
     @aetest.test
     def check_interfaces_not_down_routeriol2(self, uut2):
         var = uut2.parse('show ip interface brief ethernet0/1')
