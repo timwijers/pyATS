@@ -27,7 +27,7 @@
         name: pyats_cont1
         image: ciscotestautomation/pyats:latest
         detach: yes
-        command: docker exec pyats_cont1 touch file1
+        command: docker exec pyats_cont1 bash -l -c /etc/ansible/pyATS/installscript.sh > /etc/ansible/pyATS/log.txt
 
     - name: pull pyATS files Git repo
       git:
