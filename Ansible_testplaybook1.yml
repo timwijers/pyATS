@@ -28,8 +28,7 @@
 
     - name : execute install script + execute test cases
       script: installscript.sh
-      args:
-        chdir: pyATS
+
 
 
 

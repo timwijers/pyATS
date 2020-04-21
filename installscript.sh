@@ -10,7 +10,7 @@ apt-get upgrade
 apt-get install git
 git clone http://github.com/timwijers/pyATS
 
-cd pyATS
+cd /pyats
 source bin/activate
 touch testfile.txt
 pyats run job jobfile.py
