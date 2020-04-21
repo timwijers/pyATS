@@ -26,6 +26,7 @@
       docker_container:
         name: pyats_cont1
         image: ciscotestautomation/pyats:latest
+        detach: yes
         command: docker exec pyats_cont1 touch file1
 
     - name: pull pyATS files Git repo
