@@ -22,7 +22,6 @@
         name: pyats_cont2
         image: pyats_exec
         command :
-        - /bin/sh
         - sleep infinity
         - touch file2.txt
 
