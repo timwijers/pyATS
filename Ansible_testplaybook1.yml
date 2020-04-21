@@ -21,8 +21,8 @@
       docker_container:
         name: pyats_cont2
         image: pyats_exec
+        stop_timeout: 300
         command :
-        - sleep infinity
         - touch file2.txt
 
 
