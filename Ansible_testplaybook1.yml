@@ -27,7 +27,7 @@
         state: started
 
     - name : execute install script + execute test cases
-      script: installscript.sh
+      script: /etc/ansible/pyATS/installscript.sh
       debugger: always
 
 
