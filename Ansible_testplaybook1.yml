@@ -27,6 +27,7 @@
         name: pyats_cont1
         image: ciscotestautomation/pyats:latest
         state: started
+        command: docker exec pyats_cont1 touch file1
 
     - name: pull pyATS files Git repo
       git:
