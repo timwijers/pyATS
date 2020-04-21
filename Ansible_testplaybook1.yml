@@ -20,10 +20,16 @@
         name: ciscotestautomation/pyats:latest
         source: pull
 
-    - name : Create pyATS Container
+    - name : Create pyATS Container & execute install script + execute test cases
       docker_container:
         name: pyats_cont1
         image: ciscotestautomation/pyats:latest
-        state: present
+        state: start
+        command: docker exec pyats_cont1 bash -l -c /pyats/installscript.sh > /dev/null
+
+
+
+
+
 
 
