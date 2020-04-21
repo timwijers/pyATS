@@ -27,8 +27,9 @@
         state: started
 
     - name : execute install script + execute test cases
-      chdir: pyATS
       script: installscript.sh
+      args:
+        chdir: pyATS
 
 
 
