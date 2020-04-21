@@ -21,7 +21,7 @@
       docker_container:
         name: pyats_cont1
         image: pyats_exec
-        command : touch file1.txt
+        command : sleep infinity | touch file1.txt
 
 
 
