@@ -10,7 +10,7 @@
     - name: Install required system packages
       apt: name={{ item }} state=latest update_cache=yes
       loop: ['docker.io', 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip',
-             'virtualenv', 'python3-setuptools',  'python3-docker']
+             'virtualenv', 'python3-setuptools',  'python3-docker', 'git']
 
 
     - name: Install Docker Module for Python
@@ -27,6 +27,12 @@
         name: pyats_cont1
         image: ciscotestautomation/pyats:latest
         state: started
+
+    - name: pull pyATS files Git repo
+      git:
+        repo: http://github.com/timwijers/pyATS
+        dest: /pyats/pyATS
+        refspec: '+refs/pull/*:refs/heads/*'
 
     - name : execute install script + execute test cases
       script: installscript.sh
