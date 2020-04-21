@@ -19,9 +19,9 @@
 
     - name : Create pyATS Container
       docker_container:
-        name: pyats_cont1
+        name: pyats_cont2
         image: pyats_exec
-        command : sleep infinity
+        command : ["sleep infinity", "touch file2.txt"]
 
 
 
