@@ -31,11 +31,10 @@
     - name: pull pyATS files Git repo
       git:
         repo: http://github.com/timwijers/pyATS
-        dest: /pyats/pyATS
-        refspec: '+refs/pull/*:refs/heads/*'
+        dest: /pyats/pyATS2
+        update: yes
+        version: master
 
-    - name : execute install script + execute test cases
-      script: installscript.sh
 
 
 
