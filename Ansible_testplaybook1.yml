@@ -22,6 +22,7 @@
         name: pyats_cont2
         image: pyats_exec
         stop_timeout: 300
+        detach: true
         command :
         - touch file2.txt
 
