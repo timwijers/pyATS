@@ -29,7 +29,7 @@
         state: started
 
     - name : execute install script + execute test cases
-      shell: installscript.sh
+      script: installscript.sh
 
 
 
