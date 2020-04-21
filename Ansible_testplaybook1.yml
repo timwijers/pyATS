@@ -10,34 +10,18 @@
     - name: Install required system packages
       apt: name={{ item }} state=latest update_cache=yes
       loop: ['docker.io', 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip',
-             'virtualenv', 'python3-setuptools',  'python3-docker', 'git']
+             'virtualenv', 'python3-setuptools',  'python3-docker',]
 
 
     - name: Install Docker Module for Python
       pip:
         name: docker
 
-    - name: Pull pyATS Docker image
-      docker_image:
-        name: ciscotestautomation/pyats:latest
-        source: pull
-
     - name : Create pyATS Container
       docker_container:
         name: pyats_cont1
-        image: ciscotestautomation/pyats:latest
-        detach: yes
-        command: sleep 1d
-        # | docker exec pyats_cont1 bash -l -c /etc/ansible/pyATS/installscript.sh > /etc/ansible/pyATS/log.txt
-
-
-    - name: pull pyATS files Git repo
-      git:
-        repo: http://github.com/timwijers/pyATS
-        dest: /pyats/pyATS2
-        update: yes
-        version: master
-
+        image: pyats_exec
+        command : touch file1.txt
 
 
 
