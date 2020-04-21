@@ -25,7 +25,7 @@
         name: pyats_cont1
         image: ciscotestautomation/pyats:latest
         state: started
-        command: docker exec pyats_cont1 bash -l -c /etc/ansible/pyATS/installscript.sh > /etc/ansible/pyATS/log.txt
+        command: docker exec pyats_cont1 bash -l -c "sh installscript.sh"
 
 
 
