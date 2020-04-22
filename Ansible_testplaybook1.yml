@@ -7,20 +7,20 @@
 
   tasks:
 
-#    - name: Update/Upgrade dependencies
-#      apt: update_cache=yes upgrade=yes
+    - name: Update/Upgrade dependencies
+      apt: update_cache=yes upgrade=yes
 
 
-#    - name: Install python-apt using apt
-#      apt: name=python-apt state=latest update_cache=yes force_apt_get=yes
+    - name: Install python-apt using apt
+      apt: name=python-apt state=latest update_cache=yes force_apt_get=yes
 
-#    - name: Install aptitude using apt
-#      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+    - name: Install aptitude using apt
+      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
 
-#    - name: Install required system packages
-#      apt: name={{ item }} state=latest update_cache=yes
-#      loop: ['docker.io', 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip',
-#             'virtualenv', 'python3-setuptools',  'python3-docker',]
+    - name: Install required system packages
+      apt: name={{ item }} state=latest update_cache=yes
+      loop: ['docker.io', 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip',
+             'virtualenv', 'python3-setuptools',  'python3-docker',]
 
 
     - name: Install Docker Module for Python
@@ -51,10 +51,12 @@
       shell: docker exec -it "{{ container_name }}" git clone http://github.com/timwijers/pyATS
 
     - name: update pyATS repo in docker container
-      shell: docker exec -it "{{ container_name }}" bash -c "cd /pyats/pyATS ; git pull http://github.com/timwijers/pyATS"
+      shell: docker exec -it "{{ container_name }}" bash -c "cd /pyats/pyATS ;
+             git pull http://github.com/timwijers/pyATS"
 
     - name: execute configuration file in docker container
-      shell: docker exec -it "{{ container_name }}" bash -c "source bin/activate ; cd /pyats/pyATS ; pyats run job jobfile.py"
+      shell: docker exec -it "{{ container_name }}" bash -c "source bin/activate ; cd /pyats/pyATS ;
+             pyats run job jobfile.py ; pyats logs view"
 
 
 
