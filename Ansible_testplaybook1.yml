@@ -25,8 +25,7 @@
         detach: true
         command :
           - sleep infinity
-          - touch file2.txt
-          - sleep infinity
+
 
 
 
