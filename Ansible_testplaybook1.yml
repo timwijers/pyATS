@@ -4,18 +4,18 @@
 
   tasks:
 
-#    - name: Install aptitude using apt
-#      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+    - name: Install aptitude using apt
+      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
 
-#    - name: Install required system packages
-#      apt: name={{ item }} state=latest update_cache=yes
-#      loop: ['docker.io', 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip',
-#             'virtualenv', 'python3-setuptools',  'python3-docker',]
+    - name: Install required system packages
+      apt: name={{ item }} state=latest update_cache=yes
+      loop: ['docker.io', 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip',
+             'virtualenv', 'python3-setuptools',  'python3-docker',]
 
 
-#    - name: Install Docker Module for Python
-#      pip:
-#        name: docker
+    - name: Install Docker Module for Python
+      pip:
+        name: docker
 
     - name: Create pyATS Container
       docker_container:
@@ -26,8 +26,8 @@
         command:
           - sleep infinity
 
-#    - name: Clone docker repo into container
-#      shell: docker exec -it pyats_cont2 git clone http://github.com/timwijers/pyATS
+    - name: Clone docker repo into container
+      shell: docker exec -it pyats_cont2 git clone http://github.com/timwijers/pyATS
 
     - name: execute test command in container
       shell: docker exec -it pyats_cont2 bash -c "source bin/activate ; cd /pyats/pyATS ; pyats run job jobfile.py"
