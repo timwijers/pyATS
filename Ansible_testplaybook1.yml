@@ -30,7 +30,7 @@
 #      shell: docker exec -it pyats_cont2 git clone http://github.com/timwijers/pyATS
 
     - name: execute test command in container
-      shell: docker exec -it pyats_cont2 bash -c "cd /pyats/pyATS ; pyats run job jobfile.py"
+      shell: docker exec -it pyats_cont2 bash -c "source bin/activate ; cd /pyats/pyATS ; pyats run job jobfile.py"
 
 
 
