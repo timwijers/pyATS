@@ -56,7 +56,7 @@
 
     - name: execute configuration file in docker container
       shell: docker exec -it "{{ container_name }}" bash -c "source bin/activate ; cd /pyats/pyATS ;
-             pyats run job jobfile.py ; pyats logs view"
+             pyats run job jobfile.py"
 
 
 
