@@ -24,8 +24,9 @@
         stop_timeout: 300
         detach: true
         command :
-        - touch file2.txt
-        - sleep infinity
+          - sleep infinity
+          - touch file2.txt
+          - sleep infinity
 
 
 
