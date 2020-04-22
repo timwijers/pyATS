@@ -41,8 +41,11 @@
         command:
           - sleep infinity
 
+    - name: update/upgrade dependencies in docker container
+      shell: docker exec -it "{{ container_name }}" bash -c "apt-get update -y ; apt-get upgrade -y"
+
     - name: install Git on docker container
-      shell: docker exec -it "{{ container_name }}" apt-get install git
+      shell: docker exec -it "{{ container_name }}" apt-get install git -y
 
     - name: clone pyATs repository to docker container
       shell: docker exec -it "{{ container_name }}" git clone http://github.com/timwijers/pyATS
