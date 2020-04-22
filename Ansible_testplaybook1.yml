@@ -19,7 +19,7 @@
 
     - name: Create pyATS Container
       docker_container:
-        name: pyats_cont2
+        name: pyats_cont3
         image: pyats_exec
         stop_timeout: 300
         detach: true
