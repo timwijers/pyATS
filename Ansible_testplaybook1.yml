@@ -10,21 +10,25 @@
 #    - name: Update/Upgrade dependencies
 #      shell: sudo apt-get update ; sudo apt-get upgrade
 
-    - name: Install python-apt using apt
-      apt: name=python-apt state=latest update_cache=yes force_apt_get=yes
+#    - name: Install python-apt using apt
+#      apt: name=python-apt state=latest update_cache=yes force_apt_get=yes
 
-    - name: Install aptitude using apt
-      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+#    - name: Install aptitude using apt
+#      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
 
-    - name: Install required system packages
-      apt: name={{ item }} state=latest update_cache=yes
-      loop: ['docker.io', 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip',
+#    - name: Install required system packages
+#      apt: name={{ item }} state=latest update_cache=yes
+#      loop: ['docker.io', 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip',
              'virtualenv', 'python3-setuptools',  'python3-docker',]
 
 
     - name: Install Docker Module for Python
       pip:
         name: docker
+
+    - name: Install ssl_match_hostname Module for Python
+        pip:
+          name: backports.ssl_match_hostname
 
     - name: Create pyATS Container
       docker_container:
