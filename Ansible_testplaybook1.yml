@@ -26,12 +26,10 @@
         command :
           - sleep infinity
 
-
+    docker:
     - remote_addr:
       vars:
       - name: pyats_cont2
-
-    - docker_extra_args: touch file2.txt
 
 
 
