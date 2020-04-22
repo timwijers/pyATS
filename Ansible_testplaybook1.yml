@@ -8,7 +8,8 @@
   tasks:
 
 #    - name: Update/Upgrade dependencies
-#      shell: sudo apt-get update ; sudo apt-get upgrade
+#      apt: update_cache=yes upgrade=yes
+
 
 #    - name: Install python-apt using apt
 #      apt: name=python-apt state=latest update_cache=yes force_apt_get=yes
@@ -23,12 +24,13 @@
 
 
     - name: Install Docker Module for Python
-      pip:
-        name: docker
+      pip: name=docker
 
-    - name: Install ssl_match_hostname Module for Python
-      pip:
-        name: backports.ssl_match_hostname
+    - name: Uninstall ssl_match_hostname
+      pip: name=python-backports.ssl-match-hostname state=absent
+
+    - name: Install ssl_match_hostname apt module for Python
+      apt: name=python-backports.ssl-match-hostname state=latest update_cache=yes force_apt_get=yes
 
     - name: Create pyATS Container
       docker_container:
