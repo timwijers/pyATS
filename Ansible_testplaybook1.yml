@@ -36,7 +36,7 @@
       docker_container:
         name: "{{ container_name }}"
         image: ciscotestautomation/pyats:latest
-        ports: 30000-50000:30000-50000
+        #ports: 30000-50000:30000-50000
         stop_timeout: 300
         detach: true
         command:
