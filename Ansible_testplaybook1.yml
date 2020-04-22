@@ -7,8 +7,8 @@
 
   tasks:
 
-    - name: Update/Upgrade dependencies
-      shell: sudo apt-get update ; sudo apt-get upgrade
+#    - name: Update/Upgrade dependencies
+#      shell: sudo apt-get update ; sudo apt-get upgrade
 
     - name: Install python-apt using apt
       apt: name=python-apt state=latest update_cache=yes force_apt_get=yes
