@@ -27,11 +27,11 @@
           - sleep infinity
 
 
-      remote_addr:
-        vars:
-        - name: pyats_cont2
+    - remote_addr:
+      vars:
+      - name: pyats_cont2
 
-      docker_extra_args: touch file2.txt
+    - docker_extra_args: touch file2.txt
 
 
 
