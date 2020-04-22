@@ -17,19 +17,20 @@
 #      pip:
 #        name: docker
 
-    - name : Create pyATS Container
+    - name: Create pyATS Container
       docker_container:
         name: pyats_cont2
         image: pyats_exec
         stop_timeout: 300
         detach: true
-        command :
+        command:
           - sleep infinity
 
-    docker:
-    - remote_addr:
-      vars:
-      - name: pyats_cont2
+#    - name: Clone docker repo into container
+#      shell: docker exec -it pyats_cont2 git clone http://github.com/timwijers/pyATS
+
+    - name: execute test command in container
+      shell: docker exec -it pyats_cont2 bash -c "cd pyats/pyATS ; pyats run job jobfile.py"
 
 
 
