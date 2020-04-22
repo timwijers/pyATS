@@ -4,13 +4,11 @@
 
   vars:
     - container_name: pyats_cont
+
   tasks:
 
-    - name: Update dependencies
-      apt: name=update state=latest update_cache=yes force_apt_get=yes
-
-    - name: Upgrade dependencies
-      apt: name=upgrade state=latest update_cache=yes force_apt_get=yes
+    - name: Update/Upgrade dependencies
+      shell: sudo apt-get update ; sudo apt-get upgrade
 
     - name: Install python-apt using apt
       apt: name=python-apt state=latest update_cache=yes force_apt_get=yes
