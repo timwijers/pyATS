@@ -35,16 +35,22 @@
     - name: Create pyATS Container
       docker_container:
         name: "{{ container_name }}"
-        image: pyats_exec
+        image: ciscotestautomation/pyats:latest
         stop_timeout: 300
         detach: true
         command:
           - sleep infinity
 
-    - name: update pyATS repo
+    - name: install Git on docker container
+      shell: docker exec -it "{{ container_name }}" apt-get install git
+
+    - name: clone pyATs repository to docker container
+      shell: docker exec -it "{{ container_name }}" git clone http://github.com/timwijers/pyATS
+
+    - name: update pyATS repo in docker container
       shell: docker exec -it "{{ container_name }}" bash -c "cd /pyats/pyATS ; git pull http://github.com/timwijers/pyATS"
 
-    - name: execute configuration file
+    - name: execute configuration file in docker container
       shell: docker exec -it "{{ container_name }}" bash -c "source bin/activate ; cd /pyats/pyATS ; pyats run job jobfile.py"
 
 
