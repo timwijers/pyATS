@@ -21,7 +21,7 @@
 
     - name: Create pyATS Container
       docker_container:
-        name: {{ container_name }}
+        name: "{{ container_name }}"
         image: pyats_exec
         stop_timeout: 300
         detach: true
@@ -29,10 +29,10 @@
           - sleep infinity
 
     - name: update pyATS repo
-      shell: docker exec -it {{ container_name }} bash -c "cd /pyats/pyATS ; git pull http://github.com/timwijers/pyATS"
+      shell: docker exec -it "{{ container_name }}" bash -c "cd /pyats/pyATS ; git pull http://github.com/timwijers/pyATS"
 
     - name: execute configuration file
-      shell: docker exec -it {{ container_name }} bash -c "source bin/activate ; cd /pyats/pyATS ; pyats run job jobfile.py"
+      shell: docker exec -it "{{ container_name }}" bash -c "source bin/activate ; cd /pyats/pyATS ; pyats run job jobfile.py"
 
 
 
