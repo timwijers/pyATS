@@ -4,8 +4,8 @@
 
   tasks:
 
-    - name: Install aptitude using apt
-      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+#    - name: Install aptitude using apt
+#      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
 
 #    - name: Install required system packages
 #      apt: name={{ item }} state=latest update_cache=yes
@@ -13,9 +13,9 @@
 #             'virtualenv', 'python3-setuptools',  'python3-docker',]
 
 
-    - name: Install Docker Module for Python
-      pip:
-        name: docker
+#    - name: Install Docker Module for Python
+#      pip:
+#        name: docker
 
     - name : Create pyATS Container
       docker_container:
