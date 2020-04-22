@@ -1,5 +1,5 @@
 ---
-- hosts: dockerHost2
+- hosts: dockerHost
   become: true
 
   vars:
