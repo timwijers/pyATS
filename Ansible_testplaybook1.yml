@@ -27,8 +27,8 @@
         name: docker
 
     - name: Install ssl_match_hostname Module for Python
-        pip:
-          name: backports.ssl_match_hostname
+      pip:
+        name: backports.ssl_match_hostname
 
     - name: Create pyATS Container
       docker_container:
