@@ -7,8 +7,8 @@
 
   tasks:
 
-    - name: Update/Upgrade dependencies
-      apt: update_cache=yes upgrade=yes
+#    - name: Update/Upgrade dependencies
+#      apt: update_cache=yes upgrade=yes
 
 
     - name: Install python-apt using apt
