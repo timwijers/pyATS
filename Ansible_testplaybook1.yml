@@ -69,7 +69,7 @@
     - name: kill Docker container
       shell: docker stop "{{ container_name }}"
 
-    - name: clean Docker host
-      shell: yes | docker system prune
+#    - name: clean Docker host
+#      shell: yes | docker system prune
 
 
