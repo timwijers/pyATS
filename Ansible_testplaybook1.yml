@@ -36,13 +36,13 @@
       docker_container:
         name: "{{ container_name }}"
         image: ciscotestautomation/pyats:latest
-        ports: 30000-50000:30000-50000
+        ports: 80:80
         stop_timeout: 300
         detach: true
         command:
           - sleep infinity
 
-    - name: update/upgrade dependencies in docker container
+    - name: update/upgrade dependencies of docker container
       shell: docker exec -it "{{ container_name }}" bash -c "apt-get update -y ; apt-get upgrade -y"
 
     - name: install Git on docker container
@@ -57,7 +57,8 @@
 
     - name: execute configuration file in docker container
       shell: docker exec -it "{{ container_name }}" bash -c "source bin/activate ; cd /pyats/pyATS ;
-             pyats run job jobfile.py"
+             pyats run job jobfile.py > result.txt"
+
 
 
 
