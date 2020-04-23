@@ -7,30 +7,31 @@
 
   tasks:
 
-#    - name: Update/Upgrade dependencies
-#      apt: update_cache=yes upgrade=yes
+    - name: Update/Upgrade dependencies
+      apt: update_cache=yes upgrade=yes
 
 
-#    - name: Install python-apt using apt
-#      apt: name=python-apt state=latest update_cache=yes force_apt_get=yes
+    - name: Install python-apt using apt
+      apt: name=python-apt state=latest update_cache=yes force_apt_get=yes
 
-#    - name: Install aptitude using apt
-#      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+    - name: Install aptitude using apt
+      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
 
-#    - name: Install required system packages
-#      apt: name={{ item }} state=latest update_cache=yes
-#      loop: ['docker.io', 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip',
-#             'virtualenv', 'python3-setuptools',  'python3-docker',]
+    - name: Install required system packages
+      apt: name={{ item }} state=latest update_cache=yes
+      loop: ['docker.io', 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip',
+             'virtualenv', 'python3-setuptools',  'python3-docker',]
 
 
-#    - name: Install Docker Module for Python
-#      pip: name=docker
+    - name: Install Docker Module for Python
+      pip: name=docker
 
-#    - name: Uninstall ssl_match_hostname
-#      pip: name=python-backports.ssl-match-hostname state=absent
+    - name: Uninstall ssl_match_hostname
+      pip: name=python-backports.ssl-match-hostname state=absent
 
-#    - name: Install ssl_match_hostname apt module for Python
-#      apt: name=python-backports.ssl-match-hostname state=latest update_cache=yes force_apt_get=yes
+    - name: Install ssl_match_hostname apt module for Python
+      apt: name=python-backports.ssl-match-hostname state=latest update_cache=yes force_apt_get=yes
+
 
     - name: Create pyATS Container
       docker_container:
@@ -55,10 +56,15 @@
       shell: docker exec -it "{{ container_name }}" bash -c "cd /pyats/pyATS ;
              git pull http://github.com/timwijers/pyATS"
 
+    - name: Install apache webserver on docker container
+      shell: docker exec -it "{{ container_name }}" bash -c "apt-get install apache2 ; service apache2 start"
+
     - name: execute configuration file in docker container
       shell: docker exec -it "{{ container_name }}" bash -c "source bin/activate ; cd /pyats/pyATS ;
              pyats run job jobfile.py > result.txt"
 
+    - name: save results to webserver in docker container
+      shell: docker exec -it "{{ container_name }}" cp /pyats/pyATS/result.txt /var/www/html
 
 
 
