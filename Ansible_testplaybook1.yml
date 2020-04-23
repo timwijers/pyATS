@@ -57,7 +57,7 @@
              git pull http://github.com/timwijers/pyATS"
 
     - name: Install apache webserver on docker container
-      shell: docker exec -it "{{ container_name }}" bash -c "apt-get install apache2 ; service apache2 start"
+      shell: docker exec -it "{{ container_name }}" bash -c "yes | apt-get install apache2 ; service apache2 start"
 
     - name: execute configuration file in docker container
       shell: docker exec -it "{{ container_name }}" bash -c "source bin/activate ; cd /pyats/pyATS ;
