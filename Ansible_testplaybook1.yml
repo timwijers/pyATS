@@ -66,8 +66,8 @@
     - name: save results to webserver in docker container
       shell: docker exec -it "{{ container_name }}" cp /pyats/pyATS/result.txt /var/www/html
 
-    - name: kill Docker container
-      shell: docker stop "{{ container_name }}"
+#   - name: kill Docker container
+#      shell: docker stop "{{ container_name }}"
 
 #    - name: clean Docker host
 #      shell: yes | docker system prune
