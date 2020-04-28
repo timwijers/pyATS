@@ -1,8 +1,9 @@
 import requests
 import custom_error
 
-loginCreds = {'username': 'tim_wijers', 'password': 'Welkom01'}
-login = requests.post('http://10.100.244.1/api/auth/login', data={'username': 'tim_wijers', 'password': 'Welkom01'})
+payload = {'username': 'tim_wijers', 'password': 'Welkom01'}
+url = 'http://10.100.244.1/api/auth/login/'
+login = requests.post(url, payload)
 
 if login.status_code != 200:
     print('status not 200')
