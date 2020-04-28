@@ -1,0 +1,28 @@
+# Title: Eve-NG REST API connection page
+# Author: Tim Wijers
+# Copyright: Routz B.V.
+
+
+# curl  -X POST -d '{"username":"tim_wijers","password":"Welkom01"}' http://10.100.244.1/api/auth/login
+POST http://10.100.244.1/api/auth/login
+Content-Type: application/x-www-form-urlencoded
+
+{"username":"tim_wijers","password":"Welkom01"}
+
+###
+
+# curl -X GET -H 'Content-type: application/json' http://10.100.244.1/api/labs/Tim%20Wijers/pyATS%20testlab.unl
+GET http://10.100.244.1/api/labs/Tim%20Wijers/pyATS%20testlab.unl
+Content-Type: application/json
+
+###
+
+# curl -X GET -H 'Content-type: application/json' http://10.100.244.1/api/labs/Tim%20Wijers/pyATS%20testlab.unl/nodes
+GET http://10.100.244.1/api/labs/Tim%20Wijers/pyATS%20testlab.unl/nodes
+Content-Type: application/json
+
+###
+
+
+
+
