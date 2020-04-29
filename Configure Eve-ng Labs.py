@@ -18,5 +18,6 @@ LabConfigData = '{"path":"/Tim Wijers/pyATS_TestLabs/","name":"pyATSTestLab_2","
                 'for pyATS framework testing purposes"} '
 
 LabConfigUrl = 'http://10.100.244.1/api/labs'
+loginReq = requests.post(LoginUrl, LoginData)
 LabConfigReq = requests.post(LabConfigUrl, LabConfigData)
 print(LabConfigReq.json())
