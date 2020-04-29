@@ -1,7 +1,7 @@
 import requests
 import custom_error
 
-data = '{"username":"admin","password":"eve"}'
+data = '{"username":"tim_wijers","password":"Welkom01"}'
 url = 'http://10.100.244.1/api/auth/login'
 login = requests.post(url,data)
 
