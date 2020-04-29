@@ -24,7 +24,7 @@ print(LabConfigReq.json())
 
 
 # Add a new node to the lab #
-NodeAddData = '{"type":"iol","template":"Cisco IOL","config":"Saved","delay":0,"icon":"Router.png",' \
+NodeAddData = '{"type":"iol","template":"iol","config":"Unconfigured","delay":0,"icon":"Router.png",' \
               '"image":"i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin","name":"pyats_Router3","left":"35%",' \
               '"top":"25%","ram":"1024","cpu":1,"ethernet":2, "nvram": 1024, "serial": 1} '
 NodeAddUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab_7.unl/nodes'
