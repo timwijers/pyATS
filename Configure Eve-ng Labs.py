@@ -48,7 +48,7 @@ NodeAddReq = session.post(NodeAddUrl, NodeAddData)
 print(NodeAddReq.json())
 
 # Create a new Internet Gateway for internet connection #
-NetworkAddData = '{"type":"bridge","name":"InternetGateway","left":"35%","top":"25%"}'
+NetworkAddData = '{"type":"Management(Cloud0)","name":"InternetGateway","left":"35%","top":"25%"}'
 NetworkAddUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/networks'
 NetworkAddReq = session.post(NetworkAddUrl, NetworkAddData)
 print(NetworkAddReq.json())
