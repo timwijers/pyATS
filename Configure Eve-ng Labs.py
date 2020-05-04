@@ -13,6 +13,10 @@ LoginUrl = 'http://10.100.244.1/api/auth/login'
 loginReq = session.post(LoginUrl, LoginData)
 print(loginReq.json())
 
+# Delete Lab from previous run #
+LabUrl = 'http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab'
+LabDelReq = session.delete(LabUrl)
+
 # Create New Testlab in the pyATS_TestLabs folder #
 DateTimeObj = datetime.datetime.now()
 LabConfigData = '{"path":"/Tim Wijers/pyATS_TestLabs/","name":"pyATSTestLab","version":"1","author":"Tim Wijers",' \
