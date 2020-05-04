@@ -14,7 +14,8 @@ loginReq = session.post(LoginUrl, LoginData)
 print(loginReq.json())
 
 # Delete Lab from previous run #
-LabUrl = 'http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab'
+LabUrl = 'http://10.100.244.1/api/labs//Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl'
+
 LabDelReq = session.delete(LabUrl)
 print(LabDelReq.json())
 
