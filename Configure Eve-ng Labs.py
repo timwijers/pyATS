@@ -1,6 +1,7 @@
 import datetime
 
 import requests
+
 import custom_error
 
 # start session #
@@ -21,7 +22,6 @@ LabConfigData = '{"path":"/Tim Wijers/pyATS_TestLabs/","name":"pyATSTestLab","ve
 LabConfigUrl = 'http://10.100.244.1/api/labs'
 LabConfigReq = session.post(LabConfigUrl, LabConfigData)
 print(LabConfigReq.json())
-
 
 # Add router 1 to the lab #
 NodeAddData = '{"type":"iol","template":"iol","config":"Unconfigured","delay":0,"icon":"Router.png",' \
@@ -53,4 +53,19 @@ NetworkAddUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTes
 NetworkAddReq = session.post(NetworkAddUrl, NetworkAddData)
 print(NetworkAddReq.json())
 
+# Link Router 1, 2 and 3 to the Internet Gateway via ethernet #
 
+LinkToGwData1 = '{"0":"1"}'
+LinkToGwUrl1 = 'http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes/1/interfaces'
+LinkToGwReq1 = session.put(LinkToGwUrl1, LinkToGwData1)
+print(LinkToGwReq1.json())
+
+LinkToGwData2 = '{"0":"1"}'
+LinkToGwUrl2 = 'http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes/2/interfaces'
+LinkToGwReq2 = session.put(LinkToGwUrl2, LinkToGwData2)
+print(LinkToGwReq2.json())
+
+LinkToGwData3 = '{"0":"1"}'
+LinkToGwUrl3 = 'http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes/3/interfaces'
+LinkToGwReq3 = session.put(LinkToGwUrl3, LinkToGwData3)
+print(LinkToGwReq3.json())

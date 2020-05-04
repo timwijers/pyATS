@@ -10,6 +10,11 @@ Content-Type: application/x-www-form-urlencoded
 POST http://10.100.244.1/api/labs
 Content-Type: application/json
 
-{"path":"/Tim Wijers/pyATS_TestLabs/","name":"pyATSTestLab_3","version":"1","author":"Tim Wijers","description":"pyATS Test Lab 1","body":"This is a testlab created by the Eve-NG REST API. Intended for pyATS framework testing purposes"}
+{"path":"/Tim Wijers/pyATS_TestLabs/","name":"pyATSTestLab_20","version":"1","author":"Tim Wijers","description":"pyATS Test Lab 20","body":"This is a testlab created by the Eve-NG REST API. Intended for pyATS framework testing purposes"}
+
+###
+
+GET http://10.100.244.1/api/labs/Tim%20Wijers/
+Content-Type: application/json
 
 ###
