@@ -31,8 +31,8 @@ print(LabConfigReq.json())
 
 # Add router 1 to the lab #
 NodeAddData = '{"type":"iol","template":"iol","config":"Unconfigured","delay":0,"icon":"Router.png",' \
-              '"image":"i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin","name":"pyats_Router1","left":"35%",' \
-              '"top":"25%","ram":"1024","cpu":1,"ethernet":2, "nvram": 1024, "serial": 1} '
+              '"image":"i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin","name":"pyats_Router1","left":"65%",' \
+              '"top":"75%","ram":"1024","cpu":1,"ethernet":2, "nvram": 1024, "serial": 1} '
 NodeAddUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes'
 NodeAddReq = session.post(NodeAddUrl, NodeAddData)
 print(NodeAddReq.json())
@@ -40,21 +40,21 @@ print(NodeAddReq.json())
 # Add router 2 to the lab #
 NodeAddData = '{"type":"iol","template":"iol","config":"Unconfigured","delay":0,"icon":"Router.png",' \
               '"image":"i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin","name":"pyats_Router2","left":"35%",' \
-              '"top":"35%","ram":"1024","cpu":1,"ethernet":2, "nvram": 1024, "serial": 1} '
+              '"top":"95%","ram":"1024","cpu":1,"ethernet":2, "nvram": 1024, "serial": 1} '
 NodeAddUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes'
 NodeAddReq = session.post(NodeAddUrl, NodeAddData)
 print(NodeAddReq.json())
 
 # Add router 3 to the lab #
 NodeAddData = '{"type":"iol","template":"iol","config":"Unconfigured","delay":0,"icon":"Router.png",' \
-              '"image":"i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin","name":"pyats_Router3","left":"35%",' \
-              '"top":"45%","ram":"1024","cpu":1,"ethernet":2, "nvram": 1024, "serial": 1} '
+              '"image":"i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin","name":"pyats_Router3","left":"95%",' \
+              '"top":"95%","ram":"1024","cpu":1,"ethernet":2, "nvram": 1024, "serial": 1} '
 NodeAddUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes'
 NodeAddReq = session.post(NodeAddUrl, NodeAddData)
 print(NodeAddReq.json())
 
 # Create a new Internet Gateway for internet connection #
-NetworkAddData = '{"count":"1","visibility":"1","name":"InternetGW","type":"pnet0","left":"55%","top":"35%",' \
+NetworkAddData = '{"count":"1","visibility":"1","name":"InternetGW","type":"pnet0","left":"65%","top":"45%",' \
                  '"postfix":0} '
 NetworkAddUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/networks'
 NetworkAddReq = session.post(NetworkAddUrl, NetworkAddData)
