@@ -77,7 +77,7 @@ LinkR2ToGwData = '{"0":"1"}'
 LinkR2ToR3Data = '{"18":"3:18"}'
 R2InterfacesUrl = 'http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes/2/interfaces'
 LinkR2ToGwReq = session.put(R2InterfacesUrl, LinkR2ToGwData)
-LinkR2ToR3Req = session.put(R1InterfacesUrl, LinkR2ToR3Data)
+LinkR2ToR3Req = session.put(R2InterfacesUrl, LinkR2ToR3Data)
 print(LinkR2ToGwReq.json())
 print(LinkR2ToR3Req.json())
 
@@ -85,7 +85,7 @@ LinkR3ToGwData = '{"0":"1"}'
 LinkR3ToR1Data = '{"34":"1:34"}'
 R3InterfacesUrl = 'http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes/3/interfaces'
 LinkR3ToGwReq = session.put(R3InterfacesUrl, LinkR3ToGwData)
-LinkR3ToR1Req = session.put(R1InterfacesUrl, LinkR3ToR1Data)
+LinkR3ToR1Req = session.put(R3InterfacesUrl, LinkR3ToR1Data)
 print(LinkR3ToGwReq.json())
 print(LinkR3ToR1Req.json())
 
