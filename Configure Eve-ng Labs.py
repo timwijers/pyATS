@@ -16,6 +16,7 @@ print(loginReq.json())
 # Delete Lab from previous run #
 LabUrl = 'http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab'
 LabDelReq = session.delete(LabUrl)
+print(LabDelReq.json())
 
 # Create New Testlab in the pyATS_TestLabs folder #
 DateTimeObj = datetime.datetime.now()
