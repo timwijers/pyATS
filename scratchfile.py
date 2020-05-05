@@ -1,4 +1,4 @@
-from IpExtractor import IpExtractorClass
+from IpExtractor import extractip
 
-ip1 = IpExtractorClass.extractip()
+ip1 = extractip()
 print(ip1)
