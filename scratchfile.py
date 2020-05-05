@@ -21,6 +21,7 @@ telNetSession.write('show ip int brief ethernet0/0\n')
 time.sleep(5)
 
 ResultString = telNetSession.read_very_eager()
+time.sleep(5)
 print('Resultaat' + ResultString)
 ExtractedIpAddress = regexPatt.search(ResultString)
 # telNetSession.close()
