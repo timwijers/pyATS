@@ -12,12 +12,12 @@ class IpExtractorClass:
 
         telNetSession.open(ip, port)
 
-        time.sleep(2)
+        time.sleep(5)
 
         telNetSession.write('enable\n')
         telNetSession.write('show ip int brief' + interface + '\n')
 
-        time.sleep(2)
+        time.sleep(5)
 
         ResultString = telNetSession.read_very_eager()
         print(ResultString)
