@@ -20,7 +20,7 @@ class IpExtractorClass:
         time.sleep(5)
 
         ResultString = telNetSession.read_very_eager()
-        print(ResultString)
+        print('Resultaat' + ResultString)
         ExtractedIpAddress = regexPatt.search(ResultString)
         #telNetSession.close()
 
