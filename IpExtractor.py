@@ -26,4 +26,4 @@ class IpExtractorClass:
 
         ExtractedIpAddress = regexPatt.search(ResultString)
 
-        return ExtractedIpAddress.group()
+        return ExtractedIpAddress
