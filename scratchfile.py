@@ -21,5 +21,5 @@ TelNetSession.close()
 
 ExtractedIpAddress = IpRegexPatt.search(ResultString)
 print(ResultString)
-print(ExtractedIpAddress)
+print(ExtractedIpAddress.group())
 
