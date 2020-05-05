@@ -15,5 +15,5 @@ ResultString = TelNetSession.read_very_eager()
 TelNetSession.close()
 
 ExtractedIpAddress = IpRegexPatt.search(ResultString)
-
+print(ResultString)
 print(ExtractedIpAddress)
