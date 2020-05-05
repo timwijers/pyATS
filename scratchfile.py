@@ -1,6 +1,6 @@
 import telnetlib
 import re
-
+'''
 IpRegexPatt= re.compile('(([2][5][0-5]\.)|([2][0-4][0-9]\.)|([0-1]?[0-9]?[0-9]\.)){3}'
                 +'(([2][5][0-5])|([2][0-4][0-9])|([0-1]?[0-9]?[0-9]))')
 
@@ -17,7 +17,7 @@ ResultString = TelNetSession.read_very_eager()
 ExtractedIpAddress = IpRegexPatt.search(ResultString)
 print(ResultString)
 print(ExtractedIpAddress)
-
+'''
 import telnetlib
 tn= telnetlib.Telnet()
 tn.open('10.100.244.1', '45569')
