@@ -22,6 +22,6 @@ class IpExtractorClass:
         ResultString = telNetSession.read_very_eager()
 
         ExtractedIpAddress = regexPatt.search(ResultString)
-        telNetSession.close()
+        #telNetSession.close()
 
         return ResultString
