@@ -12,7 +12,7 @@ TelNetSession.write('enable\n')
 TelNetSession.write('show ip int brief ethernet0/0\n')
 
 ResultString = TelNetSession.read_very_eager()
-TelNetSession.close()
+#TelNetSession.close()
 
 ExtractedIpAddress = IpRegexPatt.search(ResultString)
 print(ResultString)
