@@ -1,10 +1,11 @@
-# Uri's #
-AllLabsUrl = 'http://10.100.244.1/api/labs'
-PyATSTestLabUrl = 'http://10.100.244.1/api/labs//Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl'
-AllNodesUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes'
-AllNetworksUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/networks'
+import telnetlib
 
-# Stop all nodes from previous run #
-NodesStopReq = AllNodesUrl + '/stop'
+TelNetSession = telnetlib.Telnet('10.100.244.1', 45569)
 
-print(NodesStopReq)
+
+
+TelNetSession.write("enable\n")
+TelNetSession.write("show ip int brief ethernet0/0\n")
+
+
+print(TelNetSession.read_all())

@@ -14,7 +14,7 @@ Content-Type: application/json
 
 ###
 
-GET http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/networks
+GET http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes
 Content-Type: application/json
 
 ###

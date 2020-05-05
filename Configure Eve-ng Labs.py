@@ -1,7 +1,11 @@
+__Author__ = 'Tim Wijers'
+__Copyright__ = 'Routz B.V'
+__Date__ = 'May 2020'
+
 import datetime
-
+import telnetlib
 import requests
-
+import getpass
 import custom_error
 
 # start session #
@@ -92,3 +96,5 @@ print(LinkR3ToR1Req.json())
 # Start all nodes #
 NodesStartReq = session.get(AllNodesUrl + '/start')
 print(NodesStartReq.json())
+
+# TelNetSession = telnetlib.Telnet('10.100.244.1', 45569)
