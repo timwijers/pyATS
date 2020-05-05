@@ -28,7 +28,7 @@ def extractip(ip, port, interface):
 
     result = ipRegexPatt.search(ResultString)
 
-    return result.group
+    return result.group()
 
 
 class IpExtractorClass:
