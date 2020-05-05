@@ -19,6 +19,7 @@ telNetSession.write('show ip int brief ethernet0/0\n')
 time.sleep(5)
 
 ResultString = telNetSession.read_very_eager()
+print(ResultString)
 time.sleep(5)
 telNetSession.close()
 
