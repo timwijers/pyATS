@@ -27,7 +27,7 @@ def extractip(ip, port, interface):
     telNetSession.close()
 
     result = ipRegexPatt.search(ResultString)
-
+    print(result.group())
     return result.group()
 
 
