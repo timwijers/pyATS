@@ -16,7 +16,7 @@ telNetSession.open('10.100.244.1', '45569')
 time.sleep(5)
 
 telNetSession.write('enable\n')
-telNetSession.write('show ip int brief ethernet 0/0\n')
+telNetSession.write('show ip int brief ethernet0/0\n')
 # telNetSession.write('show ip int brief' + interface + '\n')
 time.sleep(5)
 
