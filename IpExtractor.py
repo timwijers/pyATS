@@ -11,12 +11,12 @@ telNetSession = telnetlib.Telnet()
 
 telNetSession.open('10.100.244.1', '45569')
 
-time.sleep(2)
+time.sleep(5)
 
 telNetSession.write('enable\n')
 telNetSession.write('show ip int brief ethernet0/0\n')
 
-time.sleep(2)
+time.sleep(5)
 
 ResultString = telNetSession.read_very_eager()
 telNetSession.close()
