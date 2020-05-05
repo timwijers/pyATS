@@ -2,25 +2,29 @@ import telnetlib
 import re
 import time
 
-IpRegexPatt= re.compile('(([2][5][0-5]\.)|([2][0-4][0-9]\.)|([0-1]?[0-9]?[0-9]\.)){3}'
-                +'(([2][5][0-5])|([2][0-4][0-9])|([0-1]?[0-9]?[0-9]))')
 
-TelNetSession = telnetlib.Telnet()
+class IpExtractorClass:
 
-TelNetSession.open('10.100.244.1', '45569')
+    def extractip(self, ip, port, interface):
+        ipRegexPatt = re.compile('(([2][5][0-5]\.)|([2][0-4][0-9]\.)|([0-1]?[0-9]?[0-9]\.)){3}'
+                                 + '(([2][5][0-5])|([2][0-4][0-9])|([0-1]?[0-9]?[0-9]))')
 
-time.sleep(5)
+        telNetSession = telnetlib.Telnet()
 
-TelNetSession.write('enable\n')
-TelNetSession.write('show ip int brief ethernet0/0\n')
+        telNetSession.open(ip, port)
 
-time.sleep(5)
+        time.sleep(2)
 
-ResultString = TelNetSession.read_very_eager()
+        telNetSession.write('enable\n')
+        time.sleep(2)
 
+        telNetSession.write('show ip int brief' + interface + '\n')
 
-ExtractedIpAddress = IpRegexPatt.search(ResultString)
-print(ResultString)
-print(ExtractedIpAddress)
+        time.sleep(2)
 
+        ResultString = telNetSession.read_very_eager()
+        telNetSession.close()
 
+        ExtractedIpAddress = ipRegexPatt.search(ResultString)
+        res = ExtractedIpAddress.group()
+        return res
