@@ -19,7 +19,7 @@ def extractip(ip, port, interface):
     telNetSession.write('enable\n')
     time.sleep(2)
 
-    telNetSession.write('show ip int brief' + interface + '\n')
+    telNetSession.write('show ip int brief ' + interface + '\n')
 
     time.sleep(2)
 
