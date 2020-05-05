@@ -26,9 +26,12 @@ def extractip(ip, port, interface):
     ResultString = telNetSession.read_very_eager()
     telNetSession.close()
 
-    ExtractedIpAddress = ipRegexPatt.search(ResultString)
+    result = ipRegexPatt.search(ResultString)
 
-    return ExtractedIpAddress
+    if result:
+        print
+        result.group(0)
+    return result
 
 
 class IpExtractorClass:
