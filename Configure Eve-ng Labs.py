@@ -62,6 +62,14 @@ NodeAddData = '{"type":"iol","template":"iol","config":"Unconfigured","delay":0,
 NodeAddReq = session.post(AllNodesUrl, NodeAddData)
 print(NodeAddReq.json())
 
+DockerHostAddData = '{"template":"linux","type":"qemu","count":"1","image":"linux-ubuntu-server-18.04-pfne",' \
+                    '"name":"DockerHost","icon":"Server.png","uuid":"","cpulimit":"undefined","cpu":"1","ram":"4096",' \
+                    '"ethernet":"1","firstmac":"","qemu_version": "","ro_qemu_options":"-machine type=pc,accel=kvm ' \
+                    '-vga std -usbdevice tablet -boot ' \
+                    'order=dc","config":"0","delay":"0","console":"vnc","left":"659","top":"175","postfix":0} '
+DockerHostAddReq = session.post(AllNodesUrl, DockerHostAddData)
+print(DockerHostAddReq.json())
+
 # Create a new Internet Gateway for internet connection #
 NetworkAddData = '{"count":"1","visibility":"1","name":"InternetGW","type":"pnet0","left":"65%","top":"45%",' \
                  '"postfix":0} '
@@ -92,6 +100,11 @@ LinkR3ToGwReq = session.put(R3InterfacesUrl, LinkR3ToGwData)
 LinkR3ToR1Req = session.put(R3InterfacesUrl, LinkR3ToR1Data)
 print(LinkR3ToGwReq.json())
 print(LinkR3ToR1Req.json())
+
+LinkDockerHostToGwData = '{"0":"1"}'
+DockerHostInterfacesUrl = 'http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes/4/interfaces'
+LinkDockerHostToGwReq = session.put(DockerHostInterfacesUrl, LinkDockerHostToGwData)
+print(LinkDockerHostToGwReq.json())
 
 # Start all nodes #
 NodesStartReq = session.get(AllNodesUrl + '/start')
