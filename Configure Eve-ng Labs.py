@@ -66,7 +66,7 @@ DockerHostAddData = '{"template":"linux","type":"qemu","count":"1","image":"linu
                     '"name":"DockerHost","icon":"Server.png","uuid":"","cpulimit":"undefined","cpu":"1","ram":"4096",' \
                     '"ethernet":"1","firstmac":"","qemu_version": "","ro_qemu_options":"-machine type=pc,accel=kvm ' \
                     '-vga std -usbdevice tablet -boot ' \
-                    'order=dc","config":"0","delay":"0","console":"telnet","left":"85%","top":"45%","postfix":0} '
+                    'order=dc","config":"0","delay":"0","console":"vnc","left":"85%","top":"45%","postfix":0} '
 DockerHostAddReq = session.post(AllNodesUrl, DockerHostAddData)
 print(DockerHostAddReq.json())
 
