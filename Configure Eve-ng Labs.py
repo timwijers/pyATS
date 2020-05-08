@@ -67,7 +67,7 @@ DockerHostAddData = '{"template":"linux","type":"qemu","count":"1","image":"linu
                     '"name":"DockerHost","icon":"Server.png","uuid":"","cpulimit":"undefined","cpu":"1","ram":"4096",' \
                     '"ethernet":"1","firstmac":"","qemu_version": "","ro_qemu_options":"-machine type=pc,accel=kvm ' \
                     '-vga std -usbdevice tablet -boot ' \
-                    'order=dc","config":"0","delay":"0","console":"vnc","left":"85%","top":"45%","postfix":0} '
+                    'order=dc","config":"0","delay":"0","console":"vnc","left":"95%","top":"45%","postfix":0} '
 DockerHostAddReq = session.post(AllNodesUrl, DockerHostAddData)
 print(DockerHostAddReq.json())
 
@@ -76,9 +76,17 @@ FortiAddData = '{"template":"fortinet","type":"qemu","count":"1","image":"fortin
                '"name":"FortiGate","icon":"Firewall.png","uuid":"","cpulimit":"undefined","cpu":"1","ram":"1024",' \
                '"ethernet":"4","qemu_version":"","qemu_arch":"","ro_qemu_options":"-machine type=pc-1.0,accel=kvm ' \
                '-serial mon:stdio -nographic -nodefconfig -nodefaults -display none -vga std -rtc base=utc",' \
-               '"config":"0","delay":"0","console":"vnc","left":"25%","top":"45%","postfix":0} '
+               '"config":"0","delay":"0","console":"vnc","left":"35%","top":"45%","postfix":0} '
 FortAddReq = session.post(AllNodesUrl, FortiAddData)
 print(FortAddReq.json())
+
+# Add router 5 to the lab #
+NodeAddData = '{"type":"iol","template":"iol","config":"Unconfigured","delay":0,"icon":"Router.png",' \
+              '"image":"i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin","name":"pyats_Router5_behindFW",' \
+              '"left":"50%","top":"25%","ram":"1024","cpu":1,"ethernet":2, "nvram": 1024, "serial": 1} '
+
+NodeAddReq = session.post(AllNodesUrl, NodeAddData)
+print(NodeAddReq.json())
 
 # Create a new Internet Gateway for internet connection #
 NetworkAddData = '{"count":"1","visibility":"1","name":"InternetGW","type":"pnet0","left":"65%","top":"45%",' \
@@ -111,15 +119,37 @@ LinkR3ToR1Req = session.put(R3InterfacesUrl, LinkR3ToR1Data)
 print(LinkR3ToGwReq.json())
 print(LinkR3ToR1Req.json())
 
+# Link the Docker Host to the gateway via Ethernet #
 LinkDockerHostToGwData = '{"0":"1"}'
 DockerHostInterfacesUrl = 'http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes/4/interfaces'
 LinkDockerHostToGwReq = session.put(DockerHostInterfacesUrl, LinkDockerHostToGwData)
 print(LinkDockerHostToGwReq.json())
 
+# Link the FortiGate Firewall to the gateway via Ethernet #
 LinkFortiGateToGwData = '{"0":"1"}'
 FortiGateInterfacesUrl = 'http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes/5/interfaces'
 LinkFortiGateToGwReq = session.put(FortiGateInterfacesUrl, LinkFortiGateToGwData)
 print(LinkFortiGateToGwReq.json())
+
+# Link Router 5 to the gateway and the Fortigate Firewall via Ethernet #
+LinkR5ToGwData = '{"0":"1"}'
+R5FormBridgeData = '{"count":1,"name":"Net-R6iface_0","type":"bridge","left":582,"top":220,"visibility":1,"postfix":0}'
+R5BridgeNetworkVisibilityData = '{"visibility":0}'
+FWtoR5Data = '{"1":2}'
+R5toFWData = '{"0":2}'
+R5InterfacesUrl = 'http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes/6/interfaces'
+R5andFWBridgeNetworkUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/networks/2'
+LinkR5ToGwReq = session.put(R5InterfacesUrl, LinkR5ToGwData)
+R5FormBridgeReq = session.post(AllNetworksUrl, R5FormBridgeData)
+R5BridgeNetworkVisibilityReq = session.put(R5andFWBridgeNetworkUrl, R5BridgeNetworkVisibilityData)
+FWtoR5Req = session.put(FortiGateInterfacesUrl, FWtoR5Data)
+R5toFWData = session.put(R5InterfacesUrl,R5toFWData)
+
+print(LinkR5ToGwReq.json())
+print(R5FormBridgeReq.json())
+print(R5BridgeNetworkVisibilityReq.json())
+print(FWtoR5Req.json())
+print(R5toFWData.json())
 
 # Start all nodes #
 NodesStartReq = session.get(AllNodesUrl + '/start')
