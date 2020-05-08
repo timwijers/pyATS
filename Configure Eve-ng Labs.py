@@ -162,8 +162,8 @@ print(LinkFortiGateToGwReq.json())
 
 # Link Router 5 to the gateway and the Fortigate Firewall via Ethernet #
 LinkR5ToGwData = '{"0":"1"}'
-FWtoR5Data = '{"1":2}'
-R5toFWData = '{"16":2}'
+FWtoR5Data = '{"1":"2"}'
+R5toFWData = '{"16":"2"}'
 nwData = '{"visibility":0}'
 
 newnwurl = AllNetworksUrl + '/2'
