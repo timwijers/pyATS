@@ -62,6 +62,7 @@ NodeAddData = '{"type":"iol","template":"iol","config":"Unconfigured","delay":0,
 NodeAddReq = session.post(AllNodesUrl, NodeAddData)
 print(NodeAddReq.json())
 
+# Add Docker Host to the lab #
 DockerHostAddData = '{"template":"linux","type":"qemu","count":"1","image":"linux-ubuntu-server-18.04-pfne",' \
                     '"name":"DockerHost","icon":"Server.png","uuid":"","cpulimit":"undefined","cpu":"1","ram":"4096",' \
                     '"ethernet":"1","firstmac":"","qemu_version": "","ro_qemu_options":"-machine type=pc,accel=kvm ' \
@@ -69,6 +70,15 @@ DockerHostAddData = '{"template":"linux","type":"qemu","count":"1","image":"linu
                     'order=dc","config":"0","delay":"0","console":"vnc","left":"85%","top":"45%","postfix":0} '
 DockerHostAddReq = session.post(AllNodesUrl, DockerHostAddData)
 print(DockerHostAddReq.json())
+
+# Add FortiGate Firewall to the lab #
+FortiAddData = '{"template":"fortinet","type":"qemu","count":"1","image":"fortinet-FGT-v6-build0932",' \
+               '"name":"FortiGate","icon":"Firewall.png","uuid":"","cpulimit":"undefined","cpu":"1","ram":"1024",' \
+               '"ethernet":"4","qemu_version":"","qemu_arch":"","ro_qemu_options":"-machine type=pc-1.0,accel=kvm ' \
+               '-serial mon:stdio -nographic -nodefconfig -nodefaults -display none -vga std -rtc base=utc",' \
+               '"config":"0","delay":"0","console":"vnc","left":"25%","top":"45%","postfix":0} '
+FortAddReq = session.post(AllNodesUrl, FortiAddData)
+print(FortAddReq.json())
 
 # Create a new Internet Gateway for internet connection #
 NetworkAddData = '{"count":"1","visibility":"1","name":"InternetGW","type":"pnet0","left":"65%","top":"45%",' \
@@ -105,6 +115,11 @@ LinkDockerHostToGwData = '{"0":"1"}'
 DockerHostInterfacesUrl = 'http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes/4/interfaces'
 LinkDockerHostToGwReq = session.put(DockerHostInterfacesUrl, LinkDockerHostToGwData)
 print(LinkDockerHostToGwReq.json())
+
+LinkFortiGateToGwData = '{"0":"1"}'
+FortiGateInterfacesUrl = 'http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes/5/interfaces'
+LinkFortiGateToGwReq = session.put(FortiGateInterfacesUrl, LinkFortiGateToGwData)
+print(LinkFortiGateToGwReq.json())
 
 # Start all nodes #
 NodesStartReq = session.get(AllNodesUrl + '/start')

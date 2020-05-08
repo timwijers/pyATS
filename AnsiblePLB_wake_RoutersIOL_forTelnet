@@ -1,4 +1,4 @@
-- hosts: telnet
+- hosts: DockerHost
   become: true
 
   tasks:
