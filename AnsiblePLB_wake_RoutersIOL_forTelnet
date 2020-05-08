@@ -4,13 +4,13 @@
   tasks:
 
     - name: wake router 1
-      shell: bash -c "telnet 10.100.244.1 45569 | enable | configure terminal "
+      shell: bash -c "telnet 10.100.244.1 45569 | enable "
 
     - name: wake router 2
-      shell: bash -c "telnet 10.100.244.1 45570 | enable | configure terminal "
+      shell: bash -c "telnet 10.100.244.1 45570 | enable  "
 
     - name: wake router 3
-      shell: bash -c "telnet 10.100.244.1 45571 | enable | configure terminal "
+      shell: bash -c "telnet 10.100.244.1 45571 | enable  "
 
 #    - name: wake router 1
 #      telnet:
