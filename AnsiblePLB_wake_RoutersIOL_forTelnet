@@ -9,14 +9,14 @@
   tasks:
 
     - name: wake router 1
-      shell: tel1
+      shell: " {{ tel1 }} "
 
 
     - name: wake router 2
-      shell: tel2
+      shell: " {{ tel2 }} "
 
     - name: wake router 3
-      shell: tel3
+      shell: " {{ tel3 }} "
 
 #    - name: wake router 1
 #      telnet:
