@@ -4,28 +4,31 @@
   tasks:
 
     - name: wake router 1
-      telnet:
-        host: "10.100.244.1"
-        port: 45569
-        prompts:
-          - "[>#]"
-        command:
-          - enable
+    - shell: bash -c "telnet 10.100.244.1 45569 ; $'\n' "
 
-    - name: wake router 2
-      telnet:
-        host: "10.100.244.1"
-        port: 45570
-        prompts:
-          - "[>#]"
-        command:
-          - enable
+#    - name: wake router 1
+#      telnet:
+#        host: "10.100.244.1"
+#        port: 45569
+#        prompts:
+#          - "[>#]"
+#        command:
+#          - enable
 
-    - name: wake router 3
-      telnet:
-        host: "10.100.244.1"
-        port: 45571
-        prompts:
-          - "[>#]"
-        command:
-          - enable
+#    - name: wake router 2
+#      telnet:
+#        host: "10.100.244.1"
+#        port: 45570
+#        prompts:
+#          - "[>#]"
+#        command:
+#          - enable
+
+#    - name: wake router 3
+#      telnet:
+#        host: "10.100.244.1"
+#        port: 45571
+#        prompts:
+#          - "[>#]"
+#        command:
+#          - enable
