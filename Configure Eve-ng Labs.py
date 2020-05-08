@@ -194,13 +194,13 @@ R5toVPC1Req = session.put(R5InterfacesUrl, R5toVPC1Data)
 R5toVPC1Req = session.put(R5InterfacesUrl, R5toVPC2Data)
 R5toVPC1Req = session.put(R5InterfacesUrl, R5toVPC3Data)
 
-VPC1ToR5Req = session.put(VPC1InterfacesUrl, VPC1toR5Data)
-VPC2ToR5Req = session.put(VPC2InterfacesUrl, VPC2toR5Data)
-VPC3ToR5Req = session.put(VPC3InterfacesUrl, VPC3toR5Data)
+#VPC1ToR5Req = session.put(VPC1InterfacesUrl, VPC1toR5Data)
+#VPC2ToR5Req = session.put(VPC2InterfacesUrl, VPC2toR5Data)
+#VPC3ToR5Req = session.put(VPC3InterfacesUrl, VPC3toR5Data)
 
-print(VPC1FormBridgeReq.json())
-print(VPC2FormBridgeReq.json())
-print(VPC3FormBridgeReq.json())
+#print(VPC1FormBridgeReq.json())
+#print(VPC2FormBridgeReq.json())
+#print(VPC3FormBridgeReq.json())
 
 
 
