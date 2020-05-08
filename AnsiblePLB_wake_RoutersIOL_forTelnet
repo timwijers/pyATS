@@ -1,31 +1,14 @@
-- hosts: 127.0.0.1
+- hosts: telnet
   become: true
 
-  vars:
-    - tel1 : '{ echo "enable"; cat -; } | telnet 10.100.244.1 45569'
-    - tel2 : '{ echo "enable"; cat -; } | telnet 10.100.244.1 45570'
-    - tel3 : '{ echo "enable"; cat -; } | telnet 10.100.244.1 45571'
 
-  tasks:
-
-    - name: wake router 1
-      shell: " {{ tel1 }} "
-
-
-    - name: wake router 2
-      shell: " {{ tel2 }} "
-
-    - name: wake router 3
-      shell: " {{ tel3 }} "
-
-#    - name: wake router 1
-#      telnet:
-#        host: "10.100.244.1"
-#        port: 45569
-#        prompts:
-#          - "[>#]"
-#        command:
-#          - enable
+   - name: wake router 1
+      telnet:
+        port: 45569
+        prompts:
+          - "[>#]"
+        command:
+          - enable
 
 #    - name: wake router 2
 #      telnet:
