@@ -20,8 +20,8 @@ print(loginReq.json())
 # Uri's #
 AllLabsUrl = 'http://10.100.244.1/api/labs'
 PyATSTestLabUrl = 'http://10.100.244.1/api/labs//Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl'
-AllNodesUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes/'
-AllNetworksUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/networks/'
+AllNodesUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes'
+AllNetworksUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/networks'
 
 # Stop all nodes from previous run #
 NodesStopReq = session.get(AllNodesUrl + '/stop')
@@ -106,7 +106,7 @@ print(NetworkAddReq.json())
 # Link Router 1, 2 and 3 to the Internet Gateway via ethernet #
 LinkR1ToGwData = '{"0":"1"}'
 LinkR1ToR2Data = '{"2":"2:2"}'
-R1InterfacesUrl = AllNodesUrl + '1' + '/interfaces'
+R1InterfacesUrl = AllNodesUrl + '/1/interfaces'
 LinkR1ToGwReq = session.put(R1InterfacesUrl, LinkR1ToGwData)
 LinkR1ToR2Req = session.put(R1InterfacesUrl, LinkR1ToR2Data)
 print(LinkR1ToGwReq.json())
@@ -114,7 +114,7 @@ print(LinkR1ToR2Req.json())
 
 LinkR2ToGwData = '{"0":"1"}'
 LinkR2ToR3Data = '{"18":"3:18"}'
-R2InterfacesUrl = AllNodesUrl + '2' + '/interfaces'
+R2InterfacesUrl = AllNodesUrl + '/2/interfaces'
 LinkR2ToGwReq = session.put(R2InterfacesUrl, LinkR2ToGwData)
 LinkR2ToR3Req = session.put(R2InterfacesUrl, LinkR2ToR3Data)
 print(LinkR2ToGwReq.json())
@@ -122,7 +122,7 @@ print(LinkR2ToR3Req.json())
 
 LinkR3ToGwData = '{"0":"1"}'
 LinkR3ToR1Data = '{"34":"1:34"}'
-R3InterfacesUrl = AllNodesUrl + '3' + '/interfaces'
+R3InterfacesUrl = AllNodesUrl + '/3/interfaces'
 LinkR3ToGwReq = session.put(R3InterfacesUrl, LinkR3ToGwData)
 LinkR3ToR1Req = session.put(R3InterfacesUrl, LinkR3ToR1Data)
 print(LinkR3ToGwReq.json())
@@ -130,13 +130,13 @@ print(LinkR3ToR1Req.json())
 
 # Link the Docker Host to the gateway via Ethernet #
 LinkDockerHostToGwData = '{"0":"1"}'
-DockerHostInterfacesUrl = AllNodesUrl + '4' + '/interfaces'
+DockerHostInterfacesUrl = AllNodesUrl + '/4/interfaces'
 LinkDockerHostToGwReq = session.put(DockerHostInterfacesUrl, LinkDockerHostToGwData)
 print(LinkDockerHostToGwReq.json())
 
 # Link the FortiGate Firewall to the gateway via Ethernet #
 LinkFortiGateToGwData = '{"0":"1"}'
-FortiGateInterfacesUrl = AllNodesUrl + '5' + '/interfaces'
+FortiGateInterfacesUrl = AllNodesUrl + '/5/interfaces'
 LinkFortiGateToGwReq = session.put(FortiGateInterfacesUrl, LinkFortiGateToGwData)
 print(LinkFortiGateToGwReq.json())
 
@@ -146,8 +146,7 @@ R5FormBridgeData = '{"count":1,"name":"Net-R6iface_0","type":"bridge","left":582
 FWtoR5Data = '{"1":2}'
 R5toFWData = '{"0":2}'
 
-R5InterfacesUrl =  AllNodesUrl + '6' + '/interfaces'
-
+R5InterfacesUrl =  AllNodesUrl + '/6/interfaces'
 
 LinkR5ToGwReq = session.put(R5InterfacesUrl, LinkR5ToGwData)
 R5FormBridgeReq = session.post(AllNetworksUrl, R5FormBridgeData)
@@ -176,9 +175,9 @@ VPC1toR5Data = '{"0":3}'
 VPC2toR5Data = '{"0":4}'
 VPC3toR5Data = '{"0":5}'
 
-VPC1InterfacesUrl = AllNodesUrl + '7' + '/interfaces'
-VPC2InterfacesUrl = AllNodesUrl + '8' + '/interfaces'
-VPC3InterfacesUrl = AllNodesUrl + '9' + '/interfaces'
+VPC1InterfacesUrl = AllNodesUrl + '/7/interfaces'
+VPC2InterfacesUrl = AllNodesUrl + '/8/interfaces'
+VPC3InterfacesUrl = AllNodesUrl + '/9/interfaces'
 
 VPC1FormBridgeReq = session.post(AllNetworksUrl, VPC1FormBridgeData)
 VPC2FormBridgeReq = session.post(AllNetworksUrl, VPC2FormBridgeData)
