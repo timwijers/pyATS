@@ -14,7 +14,7 @@ Content-Type: application/json
 
 ###
 
-GET http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes
+GET http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/networks
 Content-Type: application/json
 
 ###
@@ -22,6 +22,6 @@ Content-Type: application/json
 POST http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/networks
 Content-Type: application/json
 
-{"count":"1","visibility":"1","name":"InternetGW","type":"pnet0","left":"349","top":"558","postfix":0}
+{"count":"1","visibility":"1","name":"testnw","type":"bridge","left":"349","top":"558","postfix":0}
 
 ###
