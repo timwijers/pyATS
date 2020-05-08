@@ -160,6 +160,7 @@ R5toFWReq = session.put(R5InterfacesUrl, R5toFWData)
 
 print(LinkR5ToGwReq.json())
 print(R5FormBridgeReq.json())
+print(nwreq.json())
 print(FWtoR5Req.json())
 print(R5toFWReq.json())
 
