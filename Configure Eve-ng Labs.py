@@ -152,8 +152,8 @@ R5toFWData = '{"16":"2"}'
 R5InterfacesUrl = AllNodesUrl + '/6/interfaces'
 R5andFWBridgeUrl = AllNetworksUrl + '/2'
 
-LinkR5ToGwReq = session.put(R5InterfacesUrl, LinkR5ToGwData)
 R5FormBridgeReq = session.post(AllNetworksUrl, R5FormBridgeData)
+LinkR5ToGwReq = session.put(R5InterfacesUrl, LinkR5ToGwData)
 FWtoR5Req = session.put(FortiGateInterfacesUrl, FWtoR5Data)
 R5toFWReq = session.put(R5InterfacesUrl, R5toFWData)
 R5andFWBridgeVisiblityReq = session.put(R5InterfacesUrl, R5andFWBridgeVisibilityData)
