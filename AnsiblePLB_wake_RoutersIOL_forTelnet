@@ -1,16 +1,22 @@
 - hosts: 127.0.0.1
   become: true
 
+  vars:
+    - tel1 : '{ echo "enable"; cat -; } | telnet 10.100.244.1 45569'
+    - tel2 : '{ echo "enable"; cat -; } | telnet 10.100.244.1 45570'
+    - tel3 : '{ echo "enable"; cat -; } | telnet 10.100.244.1 45571'
+
   tasks:
 
     - name: wake router 1
-      shell: ' telnet 10.100.244.1 45569 | { echo "enable"; cat -; } '
+      shell: tel1
+
 
     - name: wake router 2
-      shell: bash -c "{ echo "enable"; cat -; } | telnet 10.100.244.1 45570"
+      shell: tel2
 
     - name: wake router 3
-      shell: bash -c "{ echo "enable"; cat -; } | telnet 10.100.244.1 45571  "
+      shell: tel3
 
 #    - name: wake router 1
 #      telnet:
