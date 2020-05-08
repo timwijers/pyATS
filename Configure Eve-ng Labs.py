@@ -144,7 +144,7 @@ print(LinkFortiGateToGwReq.json())
 LinkR5ToGwData = '{"0":"1"}'
 R5FormBridgeData = '{"count":1,"name":"Net-R6iface_0","type":"bridge","left":582,"top":220,"visibility":0,"postfix":0}'
 FWtoR5Data = '{"1":2}'
-R5toFWData = '{"0":2}'
+R5toFWData = '{"16":2}'
 
 R5InterfacesUrl =  AllNodesUrl + '/6/interfaces'
 
