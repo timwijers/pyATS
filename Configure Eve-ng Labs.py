@@ -101,6 +101,26 @@ NetworkAddData = '{"count":"1","visibility":"1","name":"InternetGW","type":"pnet
 NetworkAddReq = session.post(AllNetworksUrl, NetworkAddData)
 print(NetworkAddReq.json())
 
+VPC1FormBridgeData = '{"count":1,"name":"Net-VPC1iface_0","type":"bridge","left":566,"top":104,"visibility":0,' \
+                     '"postfix":0} '
+VPC2FormBridgeData = '{"count":1,"name":"Net-VPC2iface_0","type":"bridge","left":506,"top":104,"visibility":0,' \
+                     '"postfix":0} '
+VPC3FormBridgeData = '{"count":1,"name":"Net-VPC1iface_0","type":"bridge","left":446,"top":104,"visibility":0,' \
+                     '"postfix":0} '
+
+VPC1FormBridgeReq = session.post(AllNetworksUrl, VPC1FormBridgeData)
+print(VPC1FormBridgeReq.json())
+VPC2FormBridgeReq = session.post(AllNetworksUrl, VPC2FormBridgeData)
+print(VPC2FormBridgeReq.json())
+VPC3FormBridgeReq = session.post(AllNetworksUrl, VPC3FormBridgeData)
+print(VPC3FormBridgeReq.json())
+
+R5FormBridgeData = '{"count":1,"name":"Net-pyats_Router5_behindFWiface_16","type":"bridge","left":507,"top":241,' \
+                   '"visibility":0,"postfix":0} '
+
+R5FormBridgeReq = session.post(AllNetworksUrl, R5FormBridgeData)
+print(R5FormBridgeReq.json())
+
 ### LINKING ###
 
 # Link Router 1, 2 and 3 to the Internet Gateway via ethernet #
@@ -142,8 +162,6 @@ print(LinkFortiGateToGwReq.json())
 
 # Link Router 5 to the gateway and the Fortigate Firewall via Ethernet #
 LinkR5ToGwData = '{"0":"1"}'
-R5FormBridgeData = '{"count":1,"name":"Net-pyats_Router5_behindFWiface_16","type":"bridge","left":507,"top":241,' \
-                   '"visibility":1,"postfix":0} '
 FWtoR5Data = '{"1":2}'
 R5toFWData = '{"16":2}'
 nwData = '{"visibility":0}'
@@ -152,26 +170,18 @@ newnwurl = AllNetworksUrl + '/2'
 R5InterfacesUrl = AllNodesUrl + '/6/interfaces'
 
 LinkR5ToGwReq = session.put(R5InterfacesUrl, LinkR5ToGwData)
-R5FormBridgeReq = session.post(AllNetworksUrl, R5FormBridgeData)
+
 nwreq = session.put(newnwurl,nwData)
 FWtoR5Req = session.put(FortiGateInterfacesUrl, FWtoR5Data)
 R5toFWReq = session.put(R5InterfacesUrl, R5toFWData)
 
 
 print(LinkR5ToGwReq.json())
-print(R5FormBridgeReq.json())
 print(nwreq.json())
 print(FWtoR5Req.json())
 print(R5toFWReq.json())
 
 # Link VPC 1,2 and 3 to Router 6 #
-
-VPC1FormBridgeData = '{"count":1,"name":"Net-VPC1iface_0","type":"bridge","left":566,"top":104,"visibility":0,' \
-                     '"postfix":0} '
-VPC2FormBridgeData = '{"count":1,"name":"Net-VPC2iface_0","type":"bridge","left":506,"top":104,"visibility":0,' \
-                     '"postfix":0} '
-VPC3FormBridgeData = '{"count":1,"name":"Net-VPC1iface_0","type":"bridge","left":446,"top":104,"visibility":0,' \
-                     '"postfix":0} '
 
 R5toVPC1Data = '{"16":3}'
 R5toVPC2Data = '{"32":4}'
@@ -185,9 +195,6 @@ VPC1InterfacesUrl = AllNodesUrl + '/7/interfaces'
 VPC2InterfacesUrl = AllNodesUrl + '/8/interfaces'
 VPC3InterfacesUrl = AllNodesUrl + '/9/interfaces'
 
-VPC1FormBridgeReq = session.post(AllNetworksUrl, VPC1FormBridgeData)
-VPC2FormBridgeReq = session.post(AllNetworksUrl, VPC2FormBridgeData)
-VPC3FormBridgeReq = session.post(AllNetworksUrl, VPC3FormBridgeData)
 
 R5toVPC1Req = session.put(R5InterfacesUrl, R5toVPC1Data)
 R5toVPC1Req = session.put(R5InterfacesUrl, R5toVPC2Data)
