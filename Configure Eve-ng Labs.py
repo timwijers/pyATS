@@ -20,8 +20,8 @@ print(loginReq.json())
 # Uri's #
 AllLabsUrl = 'http://10.100.244.1/api/labs'
 PyATSTestLabUrl = 'http://10.100.244.1/api/labs//Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl'
-AllNodesUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes'
-AllNetworksUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/networks'
+AllNodesUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes/'
+AllNetworksUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/networks/'
 
 # Stop all nodes from previous run #
 NodesStopReq = session.get(AllNodesUrl + '/stop')
@@ -30,6 +30,8 @@ print(NodesStopReq.json())
 # Delete Lab from previous run #
 LabDelReq = session.delete(PyATSTestLabUrl)
 print(LabDelReq.json())
+
+### CREATING ###
 
 # Create New Testlab in the pyATS_TestLabs folder #
 DateTimeObj = datetime.datetime.now()
@@ -88,16 +90,23 @@ NodeAddData = '{"type":"iol","template":"iol","config":"Unconfigured","delay":0,
 NodeAddReq = session.post(AllNodesUrl, NodeAddData)
 print(NodeAddReq.json())
 
+VPCAddData = '{"template":"vpcs","type":"vpcs","count":"3","name":"VPC_pyATS","icon":"Desktop.png","config":"0",' \
+             '"delay":"0","left":"386","top":"64","postfix":1,"numberNodes":"3"} '
+VPCAddReq = session.post(AllNodesUrl, VPCAddData)
+print(VPCAddReq.json())
+
 # Create a new Internet Gateway for internet connection #
 NetworkAddData = '{"count":"1","visibility":"1","name":"InternetGW","type":"pnet0","left":"65%","top":"45%",' \
                  '"postfix":0} '
 NetworkAddReq = session.post(AllNetworksUrl, NetworkAddData)
 print(NetworkAddReq.json())
 
+### LINKING ###
+
 # Link Router 1, 2 and 3 to the Internet Gateway via ethernet #
 LinkR1ToGwData = '{"0":"1"}'
 LinkR1ToR2Data = '{"2":"2:2"}'
-R1InterfacesUrl = 'http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes/1/interfaces'
+R1InterfacesUrl = AllNodesUrl + 1 + '/interfaces'
 LinkR1ToGwReq = session.put(R1InterfacesUrl, LinkR1ToGwData)
 LinkR1ToR2Req = session.put(R1InterfacesUrl, LinkR1ToR2Data)
 print(LinkR1ToGwReq.json())
@@ -105,7 +114,7 @@ print(LinkR1ToR2Req.json())
 
 LinkR2ToGwData = '{"0":"1"}'
 LinkR2ToR3Data = '{"18":"3:18"}'
-R2InterfacesUrl = 'http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes/2/interfaces'
+R2InterfacesUrl = AllNodesUrl + 2 + '/interfaces'
 LinkR2ToGwReq = session.put(R2InterfacesUrl, LinkR2ToGwData)
 LinkR2ToR3Req = session.put(R2InterfacesUrl, LinkR2ToR3Data)
 print(LinkR2ToGwReq.json())
@@ -113,7 +122,7 @@ print(LinkR2ToR3Req.json())
 
 LinkR3ToGwData = '{"0":"1"}'
 LinkR3ToR1Data = '{"34":"1:34"}'
-R3InterfacesUrl = 'http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes/3/interfaces'
+R3InterfacesUrl = AllNodesUrl + 3 + '/interfaces'
 LinkR3ToGwReq = session.put(R3InterfacesUrl, LinkR3ToGwData)
 LinkR3ToR1Req = session.put(R3InterfacesUrl, LinkR3ToR1Data)
 print(LinkR3ToGwReq.json())
@@ -121,35 +130,67 @@ print(LinkR3ToR1Req.json())
 
 # Link the Docker Host to the gateway via Ethernet #
 LinkDockerHostToGwData = '{"0":"1"}'
-DockerHostInterfacesUrl = 'http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes/4/interfaces'
+DockerHostInterfacesUrl = AllNodesUrl + 4 + '/interfaces'
 LinkDockerHostToGwReq = session.put(DockerHostInterfacesUrl, LinkDockerHostToGwData)
 print(LinkDockerHostToGwReq.json())
 
 # Link the FortiGate Firewall to the gateway via Ethernet #
 LinkFortiGateToGwData = '{"0":"1"}'
-FortiGateInterfacesUrl = 'http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes/5/interfaces'
+FortiGateInterfacesUrl = AllNodesUrl + 5 + '/interfaces'
 LinkFortiGateToGwReq = session.put(FortiGateInterfacesUrl, LinkFortiGateToGwData)
 print(LinkFortiGateToGwReq.json())
 
 # Link Router 5 to the gateway and the Fortigate Firewall via Ethernet #
 LinkR5ToGwData = '{"0":"1"}'
-R5FormBridgeData = '{"count":1,"name":"Net-R6iface_0","type":"bridge","left":582,"top":220,"visibility":1,"postfix":0}'
-R5BridgeNetworkVisibilityData = '{"visibility":0}'
+R5FormBridgeData = '{"count":1,"name":"Net-R6iface_0","type":"bridge","left":582,"top":220,"visibility":0,"postfix":0}'
 FWtoR5Data = '{"1":2}'
 R5toFWData = '{"0":2}'
-R5InterfacesUrl = 'http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes/6/interfaces'
-R5andFWBridgeNetworkUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/networks/2'
+
+R5InterfacesUrl =  AllNodesUrl + 6 + '/interfaces'
+R5andFWBridgeNetworkUrl = AllNetworksUrl + 2
+
 LinkR5ToGwReq = session.put(R5InterfacesUrl, LinkR5ToGwData)
 R5FormBridgeReq = session.post(AllNetworksUrl, R5FormBridgeData)
-R5BridgeNetworkVisibilityReq = session.put(R5andFWBridgeNetworkUrl, R5BridgeNetworkVisibilityData)
 FWtoR5Req = session.put(FortiGateInterfacesUrl, FWtoR5Data)
-R5toFWData = session.put(R5InterfacesUrl,R5toFWData)
+R5toFWReq = session.put(R5InterfacesUrl, R5toFWData)
 
 print(LinkR5ToGwReq.json())
 print(R5FormBridgeReq.json())
-print(R5BridgeNetworkVisibilityReq.json())
 print(FWtoR5Req.json())
-print(R5toFWData.json())
+print(R5toFWReq.json())
+
+# Link VPC 1,2 and 3 to Router 6 #
+
+VPC1FormBridgeData = '{"count":1,"name":"Net-VPC1iface_0","type":"bridge","left":566,"top":104,"visibility":0,' \
+                     '"postfix":0} '
+VPC2FormBridgeData = '{"count":1,"name":"Net-VPC2iface_0","type":"bridge","left":506,"top":104,"visibility":0,' \
+                     '"postfix":0} '
+VPC3FormBridgeData = '{"count":1,"name":"Net-VPC1iface_0","type":"bridge","left":446,"top":104,"visibility":0,' \
+                     '"postfix":0} '
+
+R5toVPC1Data = '{"16":3}'
+R5toVPC2Data = '{"32":4}'
+R5toVPC3Data = '{"48":5}'
+
+VPC1toR5Data = '{"0":3}'
+VPC2toR5Data = '{"0":4}'
+VPC3toR5Data = '{"0":5}'
+
+VPC1InterfacesUrl = AllNodesUrl + 7 + '/interfaces'
+VPC2InterfacesUrl = AllNodesUrl + 8 + '/interfaces'
+VPC3InterfacesUrl = AllNodesUrl + 9 + '/interfaces'
+
+VPC1FormBridgeReq = session.post(AllNetworksUrl, VPC1FormBridgeData)
+VPC2FormBridgeReq = session.post(AllNetworksUrl, VPC2FormBridgeData)
+VPC3FormBridgeReq = session.post(AllNetworksUrl, VPC3FormBridgeData)
+
+R5toVPC1Req = session.put(R5InterfacesUrl,R5toVPC1Data)
+R5toVPC1Req = session.put(R5InterfacesUrl,R5toVPC2Data)
+R5toVPC1Req = session.put(R5InterfacesUrl,R5toVPC3Data)
+
+VPC1ToR5Req = session.put(VPC1InterfacesUrl,VPC1toR5Data)
+VPC2ToR5Req = session.put(VPC2InterfacesUrl,VPC2toR5Data)
+VPC3ToR5Req = session.put(VPC3InterfacesUrl,VPC3toR5Data)
 
 # Start all nodes #
 NodesStartReq = session.get(AllNodesUrl + '/start')
