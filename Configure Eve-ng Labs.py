@@ -147,7 +147,7 @@ FWtoR5Data = '{"1":2}'
 R5toFWData = '{"0":2}'
 
 R5InterfacesUrl =  AllNodesUrl + '6' + '/interfaces'
-R5andFWBridgeNetworkUrl = AllNetworksUrl + '2'
+
 
 LinkR5ToGwReq = session.put(R5InterfacesUrl, LinkR5ToGwData)
 R5FormBridgeReq = session.post(AllNetworksUrl, R5FormBridgeData)
