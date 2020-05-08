@@ -1,14 +1,15 @@
 - hosts: telnet
   become: true
 
+  tasks:
 
-  - name: wake router 1
-    telnet:
-      port: 45569
-      prompts:
-        - "[>#]"
-      command:
-        - enable
+    - name: wake router 1
+      telnet:
+        port: 45569
+        prompts:
+          - "[>#]"
+        command:
+          - enable
 
 #    - name: wake router 2
 #      telnet:
