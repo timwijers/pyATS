@@ -5,7 +5,6 @@ __Date__ = 'May 2020'
 import datetime
 import requests
 
-
 # start session #
 session = requests.Session()
 
@@ -35,7 +34,8 @@ print(LabDelReq.json())
 
 # Create New Testlab in the pyATS_TestLabs folder #
 DateTimeObj = datetime.datetime.now()
-LabConfigData = '{"path":"/Tim Wijers/pyATS_TestLabs/","name":"pyATSTestLab","version":"1","author":"Tim Wijers",' \
+LabConfigData = '{"path":"/Tim Wijers/pyATS_TestLabs/","name":"pyATSTestLab_110520201620","version":"1","author":"Tim ' \
+                'Wijers",' \
                 '"description":"pyATS Test Lab ","body":"This is a testlab created by the Eve-NG REST API. Intended ' \
                 'for pyATS framework testing purposes"} '
 
@@ -100,7 +100,6 @@ NetworkAddData = '{"count":"1","visibility":"1","name":"InternetGW","type":"pnet
                  '"postfix":0} '
 NetworkAddReq = session.post(AllNetworksUrl, NetworkAddData)
 print("Add Internet Gateway network status : ", NetworkAddReq.json())
-
 
 ### LINKING ###
 
