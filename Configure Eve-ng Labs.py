@@ -147,22 +147,26 @@ R5FormBridgeData = '{"count":1,"name":"Net-pyats_Router5_behindFWiface_16","type
 LinkR5ToGwData = '{"0":"1"}'
 R5andFWBridgeVisibilityData = '{"visibility": 0}'
 FWtoR5Data = '{"1":"2"}'
-R5toFWData = '{"16":"2"}'
+R5toFWData = '{"1":"2"}'
 
 R5InterfacesUrl = AllNodesUrl + '/6/interfaces'
 R5andFWBridgeUrl = AllNetworksUrl + '/2'
 
 R5FormBridgeReq = session.post(AllNetworksUrl, R5FormBridgeData)
+
 LinkR5ToGwReq = session.put(R5InterfacesUrl, LinkR5ToGwData)
+
 FWtoR5Req = session.put(FortiGateInterfacesUrl, FWtoR5Data)
+
 R5toFWReq = session.put(R5InterfacesUrl, R5toFWData)
-R5andFWBridgeVisiblityReq = session.put(R5InterfacesUrl, R5andFWBridgeVisibilityData)
+
+R5andFWBridgeVisibilityReq = session.put(R5InterfacesUrl, R5andFWBridgeVisibilityData)
 
 print(LinkR5ToGwReq.json())
 print("Form Bridge R5 and FW :", R5FormBridgeReq.json())
 print(FWtoR5Req.json())
 print(R5toFWReq.json())
-print(R5andFWBridgeVisiblityReq.json())
+print(R5andFWBridgeVisibilityReq.json())
 
 # Link VPC 1,2 and 3 to Router 6 #
 
