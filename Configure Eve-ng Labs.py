@@ -9,23 +9,24 @@ import datetime
 date_time = datetime.datetime.now()
 timestamp = date_time.strftime("%d%m%Y%H%M%S")
 testLabName = 'PYATS_test11052020'
-
+apiBaseUrl = 'http://10.100.244.1/api'
+labsAuthor = '//Tim%20Wijers/'
+labsFolder = 'pyATS_TestLabs'
 
 # start session #
 session = requests.Session()
 
 # Login to Eve-NG #
 LoginData = '{"username":"tim_wijers","password":"Welkom01"}'
-LoginUrl = 'http://10.100.244.1/api/auth/login'
+LoginUrl = apiBaseUrl + '/api/auth/login'
 loginReq = session.post(LoginUrl, LoginData)
 print(loginReq.json())
 
 # Uri's #
-
-AllLabsUrl = 'http://10.100.244.1/api/labs'
-PyATSTestLabUrl = 'http://10.100.244.1/api/labs//Tim%20Wijers/pyATS_TestLabs/pyats111052020.unl'
-AllNodesUrl = 'http://10.100.244.1/api/labs//Tim%20Wijers/pyATS_TestLabs/pyats111052020.unl/nodes'
-AllNetworksUrl = 'http://10.100.244.1/api/labs//Tim%20Wijers/pyATS_TestLabs/pyats111052020.unl/networks'
+AllLabsUrl = apiBaseUrl + '/labs'
+PyATSTestLabUrl = AllLabsUrl + labsAuthor + labsFolder + 'pyats111052020.unl'
+AllNodesUrl = PyATSTestLabUrl + '/nodes'
+AllNetworksUrl = PyATSTestLabUrl + '/networks'
 
 # Stop and Wipe all nodes from previous run #
 NodesStopReq = session.get(AllNodesUrl + '/stop')
