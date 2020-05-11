@@ -24,11 +24,8 @@ print(loginReq.json())
 
 # Uri's #
 AllLabsUrl = apiBaseUrl + '/labs'
-print(AllLabsUrl)
-PyATSTestLabUrl = AllLabsUrl + labsAuthor + labsFolder + 'pyats111052020.unl'
-print(PyATSTestLabUrl)
+PyATSTestLabUrl = AllLabsUrl + labsAuthor + labsFolder + '/pyats111052020.unl'
 AllNodesUrl = PyATSTestLabUrl + '/nodes'
-print(AllNodesUrl)
 AllNetworksUrl = PyATSTestLabUrl + '/networks'
 
 # Stop and Wipe all nodes from previous run #
