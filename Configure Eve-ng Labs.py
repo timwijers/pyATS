@@ -3,10 +3,8 @@ __Copyright__ = 'Routz B.V'
 __Date__ = 'May 2020'
 
 import datetime
-import telnetlib
 import requests
-import getpass
-import custom_error
+
 
 # start session #
 session = requests.Session()
