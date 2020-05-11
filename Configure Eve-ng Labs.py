@@ -146,8 +146,8 @@ R5FormBridgeData = '{"count":1,"name":"Net-pyats_Router5_behindFWiface_16","type
                    '"visibility":1,"postfix":0} '
 LinkR5ToGwData = '{"0":"1"}'
 R5andFWBridgeVisibilityData = '{"visibility": 0}'
-FWtoR5Data = '{"1":2}'
-R5toFWData = '{"16":2}'
+FWtoR5Data = '{"1":"2"}'
+R5toFWData = '{"16":"2"}'
 
 R5InterfacesUrl = AllNodesUrl + '/6/interfaces'
 R5andFWBridgeUrl = AllNetworksUrl + '/2'
@@ -194,9 +194,9 @@ R5toVPC1Req = session.put(R5InterfacesUrl, R5toVPC1Data)
 R5toVPC2Req = session.put(R5InterfacesUrl, R5toVPC2Data)
 R5toVPC3Req = session.put(R5InterfacesUrl, R5toVPC3Data)
 
-#VPC1ToR5Req = session.put(VPC1InterfacesUrl, VPC1toR5Data)
-#VPC2ToR5Req = session.put(VPC2InterfacesUrl, VPC2toR5Data)
-#VPC3ToR5Req = session.put(VPC3InterfacesUrl, VPC3toR5Data)
+VPC1ToR5Req = session.put(VPC1InterfacesUrl, VPC1toR5Data)
+VPC2ToR5Req = session.put(VPC2InterfacesUrl, VPC2toR5Data)
+VPC3ToR5Req = session.put(VPC3InterfacesUrl, VPC3toR5Data)
 
 #print(VPC1FormBridgeReq.json())
 #print(VPC2FormBridgeReq.json())
