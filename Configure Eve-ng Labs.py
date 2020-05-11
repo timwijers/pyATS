@@ -8,7 +8,7 @@ import datetime
 # variables #
 date_time = datetime.datetime.now()
 timestamp = date_time.strftime("%d%m%Y%H%M%S")
-testLabName = 'pyATS_Testlab_' + timestamp + '.unl'
+testLabName = 'PYATS_test11052020'
 
 
 # start session #
@@ -41,7 +41,7 @@ print(LabDelReq.json())
 
 # Create New Testlab in the pyATS_TestLabs folder #
 DateTimeObj = datetime.datetime.now()
-LabConfigData = '{"path":"/Tim Wijers/pyATS_TestLabs/","name":"' + testLabName + '","version":"1",' \
+LabConfigData = '{"path":"/Tim Wijers/pyATS_TestLabs/","name":"PYATS_test11052020","version":"1",' \
                 '"author":"Tim Wijers","description":"pyATS Test Lab ","body":"This is a testlab created by the ' \
                 'Eve-NG REST API. Intended for pyATS framework testing purposes"} '
 
