@@ -23,9 +23,9 @@ print(loginReq.json())
 # Uri's #
 
 AllLabsUrl = 'http://10.100.244.1/api/labs'
-PyATSTestLabUrl = 'http://10.100.244.1/api/labs//Tim%20Wijers/pyATS_TestLabs/pyats111052020'
-AllNodesUrl = 'http://10.100.244.1/api/labs//Tim%20Wijers/pyATS_TestLabs/pyats111052020/nodes'
-AllNetworksUrl = 'http://10.100.244.1/api/labs//Tim%20Wijers/pyATS_TestLabs/pyats111052020/networks'
+PyATSTestLabUrl = 'http://10.100.244.1/api/labs//Tim%20Wijers/pyATS_TestLabs/pyats111052020.unl'
+AllNodesUrl = 'http://10.100.244.1/api/labs//Tim%20Wijers/pyATS_TestLabs/pyats111052020.unl/nodes'
+AllNetworksUrl = 'http://10.100.244.1/api/labs//Tim%20Wijers/pyATS_TestLabs/pyats111052020.unl/networks'
 
 # Stop and Wipe all nodes from previous run #
 NodesStopReq = session.get(AllNodesUrl + '/stop')
