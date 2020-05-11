@@ -23,9 +23,9 @@ print(loginReq.json())
 # Uri's #
 
 AllLabsUrl = 'http://10.100.244.1/api/labs'
-PyATSTestLabUrl = 'http://10.100.244.1/api/labs//Tim%20Wijers/pyATS_TestLabs/' + testLabName
-AllNodesUrl = PyATSTestLabUrl + '/nodes'
-AllNetworksUrl = PyATSTestLabUrl + '/networks'
+PyATSTestLabUrl = 'http://10.100.244.1/api/labs//Tim%20Wijers/pyATS_TestLabs/pyats111052020'
+AllNodesUrl = 'http://10.100.244.1/api/labs//Tim%20Wijers/pyATS_TestLabs/pyats111052020/nodes'
+AllNetworksUrl = 'http://10.100.244.1/api/labs//Tim%20Wijers/pyATS_TestLabs/pyats111052020/networks'
 
 # Stop and Wipe all nodes from previous run #
 NodesStopReq = session.get(AllNodesUrl + '/stop')
@@ -41,7 +41,7 @@ print(LabDelReq.json())
 
 # Create New Testlab in the pyATS_TestLabs folder #
 DateTimeObj = datetime.datetime.now()
-LabConfigData = '{"path":"/Tim Wijers/pyATS_TestLabs/","name":"PYATS_test11052020","version":"1",' \
+LabConfigData = '{"path":"/Tim Wijers/pyATS_TestLabs/","name":"pyats111052020","version":"1",' \
                 '"author":"Tim Wijers","description":"pyATS Test Lab ","body":"This is a testlab created by the ' \
                 'Eve-NG REST API. Intended for pyATS framework testing purposes"} '
 
