@@ -2,8 +2,14 @@ __Author__ = 'Tim Wijers'
 __Copyright__ = 'Routz B.V'
 __Date__ = 'May 2020'
 
-import datetime
 import requests
+import datetime
+
+# variables #
+date_time = datetime.datetime.now()
+timestamp = date_time.strftime("%d%m%Y%H%M%S")
+testLabName = 'pyATS_Testlab_' + timestamp + '.unl'
+
 
 # start session #
 session = requests.Session()
@@ -15,10 +21,11 @@ loginReq = session.post(LoginUrl, LoginData)
 print(loginReq.json())
 
 # Uri's #
+
 AllLabsUrl = 'http://10.100.244.1/api/labs'
-PyATSTestLabUrl = 'http://10.100.244.1/api/labs//Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl'
-AllNodesUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes'
-AllNetworksUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/networks'
+PyATSTestLabUrl = 'http://10.100.244.1/api/labs//Tim%20Wijers/pyATS_TestLabs/' + testLabName
+AllNodesUrl = PyATSTestLabUrl + '/nodes'
+AllNetworksUrl = PyATSTestLabUrl + '/networks'
 
 # Stop and Wipe all nodes from previous run #
 NodesStopReq = session.get(AllNodesUrl + '/stop')
@@ -34,10 +41,9 @@ print(LabDelReq.json())
 
 # Create New Testlab in the pyATS_TestLabs folder #
 DateTimeObj = datetime.datetime.now()
-LabConfigData = '{"path":"/Tim Wijers/pyATS_TestLabs/","name":"pyATSTestLab_110520201620","version":"1","author":"Tim ' \
-                'Wijers",' \
-                '"description":"pyATS Test Lab ","body":"This is a testlab created by the Eve-NG REST API. Intended ' \
-                'for pyATS framework testing purposes"} '
+LabConfigData = '{"path":"/Tim Wijers/pyATS_TestLabs/","name":"' + testLabName + '","version":"1",' \
+                '"author":"Tim Wijers","description":"pyATS Test Lab ","body":"This is a testlab created by the ' \
+                'Eve-NG REST API. Intended for pyATS framework testing purposes"} '
 
 LabConfigReq = session.post(AllLabsUrl, LabConfigData)
 print(LabConfigReq.json())
