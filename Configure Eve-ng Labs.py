@@ -18,7 +18,7 @@ session = requests.Session()
 
 # Login to Eve-NG #
 LoginData = '{"username":"tim_wijers","password":"Welkom01"}'
-LoginUrl = apiBaseUrl + '/api/auth/login'
+LoginUrl = apiBaseUrl + '/auth/login'
 loginReq = session.post(LoginUrl, LoginData)
 print(loginReq.json())
 
