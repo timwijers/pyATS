@@ -146,23 +146,20 @@ R5FormBridgeData = '{"count":1,"name":"Net-pyats_Router5_behindFWiface_16","type
                    '"visibility":1,"postfix":0} '
 LinkR5ToGwData = '{"0":"1"}'
 R5andFWBridgeVisibilityData = '{"visibility": 0}'
-FWtoR5Data = '{"1":"2"}'
-R5toFWData = '{"1":"2"}'
+FWtoR5AndViceVersaData = '{"1":"2"}'
+
 
 R5InterfacesUrl = AllNodesUrl + '/6/interfaces'
 R5andFWBridgeUrl = AllNetworksUrl + '/2'
 
 R5FormBridgeReq = session.post(AllNetworksUrl, R5FormBridgeData)
-
 LinkR5ToGwReq = session.put(R5InterfacesUrl, LinkR5ToGwData)
-
-FWtoR5Req = session.put(FortiGateInterfacesUrl, FWtoR5Data)
-
-R5toFWReq = session.put(R5InterfacesUrl, R5toFWData)
-
+FWtoR5Req = session.put(FortiGateInterfacesUrl, FWtoR5AndViceVersaData)
+R5toFWReq = session.put(R5InterfacesUrl, FWtoR5AndViceVersaData)
 R5andFWBridgeVisibilityReq = session.put(R5andFWBridgeUrl, R5andFWBridgeVisibilityData)
 
 print(LinkR5ToGwReq.json())
+print(LinkR5ToGwReq.__str__())
 print("Form Bridge R5 and FW :", R5FormBridgeReq.json())
 print(FWtoR5Req.json())
 print(R5toFWReq.json())
@@ -177,11 +174,6 @@ VPC2FormBridgeData = '{"count":1,"name":"Net-VPC2iface_0","type":"bridge","left"
 VPC3FormBridgeData = '{"count":1,"name":"Net-VPC1iface_0","type":"bridge","left":446,"top":104,"visibility":1,' \
                      '"postfix":0} '
 
-VPC1FormBridgeReq = session.post(AllNetworksUrl, VPC1FormBridgeData)
-VPC2FormBridgeReq = session.post(AllNetworksUrl, VPC2FormBridgeData)
-VPC3FormBridgeReq = session.post(AllNetworksUrl, VPC3FormBridgeData)
-
-
 R5toVPC1Data = '{"16":3}'
 R5toVPC2Data = '{"32":4}'
 R5toVPC3Data = '{"48":5}'
@@ -190,9 +182,21 @@ VPC1toR5Data = '{"0":3}'
 VPC2toR5Data = '{"0":4}'
 VPC3toR5Data = '{"0":5}'
 
+R5andVPC1BridgeVisibilityData = '{"visibility": 0}'
+R5andVPC2BridgeVisibilityData = '{"visibility": 0}'
+R5andVPC3BridgeVisibilityData = '{"visibility": 0}'
+
+R5andVPC1BridgeUrl = AllNetworksUrl + '/3'
+R5andVPC2BridgeUrl = AllNetworksUrl + '/4'
+R5andVPC3BridgeUrl = AllNetworksUrl + '/5'
+
 VPC1InterfacesUrl = AllNodesUrl + '/7/interfaces'
 VPC2InterfacesUrl = AllNodesUrl + '/8/interfaces'
 VPC3InterfacesUrl = AllNodesUrl + '/9/interfaces'
+
+VPC1FormBridgeReq = session.post(AllNetworksUrl, VPC1FormBridgeData)
+VPC2FormBridgeReq = session.post(AllNetworksUrl, VPC2FormBridgeData)
+VPC3FormBridgeReq = session.post(AllNetworksUrl, VPC3FormBridgeData)
 
 R5toVPC1Req = session.put(R5InterfacesUrl, R5toVPC1Data)
 R5toVPC2Req = session.put(R5InterfacesUrl, R5toVPC2Data)
@@ -201,6 +205,10 @@ R5toVPC3Req = session.put(R5InterfacesUrl, R5toVPC3Data)
 VPC1ToR5Req = session.put(VPC1InterfacesUrl, VPC1toR5Data)
 VPC2ToR5Req = session.put(VPC2InterfacesUrl, VPC2toR5Data)
 VPC3ToR5Req = session.put(VPC3InterfacesUrl, VPC3toR5Data)
+
+R5andVPC1BridgeVisibilityReq = session.put(R5andVPC1BridgeUrl, R5andVPC1BridgeVisibilityData)
+R5andVPC2BridgeVisibilityReq = session.put(R5andVPC2BridgeUrl, R5andVPC2BridgeVisibilityData)
+R5andVPC3BridgeVisibilityReq = session.put(R5andVPC3BridgeUrl, R5andVPC3BridgeVisibilityData)
 
 #print(VPC1FormBridgeReq.json())
 #print(VPC2FormBridgeReq.json())
