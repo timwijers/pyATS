@@ -160,7 +160,7 @@ FWtoR5Req = session.put(FortiGateInterfacesUrl, FWtoR5Data)
 
 R5toFWReq = session.put(R5InterfacesUrl, R5toFWData)
 
-R5andFWBridgeVisibilityReq = session.put(R5InterfacesUrl, R5andFWBridgeVisibilityData)
+R5andFWBridgeVisibilityReq = session.put(R5andFWBridgeUrl, R5andFWBridgeVisibilityData)
 
 print(LinkR5ToGwReq.json())
 print("Form Bridge R5 and FW :", R5FormBridgeReq.json())
