@@ -159,7 +159,7 @@ R5toFWReq = session.put(R5InterfacesUrl, R5toFWData)
 R5andFWBridgeVisiblityReq = session.put(R5InterfacesUrl, R5andFWBridgeVisibilityData)
 
 print(LinkR5ToGwReq.json())
-print(R5FormBridgeReq.json())
+print("Form Bridge R5 and FW :" + R5FormBridgeReq.json())
 print(FWtoR5Req.json())
 print(R5toFWReq.json())
 print(R5andFWBridgeVisiblityReq.json())
