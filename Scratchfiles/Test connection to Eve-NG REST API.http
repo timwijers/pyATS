@@ -18,12 +18,12 @@ Content-Type: application/json
 ###
 
 # curl -X GET -H 'Content-type: application/json' http://10.100.244.1/api/labs/Tim%20Wijers/pyATS%20testlab.unl/nodes
-GET http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes
+GET http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/topology
 Content-Type: application/json
 
 ###
 
-PUT http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes/2/interfaces
+PUT http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/topology
 Content-Type: application/x-www-form-urlencoded
 
 {"0":"1"}

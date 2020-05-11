@@ -21,9 +21,11 @@ PyATSTestLabUrl = 'http://10.100.244.1/api/labs//Tim%20Wijers/pyATS_TestLabs/pyA
 AllNodesUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/nodes'
 AllNetworksUrl = 'http://10.100.244.1/api/labs/Tim Wijers/pyATS_TestLabs/pyATSTestLab.unl/networks'
 
-# Stop all nodes from previous run #
+# Stop and Wipe all nodes from previous run #
 NodesStopReq = session.get(AllNodesUrl + '/stop')
 print(NodesStopReq.json())
+NodesWipeReq = session.get(AllNodesUrl + '/wipe')
+print(NodesWipeReq.json())
 
 # Delete Lab from previous run #
 LabDelReq = session.delete(PyATSTestLabUrl)
@@ -178,9 +180,7 @@ VPC1toR5Data = '{"0":3}'
 VPC2toR5Data = '{"0":4}'
 VPC3toR5Data = '{"0":5}'
 
-R5andVPC1BridgeVisibilityData = '{"visibility": 0}'
-R5andVPC2BridgeVisibilityData = '{"visibility": 0}'
-R5andVPC3BridgeVisibilityData = '{"visibility": 0}'
+R5andVPCSBridgeVisibilityData = '{"visibility": 0}'
 
 R5andVPC1BridgeUrl = AllNetworksUrl + '/3'
 R5andVPC2BridgeUrl = AllNetworksUrl + '/4'
@@ -202,9 +202,9 @@ VPC1ToR5Req = session.put(VPC1InterfacesUrl, VPC1toR5Data)
 VPC2ToR5Req = session.put(VPC2InterfacesUrl, VPC2toR5Data)
 VPC3ToR5Req = session.put(VPC3InterfacesUrl, VPC3toR5Data)
 
-R5andVPC1BridgeVisibilityReq = session.put(R5andVPC1BridgeUrl, R5andVPC1BridgeVisibilityData)
-R5andVPC2BridgeVisibilityReq = session.put(R5andVPC2BridgeUrl, R5andVPC2BridgeVisibilityData)
-R5andVPC3BridgeVisibilityReq = session.put(R5andVPC3BridgeUrl, R5andVPC3BridgeVisibilityData)
+R5andVPC1BridgeVisibilityReq = session.put(R5andVPC1BridgeUrl, R5andVPCSBridgeVisibilityData)
+R5andVPC2BridgeVisibilityReq = session.put(R5andVPC2BridgeUrl, R5andVPCSBridgeVisibilityData)
+R5andVPC3BridgeVisibilityReq = session.put(R5andVPC3BridgeUrl, R5andVPCSBridgeVisibilityData)
 
 print("Form Bridge R5 and VPC1 status : ", VPC1FormBridgeReq.json())
 print("Form Bridge R5 and VPC2 status : ", VPC2FormBridgeReq.json())
