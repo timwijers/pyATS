@@ -8,7 +8,7 @@ import datetime
 # variables #
 date_time = datetime.datetime.now()
 timestamp = date_time.strftime("%d%m%Y%H%M%S")
-testLabName = 'PYATS_test11052020'
+testLabName = 'PyATS_TestLab_' + timestamp
 apiBaseUrl = 'http://10.100.244.1/api'
 labsAuthor = '//Tim%20Wijers/'
 labsFolder = 'pyATS_TestLabs'
@@ -24,7 +24,7 @@ print(loginReq.json())
 
 # Uri's #
 AllLabsUrl = apiBaseUrl + '/labs'
-PyATSTestLabUrl = AllLabsUrl + labsAuthor + labsFolder + '/pyats111052020.unl'
+PyATSTestLabUrl = AllLabsUrl + labsAuthor + labsFolder + testLabName + '.unl'
 AllNodesUrl = PyATSTestLabUrl + '/nodes'
 AllNetworksUrl = PyATSTestLabUrl + '/networks'
 
@@ -42,11 +42,15 @@ print(LabDelReq.json())
 
 # Create New Testlab in the pyATS_TestLabs folder #
 DateTimeObj = datetime.datetime.now()
-LabConfigData = '{"path":"/Tim Wijers/pyATS_TestLabs/","name":"pyats111052020","version":"1",' \
-                '"author":"Tim Wijers","description":"pyATS Test Lab ","body":"This is a testlab created by the ' \
-                'Eve-NG REST API. Intended for pyATS framework testing purposes"} '
+LabConfigData = {
+    "path":"/Tim Wijers/pyATS_TestLabs/",
+    "name": testLabName,
+    "version":"1",
+    "author":"Tim Wijers",
+    "description":"pyATS Test Lab ",
+    "body":"This is a testlab created by the Eve-NG REST API. Intended for pyATS framework testing purposes"}
 
-LabConfigReq = session.post(AllLabsUrl, LabConfigData)
+LabConfigReq = session.post(AllLabsUrl,None, LabConfigData)
 print(LabConfigReq.json())
 
 # Add router 1 to the lab #
