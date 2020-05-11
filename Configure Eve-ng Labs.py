@@ -158,10 +158,10 @@ R5toFWReq = session.put(R5InterfacesUrl, FWtoR5AndViceVersaData)
 R5andFWBridgeVisibilityReq = session.put(R5andFWBridgeUrl, R5andFWBridgeVisibilityData)
 
 print("Link R5 to Gateway status : ", LinkR5ToGwReq.json())
-print("Form Bridge R5 and FW : ", R5FormBridgeReq.json())
+print("Form Bridge R5 and FW status : ", R5FormBridgeReq.json())
 print("Link Firewall to R5 status : ", FWtoR5Req.json())
 print("Link R5 to Firewall status : ", R5toFWReq.json())
-print("Create Bridge between R5 and Firewall status : ", R5andFWBridgeVisibilityReq.json())
+print("Hide Bridge between R5 and Firewall status : ", R5andFWBridgeVisibilityReq.json())
 
 # Link VPC 1,2 and 3 to Router 6 #
 
@@ -208,14 +208,22 @@ R5andVPC1BridgeVisibilityReq = session.put(R5andVPC1BridgeUrl, R5andVPC1BridgeVi
 R5andVPC2BridgeVisibilityReq = session.put(R5andVPC2BridgeUrl, R5andVPC2BridgeVisibilityData)
 R5andVPC3BridgeVisibilityReq = session.put(R5andVPC3BridgeUrl, R5andVPC3BridgeVisibilityData)
 
-#print(VPC1FormBridgeReq.json())
-#print(VPC2FormBridgeReq.json())
-#print(VPC3FormBridgeReq.json())
+print("Form Bridge R5 and VPC1 status : ", VPC1FormBridgeReq.json())
+print("Form Bridge R5 and VPC2 status : ", VPC2FormBridgeReq.json())
+print("Form Bridge R5 and VPC3 status : ", VPC3FormBridgeReq.json())
 
+print("Link R5 to VPC 1 status : ", R5toVPC1Req.json())
+print("Link R5 to VPC 2 status : ", R5toVPC2Req.json())
+print("Link R5 to VPC 3 status : ", R5toVPC3Req.json())
 
+print("Link VPC 1 to R5 status : ", VPC1ToR5Req.json())
+print("Link VPC 2 to R5 status : ", VPC2ToR5Req.json())
+print("Link VPC 3 to R5 status : ", VPC3ToR5Req.json())
+
+print("Hide Bridge between R5 and VPC 1 status : ", R5andVPC1BridgeVisibilityReq.json())
+print("Hide Bridge between R5 and VPC 2 status : ", R5andVPC1BridgeVisibilityReq.json())
+print("Hide Bridge between R5 and VPC 3 status : ", R5andVPC1BridgeVisibilityReq.json())
 
 # Start all nodes #
 NodesStartReq = session.get(AllNodesUrl + '/start')
 print(NodesStartReq.json())
-
-# TelNetSession = telnetlib.Telnet('10.100.244.1', 45569)
