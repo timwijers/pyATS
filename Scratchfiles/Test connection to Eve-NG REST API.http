@@ -24,7 +24,7 @@ Content-Type: application/json
 
 ###
 
-DELETE http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/PyATS_TestLab_12052020143155.unl
+DELETE http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/PyATS_TestLab_12052020144421.unl
 Content-Type: application/json
 
 
