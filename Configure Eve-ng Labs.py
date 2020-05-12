@@ -117,6 +117,29 @@ NodeAddData = {
 NodeAddReq = session.post(AllNodesUrl,None, NodeAddData)
 print("Add R3 status : ", NodeAddReq.json())
 
+
+# Add router 5 to the lab #
+NodeAddData = {
+    "type":"iol",
+    "template":"iol",
+    "config":"Unconfigured",
+    "delay":0,
+    "icon":"Router.png",
+    "image":"i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin",
+    "name":"pyats_Router5_behindFW",
+    "left":"50%",
+    "top":"25%",
+    "ram":"1024",
+    "cpu":1,
+    "ethernet":2,
+    "nvram": 1024,
+    "serial": 1
+}
+
+NodeAddReq = session.post(AllNodesUrl,None, NodeAddData)
+print("Add R5 status : ", NodeAddReq.json())
+
+
 # Add Docker Host to the lab #
 DockerHostAddData = {
     "template":"linux",
@@ -169,26 +192,6 @@ FortiAddData = {
 FortAddReq = session.post(AllNodesUrl,None, FortiAddData)
 print("Add Fortigate status : ", FortAddReq.json())
 
-# Add router 5 to the lab #
-NodeAddData = {
-    "type":"iol",
-    "template":"iol",
-    "config":"Unconfigured",
-    "delay":0,
-    "icon":"Router.png",
-    "image":"i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin",
-    "name":"pyats_Router5_behindFW",
-    "left":"50%",
-    "top":"25%",
-    "ram":"1024",
-    "cpu":1,
-    "ethernet":2,
-    "nvram": 1024,
-    "serial": 1
-}
-
-NodeAddReq = session.post(AllNodesUrl,None, NodeAddData)
-print("Add R5 status : ", NodeAddReq.json())
 
 VPCAddData = {
     "template":"vpcs",

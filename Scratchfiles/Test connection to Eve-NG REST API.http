@@ -18,12 +18,12 @@ Content-Type: application/json
 ###
 
 # curl -X GET -H 'Content-type: application/json' http://10.100.244.1/api/labs/Tim%20Wijers/pyATS%20testlab.unl/nodes
-GET http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/pyATSTestLab.unl/topology
+GET http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/PyATS_TestLab_12052020131527.unl/nodes
 Content-Type: application/json
 
 ###
 
-GET http://10.100.244.1/api/labs
+GET http://10.100.244.1/api/
 Content-Type: application/json
 
 
