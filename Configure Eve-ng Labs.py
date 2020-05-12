@@ -25,8 +25,11 @@ print(loginReq.json())
 # Uri's #
 AllLabsUrl = apiBaseUrl + '/labs'
 PyATSTestLabUrl = AllLabsUrl + labsAuthor + labsFolder + testLabName + '.unl'
+print(PyATSTestLabUrl)
 AllNodesUrl = PyATSTestLabUrl + '/nodes'
+print(AllNodesUrl)
 AllNetworksUrl = PyATSTestLabUrl + '/networks'
+print(AllNetworksUrl)
 
 # Stop and Wipe all nodes from previous run #
 NodesStopReq = session.get(AllNodesUrl + '/stop')
