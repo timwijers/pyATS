@@ -11,7 +11,7 @@ timestamp = date_time.strftime("%d%m%Y%H%M%S")
 testLabName = 'PyATS_TestLab_' + timestamp
 apiBaseUrl = 'http://10.100.244.1/api'
 labsAuthor = '//Tim%20Wijers/'
-labsFolder = 'pyATS_TestLabs'
+labsFolder = 'pyATS_TestLabs/'
 
 # start session #
 session = requests.Session()
