@@ -272,14 +272,13 @@ R5FormBridgeData = {
 LinkR5ToGwData = '{"0":"1"}'
 R5andFWBridgeVisibilityData = '{"visibility": 0}'
 FWtoR5Data = '{"1":"2"}'
-R5toFWData = '{"16":"2"}'
 R5InterfacesUrl = AllNodesUrl + '/6/interfaces'
 R5andFWBridgeUrl = AllNetworksUrl + '/2'
 
 R5FormBridgeReq = session.post(AllNetworksUrl, None, R5FormBridgeData)
 LinkR5ToGwReq = session.put(R5InterfacesUrl, LinkR5ToGwData)
 FWtoR5Req = session.put(FortiGateInterfacesUrl, FWtoR5Data)
-R5toFWReq = session.put(R5InterfacesUrl, R5toFWData)
+R5toFWReq = session.put(R5InterfacesUrl, FWtoR5Data)
 R5andFWBridgeVisibilityReq = session.put(R5andFWBridgeUrl, R5andFWBridgeVisibilityData)
 
 print("Link R5 to Gateway status : ", LinkR5ToGwReq.json())
