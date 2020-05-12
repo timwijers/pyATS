@@ -360,8 +360,8 @@ print("Hide Bridge between R5 and VPC 2 status : ", R5andVPC1BridgeVisibilityReq
 print("Hide Bridge between R5 and VPC 3 status : ", R5andVPC1BridgeVisibilityReq.json())
 
 # Start all nodes #
-NodesStartReq = session.get(AllNodesUrl + '/start')
-print(NodesStartReq.json())
+#NodesStartReq = session.get(AllNodesUrl + '/start')
+#print(NodesStartReq.json())
 
 # Close REST API session #
 session.close()
