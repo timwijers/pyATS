@@ -18,7 +18,7 @@ Content-Type: application/json
 ###
 
 # curl -X GET -H 'Content-type: application/json' http://10.100.244.1/api/labs/Tim%20Wijers/pyATS%20testlab.unl/nodes
-GET http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/PyATS_TestLab_12052020143155.unl/nodes/stop
+DELETE http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/PyATS_TestLab_12052020143155.unl
 
 Content-Type: application/json
 
