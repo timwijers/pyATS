@@ -51,68 +51,172 @@ LabConfigData = {
     "version":"1",
     "author":"Tim Wijers",
     "description":"pyATS Test Lab ",
-    "body":"This is a testlab created by the Eve-NG REST API. Intended for pyATS framework testing purposes"}
+    "body":"This is a testlab created by the Eve-NG REST API. Intended for pyATS framework testing purposes"
+}
 
 LabConfigReq = session.post(AllLabsUrl,None, LabConfigData)
 print(LabConfigReq.json())
 
 # Add router 1 to the lab #
-NodeAddData = '{"type":"iol","template":"iol","config":"Unconfigured","delay":0,"icon":"Router.png",' \
-              '"image":"i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin","name":"pyats_Router1","left":"65%",' \
-              '"top":"75%","ram":"1024","cpu":1,"ethernet":2, "nvram": 1024, "serial": 1} '
-NodeAddReq = session.post(AllNodesUrl, NodeAddData)
+NodeAddData = {
+    "type":"iol",
+    "template":"iol",
+    "config":"Unconfigured",
+    "delay":0,
+    "icon":"Router.png",
+    "image":"i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin",
+    "name":"pyats_Router1",
+    "left":"65%",
+    "top":"75%",
+    "ram":"1024",
+    "cpu":1,
+    "ethernet":2,
+    "nvram": 1024,
+    "serial": 1
+}
+NodeAddReq = session.post(AllNodesUrl,None, NodeAddData)
 print("Add R1 status : ", NodeAddReq.json())
 
 # Add router 2 to the lab #
-NodeAddData = '{"type":"iol","template":"iol","config":"Unconfigured","delay":0,"icon":"Router.png",' \
-              '"image":"i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin","name":"pyats_Router2","left":"35%",' \
-              '"top":"95%","ram":"1024","cpu":1,"ethernet":2, "nvram": 1024, "serial": 1} '
+NodeAddData = {
+    "type":"iol",
+    "template":"iol",
+    "config":"Unconfigured",
+    "delay":0,
+    "icon":"Router.png",
+    "image":"i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin",
+    "name":"pyats_Router2","left":"35%",
+    "top":"95%",
+    "ram":"1024",
+    "cpu":1,
+    "ethernet":2,
+    "nvram": 1024,
+    "serial": 1
+}
 
-NodeAddReq = session.post(AllNodesUrl, NodeAddData)
+NodeAddReq = session.post(AllNodesUrl,None, NodeAddData)
 print("Add R2 status : ", NodeAddReq.json())
 
 # Add router 3 to the lab #
-NodeAddData = '{"type":"iol","template":"iol","config":"Unconfigured","delay":0,"icon":"Router.png",' \
-              '"image":"i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin","name":"pyats_Router3","left":"95%",' \
-              '"top":"95%","ram":"1024","cpu":1,"ethernet":2, "nvram": 1024, "serial": 1} '
-NodeAddReq = session.post(AllNodesUrl, NodeAddData)
+NodeAddData = {
+    "type":"iol",
+    "template":"iol",
+    "config":"Unconfigured",
+    "delay":0,
+    "icon":"Router.png",
+    "image":"i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin",
+    "name":"pyats_Router3",
+    "left":"95%",
+    "top":"95%",
+    "ram":"1024",
+    "cpu":1,
+    "ethernet":2,
+    "nvram": 1024,
+    "serial": 1
+}
+NodeAddReq = session.post(AllNodesUrl,None, NodeAddData)
 print("Add R3 status : ", NodeAddReq.json())
 
 # Add Docker Host to the lab #
-DockerHostAddData = '{"template":"linux","type":"qemu","count":"1","image":"linux-ubuntu-server-18.04-pfne",' \
-                    '"name":"DockerHost","icon":"Server.png","uuid":"","cpulimit":"undefined","cpu":"1","ram":"4096",' \
-                    '"ethernet":"1","firstmac":"","qemu_version": "","ro_qemu_options":"-machine type=pc,accel=kvm ' \
-                    '-vga std -usbdevice tablet -boot ' \
-                    'order=dc","config":"0","delay":"0","console":"vnc","left":"95%","top":"45%","postfix":0} '
-DockerHostAddReq = session.post(AllNodesUrl, DockerHostAddData)
+DockerHostAddData = {
+    "template":"linux",
+    "type":"qemu",
+    "count":"1",
+    "image":"linux-ubuntu-server-18.04-pfne",
+    "name":"DockerHost",
+    "icon":"Server.png",
+    "uuid":"",
+    "cpulimit":"undefined",
+    "cpu":"1",
+    "ram":"4096",
+    "ethernet":"1",
+    "firstmac":"",
+    "qemu_version": "",
+    "ro_qemu_options":"-machine type=pc,accel=kvm -vga std -usbdevice tablet -boot order=dc",
+    "config":"0",
+    "delay":"0",
+    "console":"vnc",
+    "left":"95%",
+    "top":"45%",
+    "postfix":0
+}
+DockerHostAddReq = session.post(AllNodesUrl,None, DockerHostAddData)
 print("Add Docker Host status : ", DockerHostAddReq.json())
 
 # Add FortiGate Firewall to the lab #
-FortiAddData = '{"template":"fortinet","type":"qemu","count":"1","image":"fortinet-FGT-v6-build0932",' \
-               '"name":"FortiGate","icon":"Firewall.png","uuid":"","cpulimit":"undefined","cpu":"1","ram":"1024",' \
-               '"ethernet":"4","qemu_version":"","qemu_arch":"","ro_qemu_options":"-machine type=pc-1.0,accel=kvm ' \
-               '-serial mon:stdio -nographic -nodefconfig -nodefaults -display none -vga std -rtc base=utc",' \
-               '"config":"0","delay":"0","console":"vnc","left":"35%","top":"45%","postfix":0} '
-FortAddReq = session.post(AllNodesUrl, FortiAddData)
+FortiAddData = {
+    "template":"fortinet",
+    "type":"qemu",
+    "count":"1",
+    "image":"fortinet-FGT-v6-build0932",
+    "name":"FortiGate",
+    "icon":"Firewall.png",
+    "uuid":"",
+    "cpulimit":"undefined",
+    "cpu":"1",
+    "ram":"1024",
+    "ethernet":"4",
+    "qemu_version":"",
+    "qemu_arch":"",
+    "ro_qemu_options":"-machine type=pc-1.0,accel=kvm -serial mon:stdio -nographic -nodefconfig -nodefaults -display none -vga std -rtc base=utc",
+    "config":"0",
+    "delay":"0",
+    "console":"vnc",
+    "left":"35%",
+    "top":"45%",
+    "postfix":0
+}
+FortAddReq = session.post(AllNodesUrl,None, FortiAddData)
 print("Add Fortigate status : ", FortAddReq.json())
 
 # Add router 5 to the lab #
-NodeAddData = '{"type":"iol","template":"iol","config":"Unconfigured","delay":0,"icon":"Router.png",' \
-              '"image":"i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin","name":"pyats_Router5_behindFW",' \
-              '"left":"50%","top":"25%","ram":"1024","cpu":1,"ethernet":2, "nvram": 1024, "serial": 1} '
+NodeAddData = {
+    "type":"iol",
+    "template":"iol",
+    "config":"Unconfigured",
+    "delay":0,
+    "icon":"Router.png",
+    "image":"i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin",
+    "name":"pyats_Router5_behindFW",
+    "left":"50%",
+    "top":"25%",
+    "ram":"1024",
+    "cpu":1,
+    "ethernet":2,
+    "nvram": 1024,
+    "serial": 1
+}
 
-NodeAddReq = session.post(AllNodesUrl, NodeAddData)
+NodeAddReq = session.post(AllNodesUrl,None, NodeAddData)
 print("Add R5 status : ", NodeAddReq.json())
 
-VPCAddData = '{"template":"vpcs","type":"vpcs","count":"3","name":"VPC_pyATS","icon":"Desktop.png","config":"0",' \
-             '"delay":"0","left":"386","top":"64","postfix":1,"numberNodes":"3"} '
-VPCAddReq = session.post(AllNodesUrl, VPCAddData)
+VPCAddData = {
+    "template":"vpcs",
+    "type":"vpcs",
+    "count":"3",
+    "name":"VPC_pyATS",
+    "icon":"Desktop.png",
+    "config":"0",
+    "delay":"0",
+    "left":"386",
+    "top":"64",
+    "postfix":1,
+    "numberNodes":"3"
+}
+VPCAddReq = session.post(AllNodesUrl,None, VPCAddData)
 print("Add VPC's status : ", VPCAddReq.json())
 
 # Create a new Internet Gateway for internet connection #
-NetworkAddData = '{"count":"1","visibility":"1","name":"InternetGW","type":"pnet0","left":"65%","top":"45%",' \
-                 '"postfix":0} '
-NetworkAddReq = session.post(AllNetworksUrl, NetworkAddData)
+NetworkAddData = {
+    "count":"1",
+    "visibility":"1",
+    "name":"InternetGW",
+    "type":"pnet0",
+    "left":"65%",
+    "top":"45%",
+    "postfix":0
+}
+NetworkAddReq = session.post(AllNetworksUrl,None, NetworkAddData)
 print("Add Internet Gateway network status : ", NetworkAddReq.json())
 
 ### LINKING ###
@@ -155,8 +259,15 @@ LinkFortiGateToGwReq = session.put(FortiGateInterfacesUrl, LinkFortiGateToGwData
 print("Link Fortigate to Gateway status : ", LinkFortiGateToGwReq.json())
 
 # Link Router 5 to the gateway and the Fortigate Firewall via Ethernet #
-R5FormBridgeData = '{"count":1,"name":"Net-pyats_Router5_behindFWiface_16","type":"bridge","left":507,"top":241,' \
-                   '"visibility":1,"postfix":0} '
+R5FormBridgeData = {
+    "count":1,
+    "name":"Net-pyats_Router5_behindFWiface_16",
+    "type":"bridge",
+    "left":507,
+    "top":241,
+    "visibility":1,
+    "postfix":0
+}
 LinkR5ToGwData = '{"0":"1"}'
 R5andFWBridgeVisibilityData = '{"visibility": 0}'
 FWtoR5AndViceVersaData = '{"1":"2"}'
@@ -164,7 +275,7 @@ FWtoR5AndViceVersaData = '{"1":"2"}'
 R5InterfacesUrl = AllNodesUrl + '/6/interfaces'
 R5andFWBridgeUrl = AllNetworksUrl + '/2'
 
-R5FormBridgeReq = session.post(AllNetworksUrl, R5FormBridgeData)
+R5FormBridgeReq = session.post(AllNetworksUrl,None, R5FormBridgeData)
 LinkR5ToGwReq = session.put(R5InterfacesUrl, LinkR5ToGwData)
 FWtoR5Req = session.put(FortiGateInterfacesUrl, FWtoR5AndViceVersaData)
 R5toFWReq = session.put(R5InterfacesUrl, FWtoR5AndViceVersaData)
@@ -178,12 +289,33 @@ print("Hide Bridge between R5 and Firewall status : ", R5andFWBridgeVisibilityRe
 
 # Link VPC 1,2 and 3 to Router 6 #
 
-VPC1FormBridgeData = '{"count":1,"name":"Net-VPC1iface_0","type":"bridge","left":566,"top":104,"visibility":1,' \
-                     '"postfix":0} '
-VPC2FormBridgeData = '{"count":1,"name":"Net-VPC2iface_0","type":"bridge","left":506,"top":104,"visibility":1,' \
-                     '"postfix":0} '
-VPC3FormBridgeData = '{"count":1,"name":"Net-VPC1iface_0","type":"bridge","left":446,"top":104,"visibility":1,' \
-                     '"postfix":0} '
+VPC1FormBridgeData = {
+    "count":1,
+    "name":"Net-VPC1iface_0",
+    "type":"bridge",
+    "left":566,
+    "top":104,
+    "visibility":1,
+    "postfix":0
+}
+VPC2FormBridgeData = {
+    "count":1,
+    "name":"Net-VPC2iface_0",
+    "type":"bridge",
+    "left":506,
+    "top":104,
+    "visibility":1,
+    "postfix":0
+}
+VPC3FormBridgeData = {
+    "count":1,
+    "name":"Net-VPC3iface_0",
+    "type":"bridge",
+    "left":446,
+    "top":104,
+    "visibility":1,
+    "postfix":0
+}
 
 R5toVPC1Data = '{"16":3}'
 R5toVPC2Data = '{"32":4}'
@@ -203,9 +335,9 @@ VPC1InterfacesUrl = AllNodesUrl + '/7/interfaces'
 VPC2InterfacesUrl = AllNodesUrl + '/8/interfaces'
 VPC3InterfacesUrl = AllNodesUrl + '/9/interfaces'
 
-VPC1FormBridgeReq = session.post(AllNetworksUrl, VPC1FormBridgeData)
-VPC2FormBridgeReq = session.post(AllNetworksUrl, VPC2FormBridgeData)
-VPC3FormBridgeReq = session.post(AllNetworksUrl, VPC3FormBridgeData)
+VPC1FormBridgeReq = session.post(AllNetworksUrl,None, VPC1FormBridgeData)
+VPC2FormBridgeReq = session.post(AllNetworksUrl,None, VPC2FormBridgeData)
+VPC3FormBridgeReq = session.post(AllNetworksUrl,None, VPC3FormBridgeData)
 
 R5toVPC1Req = session.put(R5InterfacesUrl, R5toVPC1Data)
 R5toVPC2Req = session.put(R5InterfacesUrl, R5toVPC2Data)
