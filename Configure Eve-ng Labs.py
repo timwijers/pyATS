@@ -271,14 +271,14 @@ R5FormBridgeData = {
 }
 LinkR5ToGwData = '{"0":"1"}'
 R5andFWBridgeVisibilityData = '{"visibility": 0}'
-FWtoR5Data = '{"1":"2"}'
+FWtoR5andViceVersaData = '{"1":"2"}'
 R5InterfacesUrl = AllNodesUrl + '/6/interfaces'
 R5andFWBridgeUrl = AllNetworksUrl + '/2'
 
 R5FormBridgeReq = session.post(AllNetworksUrl, None, R5FormBridgeData)
 LinkR5ToGwReq = session.put(R5InterfacesUrl, LinkR5ToGwData)
-FWtoR5Req = session.put(FortiGateInterfacesUrl, FWtoR5Data)
-R5toFWReq = session.put(R5InterfacesUrl, FWtoR5Data)
+FWtoR5Req = session.put(FortiGateInterfacesUrl, FWtoR5andViceVersaData)
+R5toFWReq = session.put(R5InterfacesUrl, FWtoR5andViceVersaData)
 R5andFWBridgeVisibilityReq = session.put(R5andFWBridgeUrl, R5andFWBridgeVisibilityData)
 
 print("Link R5 to Gateway status : ", LinkR5ToGwReq.json())
@@ -289,7 +289,15 @@ print("Hide Bridge between R5 and Firewall status : ", R5andFWBridgeVisibilityRe
 
 # Link VPC 1,2 and 3 to Router 6 #
 
-VPC1FormBridgeData = '{"count": 1,"name": "Net-VPC1iface_0","type": "bridge","left": 566,"top": 104,"visibility": 1,"postfix": 0}'
+VPC1FormBridgeData = {
+    "count": 1,
+    "name": "Net-VPC1iface_0",
+    "type": "bridge",
+    "left": 566,
+    "top": 104,
+    "visibility": 1,
+    "postfix": 0
+}
 VPC2FormBridgeData = {
     "count": 1,
     "name": "Net-VPC2iface_0",
@@ -360,7 +368,7 @@ print("Hide Bridge between R5 and VPC 2 status : ", R5andVPC1BridgeVisibilityReq
 print("Hide Bridge between R5 and VPC 3 status : ", R5andVPC1BridgeVisibilityReq.json())
 
 # Start all nodes #
-NodesStartReq = session.get(AllNodesUrl + '/stop')
+NodesStartReq = session.get(AllNodesUrl + '/start')
 print(NodesStartReq.json())
 
 # Close REST API session #

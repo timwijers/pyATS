@@ -20,7 +20,7 @@
     - name: Install required system packages
       apt: name={{ item }} state=latest update_cache=yes
       loop: ['docker.io', 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip',
-             'virtualenv', 'python3-setuptools',  'python3-docker',]
+             'virtualenv', 'python3-setuptools',  'python3-docker', 'python3-bs4']
 
 
     - name: Install Docker Module for Python
