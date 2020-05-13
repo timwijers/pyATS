@@ -10,7 +10,7 @@ url = "http://10.100.244.1/dhcpd.html"
 content = requests.get(url).text
 ansibleHostsFileContent = ['[dockerHost]', '', '\n', '[dockerHost:vars]', 'ansible_python_interpreter=/usr/bin'
                                                                           '/python3']
-IPDict = {"DockerHost": "", "FortiGate": "", "Router1": "", "Router2": "", "Router3": "", "Router5": ""}
+IPDict = {"FortiGate": "", "Router1": "", "Router2": "", "Router3": "", "Router5": ""}
 
 
 def getIP(line):
