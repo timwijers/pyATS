@@ -1,3 +1,7 @@
+__Author__ = 'Tim Wijers'
+__Copyright__ = 'Routz B.V'
+__Date__ = 'May 2020'
+
 # Python imports
 import os
 import time
