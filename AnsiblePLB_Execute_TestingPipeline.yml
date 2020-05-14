@@ -10,6 +10,8 @@
 #    - name: Update/Upgrade dependencies
 #      apt: update_cache=yes upgrade=yes
 
+    - name: cd into pyATS directory
+      local_action: shell python 'Configure Eve-ng Labs.py'
 
     - name: Install python-apt using apt
       apt: name=python-apt state=latest update_cache=yes force_apt_get=yes
