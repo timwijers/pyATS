@@ -8,6 +8,7 @@ import yaml
 
 url = "http://10.100.244.1/dhcpd.html"
 content = requests.get(url).text
+dockerHost_pfne_uname_pwd = 'ansible_ssh_pass=pfne ansible_ssh_user=pfne'
 ansibleHostsFileContent = ['[dockerHost]', '', '\n', '[dockerHost:vars]', 'ansible_python_interpreter=/usr/bin'
                            '/python3', '\n', '[localhost]', '127.0.0.1', '[localhost:vars]',
                            'ansible_python_interpreter=/usr/bin/python3']
@@ -82,7 +83,7 @@ def getIP(line):
 
 for line in content.split("<tr>"):
     if 'ubuntu1804-pfne' in line:
-        ansibleHostsFileContent[1] = getIP(line) + ' ansible_ssh_pass=routz123 ansible_ssh_user=docker'
+        ansibleHostsFileContent[1] = getIP(line) + dockerHost_pfne_uname_pwd
     if 'FortiGate-VM64-KVM' in line:
         IPDict["FortiGate"] = getIP(line)
     if 'aa:bb:cc:00:14' in line:
