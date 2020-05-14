@@ -1,5 +1,5 @@
 [dockerHost]
-10.100.244.34
+10.100.244.162
 
 
 [dockerHost:vars]

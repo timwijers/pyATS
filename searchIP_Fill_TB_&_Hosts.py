@@ -12,6 +12,66 @@ ansibleHostsFileContent = ['[dockerHost]', '', '\n', '[dockerHost:vars]', 'ansib
                                                                           '/python3']
 IPDict = {"FortiGate": "", "Router1": "", "Router2": "", "Router3": "", "Router5": ""}
 
+tbfilecontent = {
+        'devices': {
+            'routeriol': {
+                'type': 'router',
+                'os': 'ios',
+                'alias': 'uut',
+                'credentials': {
+                    'default': {
+                        'username': 'cisco',
+                        'password': 'cisco'}},
+                'connections': {
+                    'cli': {
+                        'protocol': 'ssh',
+                        'ip': '',
+                        'username': 'cisco',
+                        'password': 'cisco'}}},
+            'routeriol2': {
+                'type': 'router',
+                'os': 'ios',
+                'alias': 'uut2',
+                'credentials': {
+                    'default': {
+                        'username': 'cisco',
+                        'password': 'cisco'}},
+                'connections': {
+                    'cli': {
+                        'protocol': 'ssh',
+                        'ip': '',
+                        'username': 'cisco',
+                        'password': 'cisco'}}},
+            'routeriol3': {
+                'type': 'router',
+                'os': 'ios',
+                'alias': 'uut3',
+                'credentials': {
+                    'default': {
+                        'username': 'cisco',
+                        'password': 'cisco'}},
+                'connections': {
+                    'cli': {
+                        'protocol': 'ssh',
+                        'ip': '',
+                        'username': 'cisco',
+                        'password': 'cisco'}}},
+            'routeriol5': {
+                'type': 'router',
+                'os': 'ios',
+                'alias': 'uut5',
+                'credentials': {
+                    'default': {
+                        'username': 'cisco',
+                        'password': 'cisco'}},
+                'connections': {
+                    'cli': {
+                        'protocol': 'ssh',
+                        'ip': '',
+                        'username': 'cisco',
+                        'password': 'cisco'
+                    }}}}}
+
 
 def getIP(line):
     ipsFound = re.findall(r'(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})', line)
@@ -33,26 +93,22 @@ for line in content.split("<tr>"):
         IPDict["Router5"] = getIP(line)
 
 print(IPDict)
+print(ansibleHostsFileContent)
+for key, value in tbfilecontent['devices'].items():
+    if value['alias'] == 'uut':
+        value['connections']['cli']['ip'] = (IPDict.get("Router1"))
+    if value['alias'] == 'uut2':
+        value['connections']['cli']['ip'] = (IPDict.get("Router2"))
+    if value['alias'] == 'uut3':
+        value['connections']['cli']['ip'] = (IPDict.get("Router3"))
+    if value['alias'] == 'uut5':
+        value['connections']['cli']['ip'] = (IPDict.get("Router5"))
 
-with open("routerIOL_tb.yaml") as testbedfile:
-    listoftestbedfile = yaml.load(testbedfile,Loader=yaml.Loader)
+print(tbfilecontent)
 
-print(listoftestbedfile)
-
-for key, value in listoftestbedfile['devices'].items():
-        if value['alias'] == 'uut':
-            value['connections']['cli']['ip'] = (IPDict.get("Router1"))
-        if value['alias'] == 'uut2':
-            value['connections']['cli']['ip'] = (IPDict.get("Router2"))
-        if value['alias'] == 'uut3':
-            value['connections']['cli']['ip'] = (IPDict.get("Router3"))
-        if value['alias'] == 'uut5':
-            value['connections']['cli']['ip'] = (IPDict.get("Router5"))
-
-print(listoftestbedfile)
-
-with open("routerIOL_tb.yaml", "w") as testbedfile:
-    yaml.dump(listoftestbedfile, testbedfile, default_flow_style=False, sort_keys=False)
+with open("routerIOL_tb.yaml", "a") as testbedfile:
+    testbedfile.truncate(0)
+    yaml.dump(tbfilecontent, testbedfile, default_flow_style=False, sort_keys=False)
 
 ansibleHostsFile = open("hosts", "a")
 ansibleHostsFile.truncate(0)
