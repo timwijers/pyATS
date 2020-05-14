@@ -4,8 +4,8 @@
 
   tasks:
 
-    - name: Cd into correct folder
-      command: cd /etc/ansible/pyATS
+   # - name: Cd into correct folder
+   #   command: cd /etc/ansible/pyATS
 
     - name: Update Git Repository
       command: git pull http://github.com/timwijers/pyATS
