@@ -1,9 +1,7 @@
 ---
-- name: playbook
-  hosts: dockerHost
-  become: yes
-  become-user: root
-  become-method: sudo
+- hosts: dockerHost
+  become: true
+
 
   vars:
     - container_name: pyats_cont11
