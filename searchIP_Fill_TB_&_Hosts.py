@@ -8,7 +8,7 @@ import yaml
 
 url = "http://10.100.244.1/dhcpd.html"
 content = requests.get(url).text
-dockerHost_pfne_uname_pwd = ' ansible_ssh_pass=pfne ansible_ssh_user=pfne'
+dockerHost_pfne_uname_pwd = ' ansible_ssh_pass=pfne ansible_ssh_user=pfne ansible_sudo_pass=pfne'
 ansibleHostsFileContent = ['[dockerHost]', '', '\n', '[dockerHost:vars]', 'ansible_python_interpreter=/usr/bin'
                            '/python3', '\n', '[localhost]', '127.0.0.1', '[localhost:vars]',
                            'ansible_python_interpreter=/usr/bin/python3']
