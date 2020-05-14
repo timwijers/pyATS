@@ -12,8 +12,6 @@
 #      apt: update_cache=yes upgrade=yes
 
     - name: Install python-apt using apt
-      become-user: root
-      become-method: sudo
       apt: name=python-apt state=latest update_cache=yes force_apt_get=yes
 
     - name: Install aptitude using apt
