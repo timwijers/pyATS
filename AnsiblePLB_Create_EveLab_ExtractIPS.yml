@@ -11,7 +11,7 @@
     command: git pull http://github.com/timwijers/pyATS
 
   - name: Create Eve-NG Lab with all required Nodes
-    script: "'Configure Eve-ng Labs.py'"
+    shell: python 'Configure Eve-ng Labs.py'
 
   - name: Extract IP's from the Eve-NG Nodes and create Ansible Hosts file + pyATS Testbed
-    script: "'AnsiblePLB_Create_EveLab_ExtractIPS.yml'"
+    shell: python3 'searchIP_Fill_TB_&_Hosts.py'
