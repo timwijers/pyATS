@@ -15,3 +15,6 @@
 
   - name: Extract IP's from the Eve-NG Nodes and create Ansible Hosts file + pyATS Testbed
     shell: python3 'searchIP_Fill_TB_&_Hosts.py'
+
+  - name: Move Hosts file to ansible directory
+    shell: cp /etc/ansible/pyATS/hosts /etc/ansible/hosts

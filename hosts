@@ -1,6 +1,12 @@
 [dockerHost]
-10.100.244.162
+10.100.244.162 ansible_ssh_pass=routz123 ansible_ssh_user=docker
 
 
 [dockerHost:vars]
+ansible_python_interpreter=/usr/bin/python3
+
+
+[localhost]
+127.0.0.1
+[localhost:vars]
 ansible_python_interpreter=/usr/bin/python3
