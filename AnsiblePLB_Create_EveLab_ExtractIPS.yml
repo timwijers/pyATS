@@ -4,14 +4,11 @@
 
   tasks:
 
-   # - name: Cd into correct folder
-   #   command: cd /etc/ansible/pyATS
+   - name: Cd into correct folder
+     shell: cd /etc/ansible/pyATS
 
     - name: Update Git Repository
       command: git pull http://github.com/timwijers/pyATS
-
-    - name: Cd into correct folder
-      command: cd /etc/ansible/pyATS
 
     - name: Create Eve-NG Lab with all required Nodes
       script: Configure Eve-ng Labs.py
