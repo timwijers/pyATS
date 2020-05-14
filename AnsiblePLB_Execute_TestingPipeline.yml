@@ -1,6 +1,7 @@
 ---
 - hosts: dockerHost
   become: true
+  sudo: yes
 
   vars:
     - container_name: pyats_cont11
