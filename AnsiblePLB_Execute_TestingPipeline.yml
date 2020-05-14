@@ -12,7 +12,7 @@
 #      apt: update_cache=yes upgrade=yes
 
     - name: Install python-apt using apt
-      apt: name=python-apt state=latest update_cache=yes force_apt_get=yes
+      shell: apt-get install python-apt
 
     - name: Install aptitude using apt
       apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
