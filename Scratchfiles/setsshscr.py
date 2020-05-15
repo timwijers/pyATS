@@ -9,8 +9,8 @@ telNetSession = telnetlib.Telnet()
 
 telNetSession.open(ip, port)
 
-time.sleep(2)
-telNetSession.write('enable\n')
+time.sleep(5)
+telNetSession.write(' enable\n')
 time.sleep(2)
 telNetSession.write('conf terminal\n')
 time.sleep(2)
