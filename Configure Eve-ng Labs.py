@@ -8,7 +8,9 @@ import datetime
 # variables #
 date_time = datetime.datetime.now()
 timestamp = date_time.strftime("%d%m%Y%H%M%S")
-testLabName = 'PyATS_TestLab_13mei'
+prevTestLabPostFix = '12mei'
+currTestLabPostFix = '13mei'
+testLabName = 'PyATS_TestLab_'
 apiBaseUrl = 'http://10.100.244.1/api'
 labsAuthor = '//Tim%20Wijers/'
 labsFolder = 'pyATS_TestLabs/'
@@ -24,7 +26,7 @@ print(loginReq.json())
 
 # Uri's #
 AllLabsUrl = apiBaseUrl + '/labs'
-PyATSTestLabUrl = AllLabsUrl + labsAuthor + labsFolder + testLabName + '.unl'
+PyATSTestLabUrl = AllLabsUrl + labsAuthor + labsFolder + testLabName + currTestLabPostFix + '.unl'
 print(PyATSTestLabUrl)
 AllNodesUrl = PyATSTestLabUrl + '/nodes'
 print(AllNodesUrl)
@@ -38,7 +40,7 @@ NodesWipeReq = session.get(AllNodesUrl + '/wipe')
 print(NodesWipeReq.json())
 
 # Delete Lab from previous run #
-LabDelReq = session.delete(PyATSTestLabUrl)
+LabDelReq = session.delete(AllLabsUrl + labsAuthor + labsFolder + testLabName + prevTestLabPostFix + '.unl')
 print(LabDelReq.json())
 
 ### CREATING ###
@@ -116,7 +118,6 @@ NodeAddData = {
 }
 NodeAddReq = session.post(AllNodesUrl, None, NodeAddData)
 print("Add R3 status : ", NodeAddReq.json())
-
 
 # Add Docker Host to the lab #
 DockerHostAddData = {
@@ -335,7 +336,7 @@ VPC1InterfacesUrl = AllNodesUrl + '/7/interfaces'
 VPC2InterfacesUrl = AllNodesUrl + '/8/interfaces'
 VPC3InterfacesUrl = AllNodesUrl + '/9/interfaces'
 
-VPC1FormBridgeReq = session.post(AllNetworksUrl,None, VPC1FormBridgeData)
+VPC1FormBridgeReq = session.post(AllNetworksUrl, None, VPC1FormBridgeData)
 VPC2FormBridgeReq = session.post(AllNetworksUrl, None, VPC2FormBridgeData)
 VPC3FormBridgeReq = session.post(AllNetworksUrl, None, VPC3FormBridgeData)
 
