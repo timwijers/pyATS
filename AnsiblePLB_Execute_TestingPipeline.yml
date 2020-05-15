@@ -62,6 +62,9 @@
     - name: Install apache webserver on docker container
       shell: docker exec -it "{{ container_name }}" bash -c "yes | apt-get install apache2 ; service apache2 start"
 
+    - name: remove preexisting ssh keys
+      shell: docker exec -it "{{ container_name }}" rm -r /root/.ssh/known_hosts
+
     - name: execute configuration file in docker container
       shell: docker exec -it "{{ container_name }}" bash -c "source bin/activate ; cd /pyats/pyATS ;
              pyats run job jobfile.py > result.txt"
