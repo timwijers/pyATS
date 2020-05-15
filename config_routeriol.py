@@ -70,8 +70,8 @@ class test_cases(aetest.Testcase):
                        "network 192.168.6.0\n" "network 192.168.3.0\n" "passive-interface ethernet0/2\n "
                        "passive-interface ethernet0/0\n " "passive-interface ethernet0/1\n " " exit\n")
 
-        uut3.configure("interface ethernet2/2\n" " ip address 192.168.7.1 255.255.255.0\n" " no sh\n")
-        uut3.configure("interface ethernet2/1\n" " ip address 192.168.4.1 255.255.255.0\n" " no sh\n")
+        uut3.configure("interface ethernet0/2\n" " ip address 192.168.7.1 255.255.255.0\n" " no sh\n")
+        uut3.configure("interface ethernet0/1\n" " ip address 192.168.4.1 255.255.255.0\n" " no sh\n")
         uut3.configure("interface serial2/0\n" " ip address 10.0.1.2 255.255.255.254\n" " no sh\n")
         uut3.configure("interface serial2/2\n" " ip address 10.0.3.2 255.255.255.254\n" " no sh\n")
         uut3.configure("router eigrp 1\n" "eigrp router-id 3.3.3.3\n" " network 10.0.1.0\n" " network 10.0.3.0\n" "no "
