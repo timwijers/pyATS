@@ -5,6 +5,8 @@ __Date__ = 'May 2020'
 import requests
 import re
 import yaml
+import time
+import telnetlib
 
 eveIP = '10.100.244.1'
 url = "http://" + eveIP + "/dhcpd.html"
@@ -84,15 +86,12 @@ def getIP(line):
 
 
 def setSSH_IOL(ip, port, hostname):
-    import time
-    import telnetlib
-
     telNetSession = telnetlib.Telnet()
 
     telNetSession.open(ip, port)
 
     time.sleep(5)
-    telNetSession.write('enable\n')
+    telNetSession.write(' enable\n')
     time.sleep(2)
     telNetSession.write('conf terminal\n')
     time.sleep(2)
@@ -117,6 +116,7 @@ def setSSH_IOL(ip, port, hostname):
     telNetSession.write('username cisco password cisco\n')
 
     print(telNetSession.read_very_eager())
+
 
 for line in content.split("<tr>"):
     if 'ubuntu1804-pfne' in line:
@@ -155,7 +155,7 @@ ansibleHostsFile.truncate(0)
 ansibleHostsFile.writelines("%s\n" % line for line in ansibleHostsFileContent)
 ansibleHostsFile.close()
 
-setSSH_IOL(eveIP, '45569', 'Router1')
-setSSH_IOL(eveIP, '45570', 'Router2')
-setSSH_IOL(eveIP, '45571', 'Router3')
-setSSH_IOL(eveIP, '45574', 'Router5')
+setSSH_IOL('10.100.244.1', '45569', 'Router1')
+setSSH_IOL('10.100.244.1', '45570', 'Router2')
+setSSH_IOL('10.100.244.1', '45571', 'Router3')
+setSSH_IOL('10.100.244.1', '45574', 'Router5')
