@@ -3,7 +3,7 @@ import telnetlib
 
 ip = '10.100.244.1'
 portList = [45569, 45570, 45571, 45574]
-hostnameList = ['Router1', 'Router2', 'Router3', 'Router5']
+hostnameList = ['routeriol', 'routeriol2', 'routeriol3', 'routeriol5']
 count = 0
 
 telNetSession = telnetlib.Telnet()
