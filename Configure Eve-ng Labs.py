@@ -8,7 +8,7 @@ import datetime
 # variables #
 date_time = datetime.datetime.now()
 timestamp = date_time.strftime("%d%m%Y%H%M%S")
-testLabName = 'PyATS_TestLab_12mei'
+testLabName = 'PyATS_TestLab_' + input("Enter the name that should come after Pyats_Testlab_ string: ")
 apiBaseUrl = 'http://10.100.244.1/api'
 labsAuthor = '//Tim%20Wijers/'
 labsFolder = 'pyATS_TestLabs/'
