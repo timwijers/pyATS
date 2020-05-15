@@ -15,6 +15,7 @@ ansibleHostsFileContent = ['[dockerHost]', '', '\n', '[dockerHost:vars]', 'ansib
                            'ansible_python_interpreter=/usr/bin/python3']
 
 IPDict = {"FortiGate": "", "Router1": "", "Router2": "", "Router3": "", "Router5": ""}
+eveIP= '10.100.244.1'
 
 tbfilecontent = {
     'devices': {
@@ -153,8 +154,8 @@ ansibleHostsFile.truncate(0)
 ansibleHostsFile.writelines("%s\n" % line for line in ansibleHostsFileContent)
 ansibleHostsFile.close()
 
-print(IPDict.get("Router1"))
-setSSH_IOL(IPDict.get("Router1"),45569, 'Router1')
-setSSH_IOL(IPDict.get("Router2"),45570, 'Router2')
-setSSH_IOL(IPDict.get("Router3"),45571, 'Router3')
-setSSH_IOL(IPDict.get("Router5"),45574, 'Router5')
+
+setSSH_IOL(eveIP,45569, 'Router1')
+setSSH_IOL(eveIP,45570, 'Router2')
+setSSH_IOL(eveIP,45571, 'Router3')
+setSSH_IOL(eveIP,45574, 'Router5')
