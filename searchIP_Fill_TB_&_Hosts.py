@@ -5,8 +5,6 @@ __Date__ = 'May 2020'
 import requests
 import re
 import yaml
-import time
-import telnetlib
 
 eveIP = '10.100.244.1'
 url = "http://" + eveIP + "/dhcpd.html"
@@ -85,39 +83,6 @@ def getIP(line):
     return str(ipsFound).strip('[]').strip("''")
 
 
-def setSSH_IOL(ip, port, hostname):
-    telNetSession = telnetlib.Telnet()
-
-    telNetSession.open(ip, port)
-
-    time.sleep(5)
-    telNetSession.write(' enable\n'.encode('ascii'))
-    time.sleep(2)
-    telNetSession.write('conf terminal\n'.encode('ascii'))
-    time.sleep(2)
-    telNetSession.write('hostname '.encode('ascii') + hostname.encode('ascii') + '\n'.encode('ascii'))
-    time.sleep(2)
-    telNetSession.write('crypto key generate rsa\n'.encode('ascii'))
-    time.sleep(2)
-    telNetSession.write('1024\n'.encode('ascii'))
-    time.sleep(5)
-    telNetSession.write('line vty 0 4\n'.encode('ascii'))
-    time.sleep(2)
-    telNetSession.write('transport input ssh\n'.encode('ascii'))
-    time.sleep(2)
-    telNetSession.write('login local\n'.encode('ascii'))
-    time.sleep(2)
-    telNetSession.write('password cisco\n'.encode('ascii'))
-    time.sleep(2)
-    telNetSession.write('end\n'.encode('ascii'))
-    time.sleep(2)
-    telNetSession.write('conf terminal\n'.encode('ascii'))
-    time.sleep(2)
-    telNetSession.write('username cisco password cisco\n'.encode('ascii'))
-
-    return telNetSession.read_very_eager()
-
-
 for line in content.split("<tr>"):
     if 'ubuntu1804-pfne' in line:
         ansibleHostsFileContent[1] = getIP(line) + dockerHost_pfne_uname_pwd
@@ -154,7 +119,3 @@ ansibleHostsFile.close()
 print(IPDict)
 print(ansibleHostsFileContent)
 print(tbfilecontent)
-print(setSSH_IOL(eveIP, 45569, 'Router1'))
-print(setSSH_IOL(eveIP, 45570, 'Router2'))
-print(setSSH_IOL(eveIP, 45571, 'Router3'))
-print(setSSH_IOL(eveIP, 45574, 'Router5'))
