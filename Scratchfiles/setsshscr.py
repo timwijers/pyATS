@@ -2,7 +2,7 @@ import time
 import telnetlib
 
 ip = '10.100.244.1'
-port = '45569'
+port = '45570'
 hostname = 'Router1'
 
 telNetSession = telnetlib.Telnet()
