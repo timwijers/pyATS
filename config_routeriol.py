@@ -53,8 +53,8 @@ class test_cases(aetest.Testcase):
 
         uut.configure("interface ethernet0/2\n" " ip address 192.168.5.1 255.255.255.0\n" " no sh\n")
         uut.configure("interface ethernet0/1\n" " ip address 192.168.2.1 255.255.255.0\n" " no sh\n")
-        uut.configure("interface serial1/1\n" " ip address 10.0.2.1 255.255.255.254\n" " no sh\n")
-        uut.configure("interface serial1/2\n" " ip address 10.0.3.1 255.255.255.254\n" " no sh\n")
+        uut.configure("interface serial2/1\n" " ip address 10.0.2.1 255.255.255.254\n" " no sh\n")
+        uut.configure("interface serial2/2\n" " ip address 10.0.3.1 255.255.255.254\n" " no sh\n")
         #uut.configure(" ip route 0.0.0.0 0.0.0.0 ethernet0/0\n" " end\n")
         uut.configure("router eigrp 1\n" "eigrp router-id 1.1.1.1\n"
                       "network 10.0.2.0\n"  " no auto-summary\n " "redistribute static\n" " network 10.0.3.0\n "
@@ -63,17 +63,17 @@ class test_cases(aetest.Testcase):
 
         uut2.configure("interface ethernet0/2\n" " ip address 192.168.6.1 255.255.255.0\n" " no sh\n")
         uut2.configure("interface ethernet0/1\n" " ip address 192.168.3.1 255.255.255.0\n" " no sh\n")
-        uut2.configure("interface serial1/1\n" " ip address 10.0.2.2 255.255.255.254\n" " no sh\n")
-        uut2.configure("interface serial1/0\n" " ip address 10.0.1.1 255.255.255.254\n" " no sh\n")
+        uut2.configure("interface serial2/1\n" " ip address 10.0.2.2 255.255.255.254\n" " no sh\n")
+        uut2.configure("interface serial2/0\n" " ip address 10.0.1.1 255.255.255.254\n" " no sh\n")
         uut2.configure("router eigrp 1\n" "eigrp router-id 2.2.2.2\n"" network 10.0.2.0\n" " network 10.0.1.0\n" "no "
                        "auto-summary\n "
                        "network 192.168.6.0\n" "network 192.168.3.0\n" "passive-interface ethernet0/2\n "
                        "passive-interface ethernet0/0\n " "passive-interface ethernet0/1\n " " exit\n")
 
-        uut3.configure("interface ethernet0/2\n" " ip address 192.168.7.1 255.255.255.0\n" " no sh\n")
-        uut3.configure("interface ethernet0/1\n" " ip address 192.168.4.1 255.255.255.0\n" " no sh\n")
-        uut3.configure("interface serial1/0\n" " ip address 10.0.1.2 255.255.255.254\n" " no sh\n")
-        uut3.configure("interface serial1/2\n" " ip address 10.0.3.2 255.255.255.254\n" " no sh\n")
+        uut3.configure("interface ethernet2/2\n" " ip address 192.168.7.1 255.255.255.0\n" " no sh\n")
+        uut3.configure("interface ethernet2/1\n" " ip address 192.168.4.1 255.255.255.0\n" " no sh\n")
+        uut3.configure("interface serial2/0\n" " ip address 10.0.1.2 255.255.255.254\n" " no sh\n")
+        uut3.configure("interface serial2/2\n" " ip address 10.0.3.2 255.255.255.254\n" " no sh\n")
         uut3.configure("router eigrp 1\n" "eigrp router-id 3.3.3.3\n" " network 10.0.1.0\n" " network 10.0.3.0\n" "no "
                        "auto-summary\n "
                        " network 192.168.7.0\n" "network 192.168.4.0\n" "passive-interface ethernet0/2\n "
@@ -85,16 +85,16 @@ class test_cases(aetest.Testcase):
 
         assert var['interface']['Ethernet0/1']['status'] == 'up', "interface ethernet0/1 on router IOL 1 is not up"
         assert var['interface']['Ethernet0/2']['status'] == 'up', "interface ethernet0/2 on router IOL 1 is not up"
-        assert var['interface']['Serial1/1']['status'] == 'up', "interface Serial1/1 on router IOL 1 is not up"
-        assert var['interface']['Serial1/2']['status'] == 'up', "interface Serial1/2 on router IOL 1 is not up"
+        assert var['interface']['Serial2/1']['status'] == 'up', "interface Serial1/1 on router IOL 1 is not up"
+        assert var['interface']['Serial2/2']['status'] == 'up', "interface Serial1/2 on router IOL 1 is not up"
 
         assert var['interface']['Ethernet0/1']['ip_address'] == '192.168.2.1', "interface ethernet0/1 on router IOL 1 " \
                                                                                "does not have a correct ip address "
         assert var['interface']['Ethernet0/2']['ip_address'] == '192.168.5.1', "interface ethernet0/2 on router IOL 1 " \
                                                                                "does not have a correct ip address "
-        assert var['interface']['Serial1/1']['ip_address'] == '10.0.2.1', "interface serial1/1 on router IOL 1 does " \
+        assert var['interface']['Serial2/1']['ip_address'] == '10.0.2.1', "interface serial1/1 on router IOL 1 does " \
                                                                           "not have a correct ip address "
-        assert var['interface']['Serial1/2']['ip_address'] == '10.0.3.1', "interface serial1/2 on router IOL 1 does " \
+        assert var['interface']['Serial2/2']['ip_address'] == '10.0.3.1', "interface serial1/2 on router IOL 1 does " \
                                                                           "not have a correct ip address "
 
     @aetest.test
@@ -102,16 +102,16 @@ class test_cases(aetest.Testcase):
         var = uut2.parse('show ip interface brief')
         assert var['interface']['Ethernet0/1']['status'] == 'up', "interface ethernet0/1 on router IOL 2 is not up"
         assert var['interface']['Ethernet0/2']['status'] == 'up', "interface ethernet0/2 on router IOL 2 is not up"
-        assert var['interface']['Serial1/0']['status'] == 'up', "interface Serial1/0 on router IOL 2 is not up"
-        assert var['interface']['Serial1/1']['status'] == 'up', "interface Serial1/1 on router IOL 2 is not up"
+        assert var['interface']['Serial2/0']['status'] == 'up', "interface Serial1/0 on router IOL 2 is not up"
+        assert var['interface']['Serial2/1']['status'] == 'up', "interface Serial1/1 on router IOL 2 is not up"
 
         assert var['interface']['Ethernet0/1']['ip_address'] == '192.168.3.1', "interface ethernet0/1 on router IOL 2 " \
                                                                                "does not have a correct ip address "
         assert var['interface']['Ethernet0/2']['ip_address'] == '192.168.6.1', "interface ethernet0/2 on router IOL 2 " \
                                                                                "does not have a correct ip address "
-        assert var['interface']['Serial1/0']['ip_address'] == '10.0.1.1', "interface serial1/0 on router IOL 2 does " \
+        assert var['interface']['Serial2/0']['ip_address'] == '10.0.1.1', "interface serial1/0 on router IOL 2 does " \
                                                                           "not have a correct ip address "
-        assert var['interface']['Serial1/1']['ip_address'] == '10.0.2.2', "interface serial1/1 on router IOL 2 does " \
+        assert var['interface']['Serial2/1']['ip_address'] == '10.0.2.2', "interface serial1/1 on router IOL 2 does " \
                                                                           "not have a correct ip address "
 
     @aetest.test
@@ -119,16 +119,16 @@ class test_cases(aetest.Testcase):
         var = uut3.parse('show ip interface brief')
         assert var['interface']['Ethernet0/1']['status'] == 'up', "interface ethernet0/1 on router IOL 3 is not up"
         assert var['interface']['Ethernet0/2']['status'] == 'up', "interface ethernet0/2 on router IOL 3 is not up"
-        assert var['interface']['Serial1/2']['status'] == 'up', "interface Serial1/2 on router IOL 3 is not up"
-        assert var['interface']['Serial1/0']['status'] == 'up', "interface Serial1/0 on router IOL 3 is not up"
+        assert var['interface']['Serial2/2']['status'] == 'up', "interface Serial1/2 on router IOL 3 is not up"
+        assert var['interface']['Serial2/0']['status'] == 'up', "interface Serial1/0 on router IOL 3 is not up"
 
         assert var['interface']['Ethernet0/1']['ip_address'] == '192.168.4.1', "interface ethernet0/1 on router IOL 3 " \
                                                                                "does not have a correct ip address "
         assert var['interface']['Ethernet0/2']['ip_address'] == '192.168.7.1', "interface ethernet0/2 on router IOL 3 " \
                                                                                "does not have a correct ip address "
-        assert var['interface']['Serial1/0']['ip_address'] == '10.0.1.2', "interface serial1/0 on router IOL 3 does " \
+        assert var['interface']['Serial2/0']['ip_address'] == '10.0.1.2', "interface serial1/0 on router IOL 3 does " \
                                                                           "not have a correct ip address "
-        assert var['interface']['Serial1/2']['ip_address'] == '10.0.3.2', "interface serial1/2 on router IOL 3 does " \
+        assert var['interface']['Serial2/2']['ip_address'] == '10.0.3.2', "interface serial1/2 on router IOL 3 does " \
                                                                           "not have a correct ip address "
 
     @aetest.test
@@ -148,18 +148,18 @@ class common_cleanup(aetest.CommonCleanup):
     def clean_device_config(self, uut, uut2, uut3):
         uut.configure("interface ethernet0/1\n" " no ip address\n" " sh\n")
         uut.configure("interface ethernet0/2\n" " no ip address\n" " sh\n")
-        uut.configure("interface serial1/1\n" " no ip address\n" " sh\n")
-        uut.configure("interface serial1/2\n" " no ip address\n" " sh\n")
+        uut.configure("interface serial2/1\n" " no ip address\n" " sh\n")
+        uut.configure("interface serial2/2\n" " no ip address\n" " sh\n")
 
         uut2.configure("interface ethernet0/1\n" " no ip address\n" " sh\n")
         uut2.configure("interface ethernet0/2\n" " no ip address\n" " sh\n")
-        uut2.configure("interface serial1/1\n" " no ip address\n" " sh\n")
-        uut2.configure("interface serial1/0\n" " no ip address\n" " sh\n")
+        uut2.configure("interface serial2/1\n" " no ip address\n" " sh\n")
+        uut2.configure("interface serial2/0\n" " no ip address\n" " sh\n")
 
         uut3.configure("interface ethernet0/1\n" " no ip address\n" " sh\n")
         uut3.configure("interface ethernet0/2\n" " no ip address\n" " sh\n")
-        uut3.configure("interface serial1/0\n" " no ip address\n" " sh\n")
-        uut3.configure("interface serial1/2\n" " no ip address\n" " sh\n")
+        uut3.configure("interface serial2/0\n" " no ip address\n" " sh\n")
+        uut3.configure("interface serial2/2\n" " no ip address\n" " sh\n")
 
         uut.configure('no router eigrp 1');
         uut2.configure('no router eigrp 1');
