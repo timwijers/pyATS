@@ -26,7 +26,7 @@ print(loginReq.json())
 
 # Uri's #
 AllLabsUrl = apiBaseUrl + '/labs'
-PyATSTestLabUrl = AllLabsUrl + labsAuthor + labsFolder + testLabName + currTestLabPostFix + '.unl'
+PyATSTestLabUrl = AllLabsUrl + labsAuthor + labsFolder + testLabName + '.unl'
 print(PyATSTestLabUrl)
 AllNodesUrl = PyATSTestLabUrl + '/nodes'
 print(AllNodesUrl)
