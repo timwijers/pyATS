@@ -6,7 +6,8 @@ import requests
 import re
 import yaml
 
-url = "http://10.100.244.1/dhcpd.html"
+eveIP = '10.100.244.1'
+url = "http://" + eveIP + "/dhcpd.html"
 content = requests.get(url).text
 dockerHost_pfne_uname_pwd = ' ansible_ssh_pass=pfne ansible_ssh_user=pfne ansible_sudo_pass=root'
 ansibleHostsFileContent = ['[dockerHost]', '', '\n', '[dockerHost:vars]', 'ansible_python_interpreter=/usr/bin'
@@ -15,7 +16,6 @@ ansibleHostsFileContent = ['[dockerHost]', '', '\n', '[dockerHost:vars]', 'ansib
                            'ansible_python_interpreter=/usr/bin/python3']
 
 IPDict = {"FortiGate": "", "Router1": "", "Router2": "", "Router3": "", "Router5": ""}
-eveIP= '10.100.244.1'
 
 tbfilecontent = {
     'devices': {
@@ -154,8 +154,7 @@ ansibleHostsFile.truncate(0)
 ansibleHostsFile.writelines("%s\n" % line for line in ansibleHostsFileContent)
 ansibleHostsFile.close()
 
-
-setSSH_IOL(eveIP,45569, 'Router1')
-setSSH_IOL(eveIP,45570, 'Router2')
-setSSH_IOL(eveIP,45571, 'Router3')
-setSSH_IOL(eveIP,45574, 'Router5')
+setSSH_IOL(eveIP, 45569, 'Router1')
+setSSH_IOL(eveIP, 45570, 'Router2')
+setSSH_IOL(eveIP, 45571, 'Router3')
+setSSH_IOL(eveIP, 45574, 'Router5')
