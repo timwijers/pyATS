@@ -153,6 +153,7 @@ ansibleHostsFile.truncate(0)
 ansibleHostsFile.writelines("%s\n" % line for line in ansibleHostsFileContent)
 ansibleHostsFile.close()
 
+print(IPDict.get("Router1"))
 setSSH_IOL(IPDict.get("Router1"),45569, 'Router1')
 setSSH_IOL(IPDict.get("Router2"),45570, 'Router2')
 setSSH_IOL(IPDict.get("Router3"),45571, 'Router3')
