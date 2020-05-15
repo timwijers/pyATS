@@ -33,3 +33,5 @@ time.sleep(2)
 telNetSession.write('conf terminal\n')
 time.sleep(2)
 telNetSession.write('username cisco password cisco\n')
+
+print(telNetSession.read_very_eager())
