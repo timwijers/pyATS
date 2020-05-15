@@ -8,9 +8,7 @@ import datetime
 # variables #
 date_time = datetime.datetime.now()
 timestamp = date_time.strftime("%d%m%Y%H%M%S")
-prevTestLabPostFix = '12mei'
-currTestLabPostFix = '13mei'
-testLabName = 'PyATS_TestLab_'
+testLabName = 'PyATS_TestLab_' + timestamp
 apiBaseUrl = 'http://10.100.244.1/api'
 labsAuthor = '//Tim%20Wijers/'
 labsFolder = 'pyATS_TestLabs/'
@@ -40,7 +38,7 @@ NodesWipeReq = session.get(AllNodesUrl + '/wipe')
 print(NodesWipeReq.json())
 
 # Delete Lab from previous run #
-LabDelReq = session.delete(AllLabsUrl + labsAuthor + labsFolder + testLabName + prevTestLabPostFix + '.unl')
+LabDelReq = session.delete(AllLabsUrl + labsAuthor + labsFolder + testLabName + '.unl')
 print(LabDelReq.json())
 
 ### CREATING ###
