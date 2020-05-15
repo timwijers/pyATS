@@ -1,5 +1,5 @@
 [dockerHost]
-10.100.244.162 ansible_ssh_pass=routz123 ansible_ssh_user=docker
+10.100.244.207 ansible_ssh_pass=pfne ansible_ssh_user=pfne ansible_sudo_pass=root
 
 
 [dockerHost:vars]

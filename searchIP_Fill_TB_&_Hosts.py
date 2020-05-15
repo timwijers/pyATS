@@ -10,75 +10,110 @@ url = "http://10.100.244.1/dhcpd.html"
 content = requests.get(url).text
 dockerHost_pfne_uname_pwd = ' ansible_ssh_pass=pfne ansible_ssh_user=pfne ansible_sudo_pass=root'
 ansibleHostsFileContent = ['[dockerHost]', '', '\n', '[dockerHost:vars]', 'ansible_python_interpreter=/usr/bin'
-                           '/python3', '\n', '[localhost]', '127.0.0.1', '[localhost:vars]',
+                                                                          '/python3', '\n', '[localhost]', '127.0.0.1',
+                           '[localhost:vars]',
                            'ansible_python_interpreter=/usr/bin/python3']
 
 IPDict = {"FortiGate": "", "Router1": "", "Router2": "", "Router3": "", "Router5": ""}
 
 tbfilecontent = {
-        'devices': {
-            'routeriol': {
-                'type': 'router',
-                'os': 'ios',
-                'alias': 'uut',
-                'credentials': {
-                    'default': {
-                        'username': 'cisco',
-                        'password': 'cisco'}},
-                'connections': {
-                    'cli': {
-                        'protocol': 'ssh',
-                        'ip': '',
-                        'username': 'cisco',
-                        'password': 'cisco'}}},
-            'routeriol2': {
-                'type': 'router',
-                'os': 'ios',
-                'alias': 'uut2',
-                'credentials': {
-                    'default': {
-                        'username': 'cisco',
-                        'password': 'cisco'}},
-                'connections': {
-                    'cli': {
-                        'protocol': 'ssh',
-                        'ip': '',
-                        'username': 'cisco',
-                        'password': 'cisco'}}},
-            'routeriol3': {
-                'type': 'router',
-                'os': 'ios',
-                'alias': 'uut3',
-                'credentials': {
-                    'default': {
-                        'username': 'cisco',
-                        'password': 'cisco'}},
-                'connections': {
-                    'cli': {
-                        'protocol': 'ssh',
-                        'ip': '',
-                        'username': 'cisco',
-                        'password': 'cisco'}}},
-            'routeriol5': {
-                'type': 'router',
-                'os': 'ios',
-                'alias': 'uut5',
-                'credentials': {
-                    'default': {
-                        'username': 'cisco',
-                        'password': 'cisco'}},
-                'connections': {
-                    'cli': {
-                        'protocol': 'ssh',
-                        'ip': '',
-                        'username': 'cisco',
-                        'password': 'cisco'
-                    }}}}}
+    'devices': {
+        'routeriol': {
+            'type': 'router',
+            'os': 'ios',
+            'alias': 'uut',
+            'credentials': {
+                'default': {
+                    'username': 'cisco',
+                    'password': 'cisco'}},
+            'connections': {
+                'cli': {
+                    'protocol': 'ssh',
+                    'ip': '',
+                    'username': 'cisco',
+                    'password': 'cisco'}}},
+        'routeriol2': {
+            'type': 'router',
+            'os': 'ios',
+            'alias': 'uut2',
+            'credentials': {
+                'default': {
+                    'username': 'cisco',
+                    'password': 'cisco'}},
+            'connections': {
+                'cli': {
+                    'protocol': 'ssh',
+                    'ip': '',
+                    'username': 'cisco',
+                    'password': 'cisco'}}},
+        'routeriol3': {
+            'type': 'router',
+            'os': 'ios',
+            'alias': 'uut3',
+            'credentials': {
+                'default': {
+                    'username': 'cisco',
+                    'password': 'cisco'}},
+            'connections': {
+                'cli': {
+                    'protocol': 'ssh',
+                    'ip': '',
+                    'username': 'cisco',
+                    'password': 'cisco'}}},
+        'routeriol5': {
+            'type': 'router',
+            'os': 'ios',
+            'alias': 'uut5',
+            'credentials': {
+                'default': {
+                    'username': 'cisco',
+                    'password': 'cisco'}},
+            'connections': {
+                'cli': {
+                    'protocol': 'ssh',
+                    'ip': '',
+                    'username': 'cisco',
+                    'password': 'cisco'
+                }}}}}
 
 
 def getIP(line):
     ipsFound = re.findall(r'(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})', line)
     return str(ipsFound).strip('[]').strip("''")
+
+
+def setSSH_IOL(ip, port, hostname):
+    import time
+    import telnetlib
+
+    telNetSession = telnetlib.Telnet()
+
+    telNetSession.open(ip, port)
+
+    time.sleep(2)
+    telNetSession.write('enable\n')
+    time.sleep(2)
+    telNetSession.write('conf terminal\n')
+    time.sleep(2)
+    telNetSession.write('hostname ' + hostname + '\n')
+    time.sleep(2)
+    telNetSession.write('crypto key generate rsa\n')
+    time.sleep(2)
+    telNetSession.write('1024\n')
+    time.sleep(5)
+    telNetSession.write('line vty 0 4\n')
+    time.sleep(2)
+    telNetSession.write('transport input ssh\n')
+    time.sleep(2)
+    telNetSession.write('login local\n')
+    time.sleep(2)
+    telNetSession.write('password cisco\n')
+    time.sleep(2)
+    telNetSession.write('end\n')
+    time.sleep(2)
+    telNetSession.write('conf terminal\n')
+    time.sleep(2)
+    telNetSession.write('username cisco password cisco\n')
 
 
 for line in content.split("<tr>"):
@@ -117,3 +152,8 @@ ansibleHostsFile = open("hosts", "a")
 ansibleHostsFile.truncate(0)
 ansibleHostsFile.writelines("%s\n" % line for line in ansibleHostsFileContent)
 ansibleHostsFile.close()
+
+setSSH_IOL(IPDict.get("Router1"),45569, 'Router1')
+setSSH_IOL(IPDict.get("Router2"),45570, 'Router1')
+setSSH_IOL(IPDict.get("Router3"),45571, 'Router1')
+setSSH_IOL(IPDict.get("Router5"),45569, 'Router1')

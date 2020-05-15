@@ -335,7 +335,7 @@ VPC1InterfacesUrl = AllNodesUrl + '/7/interfaces'
 VPC2InterfacesUrl = AllNodesUrl + '/8/interfaces'
 VPC3InterfacesUrl = AllNodesUrl + '/9/interfaces'
 
-VPC1FormBridgeReq = session.post(AllNetworksUrl, VPC1FormBridgeData)
+VPC1FormBridgeReq = session.post(AllNetworksUrl,None, VPC1FormBridgeData)
 VPC2FormBridgeReq = session.post(AllNetworksUrl, None, VPC2FormBridgeData)
 VPC3FormBridgeReq = session.post(AllNetworksUrl, None, VPC3FormBridgeData)
 
