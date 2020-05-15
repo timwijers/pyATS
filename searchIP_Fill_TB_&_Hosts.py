@@ -115,7 +115,8 @@ def setSSH_IOL(ip, port, hostname):
     time.sleep(2)
     telNetSession.write('username cisco password cisco\n'.encode('ascii'))
 
-    print(telNetSession.read_very_eager())
+    return telNetSession.read_very_eager()
+
 
 for line in content.split("<tr>"):
     if 'ubuntu1804-pfne' in line:
@@ -131,8 +132,6 @@ for line in content.split("<tr>"):
     if 'aa:bb:cc:00:64' in line:
         IPDict["Router5"] = getIP(line)
 
-print(IPDict)
-print(ansibleHostsFileContent)
 for key, value in tbfilecontent['devices'].items():
     if value['alias'] == 'uut':
         value['connections']['cli']['ip'] = (IPDict.get("Router1"))
@@ -143,8 +142,6 @@ for key, value in tbfilecontent['devices'].items():
     if value['alias'] == 'uut5':
         value['connections']['cli']['ip'] = (IPDict.get("Router5"))
 
-print(tbfilecontent)
-
 with open("routerIOL_tb.yaml", "a") as testbedfile:
     testbedfile.truncate(0)
     yaml.dump(tbfilecontent, testbedfile, default_flow_style=False, sort_keys=False)
@@ -154,7 +151,10 @@ ansibleHostsFile.truncate(0)
 ansibleHostsFile.writelines("%s\n" % line for line in ansibleHostsFileContent)
 ansibleHostsFile.close()
 
-setSSH_IOL(eveIP, 45569, 'Router1')
-setSSH_IOL(eveIP, 45570, 'Router2')
-setSSH_IOL(eveIP, 45571, 'Router3')
-setSSH_IOL(eveIP, 45574, 'Router5')
+print(IPDict)
+print(ansibleHostsFileContent)
+print(tbfilecontent)
+print(setSSH_IOL(eveIP, 45569, 'Router1'))
+print(setSSH_IOL(eveIP, 45570, 'Router2'))
+print(setSSH_IOL(eveIP, 45571, 'Router3'))
+print(setSSH_IOL(eveIP, 45574, 'Router5'))
