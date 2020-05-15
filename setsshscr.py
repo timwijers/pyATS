@@ -9,6 +9,7 @@ count = 0
 telNetSession = telnetlib.Telnet()
 for port in portList:
     telNetSession.open(ip, port)
+    print(telNetSession.read_until("Router"))
     print(ip, port)
     time.sleep(5)
     telNetSession.write(' enable\n')
