@@ -6,9 +6,10 @@ import requests
 import datetime
 
 # variables #
+name = input("Enter the name that should come after Pyats_Testlab_ string: ")
 date_time = datetime.datetime.now()
 timestamp = date_time.strftime("%d%m%Y%H%M%S")
-testLabName = 'PyATS_TestLab_' + input("Enter the name that should come after Pyats_Testlab_ string: ")
+testLabName = 'PyATS_TestLab_' + name
 apiBaseUrl = 'http://10.100.244.1/api'
 labsAuthor = '//Tim%20Wijers/'
 labsFolder = 'pyATS_TestLabs/'
