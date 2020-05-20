@@ -2,7 +2,6 @@ __Author__ = 'Tim Wijers'
 __Copyright__ = 'Routz B.V'
 __Date__ = 'May 2020'
 
-
 import requests
 import datetime
 
@@ -432,6 +431,5 @@ def startAll():
 session.close()
 
 
-
-
-
+class CreateLabNodesClass:
+    pass
