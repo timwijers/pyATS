@@ -12,4 +12,4 @@ for callable in CreateLabNodes.__dict__.values():
 
 instclass = CreateLabNodes.CreateLabNodesClass()
 
-instclass.login()
+print(instclass.login())
