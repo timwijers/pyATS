@@ -25,5 +25,6 @@ print(instclass)
 method_list = [func for func in dir(instclass) if callable(getattr(instclass, func))]
 
 print(method_list)
+
 for method in method_list:
-    print(instclass.method)
+    method()
