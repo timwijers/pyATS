@@ -28,7 +28,7 @@ print(method_list)
 
 for method in method_list:
     try:
-        method()
+        print(method())
     except TypeError:
 
         pass
