@@ -7,7 +7,6 @@ import datetime
 
 
 class CreateLabNodesClass:
-
     # variables #
     date_time = datetime.datetime.now()
     timestamp = date_time.strftime("%d%m%Y%H%M%S")
@@ -65,8 +64,8 @@ class CreateLabNodesClass:
         LabConfigReq = self.session.post(self.AllLabsUrl, None, LabConfigData)
         return LabConfigReq.json()
 
-    def createRouter1(self):
-        """Add router 1 to the lab """
+    def createIOLRouter(self, name, positionFromLeft, positionFromTop, nrsOfEthernets, nrsOfSerial ):
+        """Add Cisco IOL Routers to the lab """
 
         Node1AddData = {
             "type": "iol",
@@ -75,108 +74,63 @@ class CreateLabNodesClass:
             "delay": 0,
             "icon": "Router.png",
             "image": "i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin",
-            "name": "pyats_Router1",
-            "left": "65%",
-            "top": "75%",
+            "name": name,
+            "left": positionFromLeft + "%",
+            "top": positionFromTop + "%",
             "ram": "1024",
             "cpu": 1,
-            "ethernet": 2,
+            "ethernet": nrsOfEthernets,
             "nvram": 1024,
-            "serial": 1
+            "serial": nrsOfSerial
         }
 
         Node1AddReq = self.session.post(self.AllNodesUrl, None, Node1AddData)
         return "Add R1 status : ", Node1AddReq.json()
 
-    def createRouter2(self):
-        """Add router 2 to the lab """
-
-        Node2AddData = {
-            "type": "iol",
-            "template": "iol",
-            "config": "Unconfigured",
-            "delay": 0,
-            "icon": "Router.png",
-            "image": "i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin",
-            "name": "pyats_Router2", "left": "35%",
-            "top": "95%",
-            "ram": "1024",
-            "cpu": 1,
-            "ethernet": 2,
-            "nvram": 1024,
-            "serial": 1
-        }
-
-        Node2AddReq = self.session.post(self.AllNodesUrl, None, Node2AddData)
-        return "Add R2 status : ", Node2AddReq.json()
-
-    def createRouter3(self):
-        """Add router 3 to the lab """
-
-        Node3AddData = {
-            "type": "iol",
-            "template": "iol",
-            "config": "Unconfigured",
-            "delay": 0,
-            "icon": "Router.png",
-            "image": "i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin",
-            "name": "pyats_Router3",
-            "left": "95%",
-            "top": "95%",
-            "ram": "1024",
-            "cpu": 1,
-            "ethernet": 2,
-            "nvram": 1024,
-            "serial": 1
-        }
-
-        Node3AddReq = self.session.post(self.AllNodesUrl, None, Node3AddData)
-        return "Add R3 status : ", Node3AddReq.json()
-
-    def createDockerHost(self):
-        """Add Docker Host to the lab """
+    def createLinuxNode(self, name, positionFromLeft, positionFromTop, nrsOfEthernets, ramMbs, CPUs, uniqueIdentifier):
+        """Add Linux Nodes to the lab """
 
         DockerHostAddData = {
             "template": "linux",
             "type": "qemu",
             "count": "1",
             "image": "linux-ubuntu-server-18.04-pfne",
-            "name": "DockerHost",
+            "name": name,
             "icon": "Server.png",
-            "uuid": "",
+            "uuid": uniqueIdentifier,
             "cpulimit": "undefined",
-            "cpu": "1",
-            "ram": "4096",
-            "ethernet": "1",
+            "cpu": CPUs,
+            "ram": ramMbs,
+            "ethernet": nrsOfEthernets,
             "firstmac": "",
             "qemu_version": "",
             "ro_qemu_options": "-machine type=pc,accel=kvm -vga std -usbdevice tablet -boot order=dc",
             "config": "0",
             "delay": "0",
             "console": "vnc",
-            "left": "95%",
-            "top": "45%",
+            "left": positionFromLeft + "%",
+            "top": positionFromTop + "%",
             "postfix": 0
         }
 
         DockerHostAddReq = self.session.post(self.AllNodesUrl, None, DockerHostAddData)
         return "Add Docker Host status : ", DockerHostAddReq.json()
 
-    def createFortiGate(self):
-        """Add FortiGate Firewall to the lab """
+    def createFortiGateNode(self, name, positionFromLeft, positionFromTop, NrsOfEthernets, uniqueIdentifier ):
+        """Add FortiGate Firewalls to the lab """
 
         FortiAddData = {
             "template": "fortinet",
             "type": "qemu",
             "count": "1",
             "image": "fortinet-FGT-v6-build0932",
-            "name": "FortiGate",
+            "name": name,
             "icon": "Firewall.png",
-            "uuid": "",
+            "uuid": uniqueIdentifier,
             "cpulimit": "undefined",
             "cpu": "1",
             "ram": "1024",
-            "ethernet": "4",
+            "ethernet": NrsOfEthernets,
             "qemu_version": "",
             "qemu_arch": "",
             "ro_qemu_options": "-machine type=pc-1.0,accel=kvm -serial mon:stdio -nographic -nodefconfig -nodefaults "
@@ -184,38 +138,15 @@ class CreateLabNodesClass:
             "config": "0",
             "delay": "0",
             "console": "vnc",
-            "left": "35%",
-            "top": "45%",
+            "left": positionFromLeft + "%",
+            "top": positionFromTop + "%",
             "postfix": 0
         }
 
         FortAddReq = self.session.post(self.AllNodesUrl, None, FortiAddData)
         return "Add Fortigate status : ", FortAddReq.json()
 
-    def createRouter5(self):
-        """Add Router 5 to the lab """
-
-        NodeAddData = {
-            "type": "iol",
-            "template": "iol",
-            "config": "Unconfigured",
-            "delay": 0,
-            "icon": "Router.png",
-            "image": "i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin",
-            "name": "pyats_Router5_behindFW",
-            "left": "50%",
-            "top": "25%",
-            "ram": "1024",
-            "cpu": 1,
-            "ethernet": 2,
-            "nvram": 1024,
-            "serial": 1
-        }
-
-        NodeAddReq = self.session.post(self.AllNodesUrl, None, NodeAddData)
-        return "Add R5 status : ", NodeAddReq.json()
-
-    def createVPCs(self):
+    def createVPCs(self, name, positionFromLeft, positionFromTop, numberOfVPCs):
         """Add Virtual PC's to the lab """
 
         VPCAddData = {
@@ -226,10 +157,10 @@ class CreateLabNodesClass:
             "icon": "Desktop.png",
             "config": "0",
             "delay": "0",
-            "left": "386",
-            "top": "64",
+            "left": positionFromLeft + "%",
+            "top": positionFromTop + "%",
             "postfix": 1,
-            "numberNodes": "3"
+            "numberNodes": numberOfVPCs
         }
 
         VPCAddReq = self.session.post(self.AllNodesUrl, None, VPCAddData)
@@ -410,5 +341,4 @@ class CreateLabNodesClass:
         NodesStartReq = self.session.get(self.AllNodesUrl + '/start')
         return NodesStartReq.json()
 
-    # Close REST API session #
-    session.close()
+        session.close()
