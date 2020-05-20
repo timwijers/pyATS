@@ -236,7 +236,7 @@ class CreateLabNodesClass:
         VPCAddReq = self.session.post(self.AllNodesUrl, None, VPCAddData)
         return "Add VPC's status : ", VPCAddReq.json()
 
-    def createDockerHost(self):
+    def createInternetGW(self):
         """ Create a new Internet Gateway for internet connection """
 
         NetworkAddData = {

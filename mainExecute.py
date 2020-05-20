@@ -2,33 +2,23 @@ import CreateLabNodes
 
 instclass = CreateLabNodes.CreateLabNodesClass()
 
-'''
+
 print(instclass.login())
+print(instclass.wipeNodes())
+print(instclass.deleteLab())
 print(instclass.createLab())
 print(instclass.createRouter1())
 print(instclass.createRouter2())
 print(instclass.createRouter3())
-print(instclass)
-print(instclass)
-print(instclass)
-print(instclass.)
-print(instclass)
-print(instclass)
-print(instclass)
-print(instclass)
-print(instclass)
-print(instclass)
-print(instclass)
-print(instclass)
-print(instclass)
-'''
-method_list = [func for func in dir(instclass) if callable(getattr(instclass, func))]
+print(instclass.createDockerHost())
+print(instclass.createFortiGate())
+print(instclass.createRouter5())
+print(instclass.createVPCs())
+print(instclass.createInternetGW())
+print(instclass.linkRouter123toGW())
+print(instclass.linkDockerHosttoGW())
+print(instclass.linkFortiFWtoGW())
+print(instclass.linkRouter5toGWandFortiFW())
+print(instclass.linkVPC123toRouter6())
+print(instclass.startAll())
 
-print(method_list)
-
-for method in method_list:
-    try:
-        print(method())
-    except TypeError:
-
-        pass
