@@ -53,7 +53,6 @@ class CreateLabNodesClass:
     def createLab(self):
         """Create New Testlab in the pyATS_TestLabs folder """
 
-        DateTimeObj = datetime.datetime.now()
         LabConfigData = {
             "path": "/Tim Wijers/pyATS_TestLabs/",
             "name": self.testLabName,
