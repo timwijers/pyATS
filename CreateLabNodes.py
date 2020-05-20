@@ -2,9 +2,7 @@ __Author__ = 'Tim Wijers'
 __Copyright__ = 'Routz B.V'
 __Date__ = 'May 2020'
 
-import inspect
 
-import ifilter as ifilter
 import requests
 import datetime
 
@@ -440,10 +438,7 @@ class CreateLabNodesClass:
 
 CreateLabNodesClassInstance = CreateLabNodesClass()
 
-attrs = (getattr(CreateLabNodesClassInstance, name) for name in dir(CreateLabNodesClassInstance))
-methods = ifilter(inspect.ismethod, attrs)
-
-for method in methods:
+for method in CreateLabNodesClassInstance.__dict__.values():
     try:
         print(method())
     except TypeError:
