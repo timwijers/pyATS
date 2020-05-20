@@ -27,4 +27,8 @@ method_list = [func for func in dir(instclass) if callable(getattr(instclass, fu
 print(method_list)
 
 for method in method_list:
-    method()
+    try:
+        method()
+    except TypeError:
+
+        pass
