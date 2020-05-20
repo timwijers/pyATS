@@ -1,11 +1,28 @@
 import CreateLabNodes
 
-for callable in CreateLabNodes.CreateLabNodesClass.__dict__.values():
-    try:
-        print(callable())
-    except TypeError:
-        pass
+instclass = CreateLabNodes.CreateLabNodesClass()
 
-# instclass = CreateLabNodes.CreateLabNodesClass()
+'''
+print(instclass.login())
+print(instclass.createLab())
+print(instclass.createRouter1())
+print(instclass.createRouter2())
+print(instclass.createRouter3())
+print(instclass)
+print(instclass)
+print(instclass)
+print(instclass.)
+print(instclass)
+print(instclass)
+print(instclass)
+print(instclass)
+print(instclass)
+print(instclass)
+print(instclass)
+print(instclass)
+print(instclass)
+'''
+method_list = [func for func in dir(instclass) if callable(getattr(instclass, func))]
 
-# print(instclass.login())
+for method in method_list:
+    print(method())
