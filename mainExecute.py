@@ -24,6 +24,5 @@ print(instclass)
 '''
 method_list = [func for func in dir(instclass) if callable(getattr(instclass, func))]
 
-for method in method_list:
-    result = method()
-    print(result)
+print(method_list)
+# for method in method_list:
