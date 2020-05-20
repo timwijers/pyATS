@@ -8,7 +8,6 @@ import datetime
 
 class CreateLabNodesClass:
 
-
     # variables #
     date_time = datetime.datetime.now()
     timestamp = date_time.strftime("%d%m%Y%H%M%S")
@@ -40,34 +39,34 @@ class CreateLabNodesClass:
     def wipeNodes(self):
         """Stop and Wipe all nodes from previous run """
 
-        NodesStopReq = session.get(AllNodesUrl + '/stop')
-        NodesWipeReq = session.get(AllNodesUrl + '/wipe')
+        NodesStopReq = self.session.get(self.AllNodesUrl + '/stop')
+        NodesWipeReq = self.session.get(self.AllNodesUrl + '/wipe')
         return NodesStopReq.json(), NodesWipeReq.json()
 
-    def deleteLab():
+    def deleteLab(self):
         """Delete Lab from previous run"""
-        LabDelReq = session.delete(AllLabsUrl + labsAuthor + labsFolder + testLabName + '.unl')
+        LabDelReq = self.session.delete(self.AllLabsUrl + self.labsAuthor + self.labsFolder + self.testLabName + '.unl')
         return LabDelReq.json()
 
     ### CREATING ###
 
-    def createLab():
+    def createLab(self):
         """Create New Testlab in the pyATS_TestLabs folder """
 
         DateTimeObj = datetime.datetime.now()
         LabConfigData = {
             "path": "/Tim Wijers/pyATS_TestLabs/",
-            "name": testLabName,
+            "name": self.testLabName,
             "version": "1",
             "author": "Tim Wijers",
             "description": "pyATS Test Lab ",
             "body": "This is a testlab created by the Eve-NG REST API. Intended for pyATS framework testing purposes"
         }
 
-        LabConfigReq = session.post(AllLabsUrl, None, LabConfigData)
+        LabConfigReq = self.session.post(self.AllLabsUrl, None, LabConfigData)
         return LabConfigReq.json()
 
-    def createRouter1():
+    def createRouter1(self):
         """Add router 1 to the lab """
 
         Node1AddData = {
@@ -87,10 +86,10 @@ class CreateLabNodesClass:
             "serial": 1
         }
 
-        Node1AddReq = session.post(AllNodesUrl, None, Node1AddData)
+        Node1AddReq = self.session.post(self.AllNodesUrl, None, Node1AddData)
         return "Add R1 status : ", Node1AddReq.json()
 
-    def createRouter2():
+    def createRouter2(self):
         """Add router 2 to the lab """
 
         Node2AddData = {
@@ -109,10 +108,10 @@ class CreateLabNodesClass:
             "serial": 1
         }
 
-        Node2AddReq = session.post(AllNodesUrl, None, Node2AddData)
+        Node2AddReq = self.session.post(self.AllNodesUrl, None, Node2AddData)
         return "Add R2 status : ", Node2AddReq.json()
 
-    def createRouter3():
+    def createRouter3(self):
         """Add router 3 to the lab """
 
         Node3AddData = {
@@ -132,10 +131,10 @@ class CreateLabNodesClass:
             "serial": 1
         }
 
-        Node3AddReq = session.post(AllNodesUrl, None, Node3AddData)
+        Node3AddReq = self.session.post(self.AllNodesUrl, None, Node3AddData)
         return "Add R3 status : ", Node3AddReq.json()
 
-    def createDockerHost():
+    def createDockerHost(self):
         """Add Docker Host to the lab """
 
         DockerHostAddData = {
@@ -161,10 +160,10 @@ class CreateLabNodesClass:
             "postfix": 0
         }
 
-        DockerHostAddReq = session.post(AllNodesUrl, None, DockerHostAddData)
+        DockerHostAddReq = self.session.post(self.AllNodesUrl, None, DockerHostAddData)
         return "Add Docker Host status : ", DockerHostAddReq.json()
 
-    def createFortiGate():
+    def createFortiGate(self):
         """Add FortiGate Firewall to the lab """
 
         FortiAddData = {
@@ -191,10 +190,10 @@ class CreateLabNodesClass:
             "postfix": 0
         }
 
-        FortAddReq = session.post(AllNodesUrl, None, FortiAddData)
+        FortAddReq = self.session.post(self.AllNodesUrl, None, FortiAddData)
         return "Add Fortigate status : ", FortAddReq.json()
 
-    def createRouter5():
+    def createRouter5(self):
         """Add Router 5 to the lab """
 
         NodeAddData = {
@@ -214,10 +213,10 @@ class CreateLabNodesClass:
             "serial": 1
         }
 
-        NodeAddReq = session.post(AllNodesUrl, None, NodeAddData)
+        NodeAddReq = self.session.post(self.AllNodesUrl, None, NodeAddData)
         return "Add R5 status : ", NodeAddReq.json()
 
-    def createVPCs():
+    def createVPCs(self):
         """Add Virtual PC's to the lab """
 
         VPCAddData = {
@@ -234,10 +233,10 @@ class CreateLabNodesClass:
             "numberNodes": "3"
         }
 
-        VPCAddReq = session.post(AllNodesUrl, None, VPCAddData)
+        VPCAddReq = self.session.post(self.AllNodesUrl, None, VPCAddData)
         return "Add VPC's status : ", VPCAddReq.json()
 
-    def createDockerHost():
+    def createDockerHost(self):
         """ Create a new Internet Gateway for internet connection """
 
         NetworkAddData = {
@@ -250,53 +249,53 @@ class CreateLabNodesClass:
             "postfix": 0
         }
 
-        NetworkAddReq = session.post(AllNetworksUrl, None, NetworkAddData)
+        NetworkAddReq = self.session.post(self.AllNetworksUrl, None, NetworkAddData)
         return "Add Internet Gateway network status : ", NetworkAddReq.json()
 
     ### LINKING ###
 
-    def linkRouter123toGW():
+    def linkRouter123toGW(self):
         """ Link Router 1, 2 and 3 to the Internet Gateway via ethernet """
 
         LinkR1ToGwData = '{"0":"1"}'
         LinkR1ToR2Data = '{"2":"2:2"}'
-        R1InterfacesUrl = AllNodesUrl + '/1/interfaces'
-        LinkR1ToGwReq = session.put(R1InterfacesUrl, LinkR1ToGwData)
-        LinkR1ToR2Req = session.put(R1InterfacesUrl, LinkR1ToR2Data)
+        R1InterfacesUrl = self.AllNodesUrl + '/1/interfaces'
+        LinkR1ToGwReq = self.session.put(R1InterfacesUrl, LinkR1ToGwData)
+        LinkR1ToR2Req = self.session.put(R1InterfacesUrl, LinkR1ToR2Data)
 
         LinkR2ToGwData = '{"0":"1"}'
         LinkR2ToR3Data = '{"18":"3:18"}'
-        R2InterfacesUrl = AllNodesUrl + '/2/interfaces'
-        LinkR2ToGwReq = session.put(R2InterfacesUrl, LinkR2ToGwData)
-        LinkR2ToR3Req = session.put(R2InterfacesUrl, LinkR2ToR3Data)
+        R2InterfacesUrl = self.AllNodesUrl + '/2/interfaces'
+        LinkR2ToGwReq = self.session.put(R2InterfacesUrl, LinkR2ToGwData)
+        LinkR2ToR3Req = self.session.put(R2InterfacesUrl, LinkR2ToR3Data)
 
         LinkR3ToGwData = '{"0":"1"}'
         LinkR3ToR1Data = '{"34":"1:34"}'
-        R3InterfacesUrl = AllNodesUrl + '/3/interfaces'
-        LinkR3ToGwReq = session.put(R3InterfacesUrl, LinkR3ToGwData)
-        LinkR3ToR1Req = session.put(R3InterfacesUrl, LinkR3ToR1Data)
+        R3InterfacesUrl = self.AllNodesUrl + '/3/interfaces'
+        LinkR3ToGwReq = self.session.put(R3InterfacesUrl, LinkR3ToGwData)
+        LinkR3ToR1Req = self.session.put(R3InterfacesUrl, LinkR3ToR1Data)
 
         return "Link R1 to Gateway status : ", LinkR1ToGwReq.json(), "Link R1 to R2 status : ", LinkR1ToR2Req.json(), \
                "Link R2 to Gateway status : ", LinkR2ToGwReq.json(), "Link R2 to R3 status : ", LinkR2ToR3Req.json(), \
                "Link R3 to Gateway status : ", LinkR3ToGwReq.json(), "Link R3 to R1 status : ", LinkR3ToR1Req.json()
 
-    def linkDockerHosttoGW():
+    def linkDockerHosttoGW(self):
         """ Link the Docker Host to the gateway via Ethernet """
 
         LinkDockerHostToGwData = '{"0":"1"}'
-        DockerHostInterfacesUrl = AllNodesUrl + '/4/interfaces'
-        LinkDockerHostToGwReq = session.put(DockerHostInterfacesUrl, LinkDockerHostToGwData)
+        DockerHostInterfacesUrl = self.AllNodesUrl + '/4/interfaces'
+        LinkDockerHostToGwReq = self.session.put(DockerHostInterfacesUrl, LinkDockerHostToGwData)
         return "Link Docker Host to Gateway status : ", LinkDockerHostToGwReq.json()
 
-    def linkFortiFWtoGW():
+    def linkFortiFWtoGW(self):
         """ Link the FortiGate Firewall to the gateway via Ethernet """
 
         LinkFortiGateToGwData = '{"0":"1"}'
-        FortiGateInterfacesUrl = AllNodesUrl + '/5/interfaces'
-        LinkFortiGateToGwReq = session.put(FortiGateInterfacesUrl, LinkFortiGateToGwData)
+        FortiGateInterfacesUrl = self.AllNodesUrl + '/5/interfaces'
+        LinkFortiGateToGwReq = self.session.put(FortiGateInterfacesUrl, LinkFortiGateToGwData)
         return "Link Fortigate to Gateway status : ", LinkFortiGateToGwReq.json()
 
-    def linkRouter5toGWandFortiFW():
+    def linkRouter5toGWandFortiFW(self):
         """ Link Router 5 to the gateway and the Fortigate Firewall via Ethernet """
 
         R5FormBridgeData = {
@@ -312,21 +311,21 @@ class CreateLabNodesClass:
         LinkR5ToGwData = '{"0":"1"}'
         R5andFWBridgeVisibilityData = '{"visibility": 0}'
         FWtoR5andViceVersaData = '{"1":"2"}'
-        R5InterfacesUrl = AllNodesUrl + '/6/interfaces'
-        R5andFWBridgeUrl = AllNetworksUrl + '/2'
-        FortiGateInterfacesUrl = AllNodesUrl + '/5/interfaces'
+        R5InterfacesUrl = self.AllNodesUrl + '/6/interfaces'
+        R5andFWBridgeUrl = self.AllNetworksUrl + '/2'
+        FortiGateInterfacesUrl = self.AllNodesUrl + '/5/interfaces'
 
-        R5FormBridgeReq = session.post(AllNetworksUrl, None, R5FormBridgeData)
-        LinkR5ToGwReq = session.put(R5InterfacesUrl, LinkR5ToGwData)
-        FWtoR5Req = session.put(FortiGateInterfacesUrl, FWtoR5andViceVersaData)
-        R5toFWReq = session.put(R5InterfacesUrl, FWtoR5andViceVersaData)
-        R5andFWBridgeVisibilityReq = session.put(R5andFWBridgeUrl, R5andFWBridgeVisibilityData)
+        R5FormBridgeReq = self.session.post(self.AllNetworksUrl, None, R5FormBridgeData)
+        LinkR5ToGwReq = self.session.put(R5InterfacesUrl, LinkR5ToGwData)
+        FWtoR5Req = self.session.put(FortiGateInterfacesUrl, FWtoR5andViceVersaData)
+        R5toFWReq = self.session.put(R5InterfacesUrl, FWtoR5andViceVersaData)
+        R5andFWBridgeVisibilityReq = self.session.put(R5andFWBridgeUrl, R5andFWBridgeVisibilityData)
 
         return "Link R5 to Gateway status : ", LinkR5ToGwReq.json(), "Form Bridge R5 and FW status : ", \
                R5FormBridgeReq.json(), "Link Firewall to R5 status : ", FWtoR5Req.json(), "Link R5 to Firewall status : ", \
                R5toFWReq.json(), "Hide Bridge between R5 and Firewall status : ", R5andFWBridgeVisibilityReq.json()
 
-    def linkVPC123toRouter6():
+    def linkVPC123toRouter6(self):
         """ Link VPC 1,2 and 3 to Router 6 """
 
         VPC1FormBridgeData = {
@@ -365,33 +364,33 @@ class CreateLabNodesClass:
         VPC2toR5Data = '{"0":4}'
         VPC3toR5Data = '{"0":5}'
 
-        R5InterfacesUrl = AllNodesUrl + '/6/interfaces'
+        R5InterfacesUrl = self.AllNodesUrl + '/6/interfaces'
 
         R5andVPCSBridgeVisibilityData = '{"visibility": 0}'
 
-        R5andVPC1BridgeUrl = AllNetworksUrl + '/3'
-        R5andVPC2BridgeUrl = AllNetworksUrl + '/4'
-        R5andVPC3BridgeUrl = AllNetworksUrl + '/5'
+        R5andVPC1BridgeUrl = self.AllNetworksUrl + '/3'
+        R5andVPC2BridgeUrl = self.AllNetworksUrl + '/4'
+        R5andVPC3BridgeUrl = self.AllNetworksUrl + '/5'
 
-        VPC1InterfacesUrl = AllNodesUrl + '/7/interfaces'
-        VPC2InterfacesUrl = AllNodesUrl + '/8/interfaces'
-        VPC3InterfacesUrl = AllNodesUrl + '/9/interfaces'
+        VPC1InterfacesUrl = self.AllNodesUrl + '/7/interfaces'
+        VPC2InterfacesUrl = self.AllNodesUrl + '/8/interfaces'
+        VPC3InterfacesUrl = self.AllNodesUrl + '/9/interfaces'
 
-        VPC1FormBridgeReq = session.post(AllNetworksUrl, None, VPC1FormBridgeData)
-        VPC2FormBridgeReq = session.post(AllNetworksUrl, None, VPC2FormBridgeData)
-        VPC3FormBridgeReq = session.post(AllNetworksUrl, None, VPC3FormBridgeData)
+        VPC1FormBridgeReq = self.session.post(self.AllNetworksUrl, None, VPC1FormBridgeData)
+        VPC2FormBridgeReq = self.session.post(self.AllNetworksUrl, None, VPC2FormBridgeData)
+        VPC3FormBridgeReq = self.session.post(self.AllNetworksUrl, None, VPC3FormBridgeData)
 
-        R5toVPC1Req = session.put(R5InterfacesUrl, R5toVPC1Data)
-        R5toVPC2Req = session.put(R5InterfacesUrl, R5toVPC2Data)
-        R5toVPC3Req = session.put(R5InterfacesUrl, R5toVPC3Data)
+        R5toVPC1Req = self.session.put(R5InterfacesUrl, R5toVPC1Data)
+        R5toVPC2Req = self.session.put(R5InterfacesUrl, R5toVPC2Data)
+        R5toVPC3Req = self.session.put(R5InterfacesUrl, R5toVPC3Data)
 
-        VPC1ToR5Req = session.put(VPC1InterfacesUrl, VPC1toR5Data)
-        VPC2ToR5Req = session.put(VPC2InterfacesUrl, VPC2toR5Data)
-        VPC3ToR5Req = session.put(VPC3InterfacesUrl, VPC3toR5Data)
+        VPC1ToR5Req = self.session.put(VPC1InterfacesUrl, VPC1toR5Data)
+        VPC2ToR5Req = self.session.put(VPC2InterfacesUrl, VPC2toR5Data)
+        VPC3ToR5Req = self.session.put(VPC3InterfacesUrl, VPC3toR5Data)
 
-        R5andVPC1BridgeVisibilityReq = session.put(R5andVPC1BridgeUrl, R5andVPCSBridgeVisibilityData)
-        R5andVPC2BridgeVisibilityReq = session.put(R5andVPC2BridgeUrl, R5andVPCSBridgeVisibilityData)
-        R5andVPC3BridgeVisibilityReq = session.put(R5andVPC3BridgeUrl, R5andVPCSBridgeVisibilityData)
+        R5andVPC1BridgeVisibilityReq = self.session.put(R5andVPC1BridgeUrl, R5andVPCSBridgeVisibilityData)
+        R5andVPC2BridgeVisibilityReq = self.session.put(R5andVPC2BridgeUrl, R5andVPCSBridgeVisibilityData)
+        R5andVPC3BridgeVisibilityReq = self.session.put(R5andVPC3BridgeUrl, R5andVPCSBridgeVisibilityData)
 
         return "Form Bridge R5 and VPC1 status : ", VPC1FormBridgeReq.json(), \
                "Form Bridge R5 and VPC2 status : ", VPC2FormBridgeReq.json(), \
@@ -406,10 +405,10 @@ class CreateLabNodesClass:
                "Hide Bridge between R5 and VPC 2 status : ", R5andVPC2BridgeVisibilityReq.json(), \
                "Hide Bridge between R5 and VPC 3 status : ", R5andVPC3BridgeVisibilityReq.json(),
 
-    def startAll():
+    def startAll(self):
         """ Start all nodes """
 
-        NodesStartReq = session.get(AllNodesUrl + '/start')
+        NodesStartReq = self.session.get(self.AllNodesUrl + '/start')
         return NodesStartReq.json()
 
     # Close REST API session #

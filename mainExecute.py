@@ -1,15 +1,11 @@
 import CreateLabNodes
 
-
-
-'''
-for callable in CreateLabNodes.__dict__.values():
+for callable in CreateLabNodes.CreateLabNodesClass.__dict__.values():
     try:
         print(callable())
     except TypeError:
         pass
-'''
 
-instclass = CreateLabNodes.CreateLabNodesClass()
+# instclass = CreateLabNodes.CreateLabNodesClass()
 
-print(instclass.login())
+# print(instclass.login())
