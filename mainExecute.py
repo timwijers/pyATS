@@ -1,9 +1,7 @@
-from CreateLabNodes import CreateLabNodesClass
+import CreateLabNodes
 
-CreateLabNodesClassInstance = CreateLabNodesClass()
-
-for method in CreateLabNodesClassInstance.__dict__.values():
+for callable in CreateLabNodes.__dict__.values():
     try:
-        print(method())
+        print(callable())
     except TypeError:
         pass

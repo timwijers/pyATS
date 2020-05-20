@@ -6,6 +6,8 @@ __Date__ = 'May 2020'
 import requests
 import datetime
 
+class CreateLabNodesClass:
+
 # variables #
 date_time = datetime.datetime.now()
 timestamp = date_time.strftime("%d%m%Y%H%M%S")
@@ -432,8 +434,6 @@ def startAll():
 session.close()
 
 
-class CreateLabNodesClass:
-    pass
 
 
 
