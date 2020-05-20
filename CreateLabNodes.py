@@ -8,26 +8,26 @@ import datetime
 
 class CreateLabNodesClass:
 
-    def __init__(self):
-        # variables #
-        date_time = datetime.datetime.now()
-        timestamp = date_time.strftime("%d%m%Y%H%M%S")
-        testLabName = 'PyATS_TestLab_' + timestamp
-        apiBaseUrl = 'http://10.100.244.1/api'
-        labsAuthor = '//Tim%20Wijers/'
-        labsFolder = 'pyATS_TestLabs/'
 
-        # start session #
-        session = requests.Session()
+    # variables #
+    date_time = datetime.datetime.now()
+    timestamp = date_time.strftime("%d%m%Y%H%M%S")
+    testLabName = 'PyATS_TestLab_' + timestamp
+    apiBaseUrl = 'http://10.100.244.1/api'
+    labsAuthor = '//Tim%20Wijers/'
+    labsFolder = 'pyATS_TestLabs/'
 
-        # Uri's #
-        AllLabsUrl = apiBaseUrl + '/labs'
-        PyATSTestLabUrl = AllLabsUrl + labsAuthor + labsFolder + testLabName + '.unl'
-        print(PyATSTestLabUrl)
-        AllNodesUrl = PyATSTestLabUrl + '/nodes'
-        print(AllNodesUrl)
-        AllNetworksUrl = PyATSTestLabUrl + '/networks'
-        print(AllNetworksUrl)
+    # start session #
+    session = requests.Session()
+
+    # Uri's #
+    AllLabsUrl = apiBaseUrl + '/labs'
+    PyATSTestLabUrl = AllLabsUrl + labsAuthor + labsFolder + testLabName + '.unl'
+    print(PyATSTestLabUrl)
+    AllNodesUrl = PyATSTestLabUrl + '/nodes'
+    print(AllNodesUrl)
+    AllNetworksUrl = PyATSTestLabUrl + '/networks'
+    print(AllNetworksUrl)
 
     def login(self):
         """Login to Eve-NG """
