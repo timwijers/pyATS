@@ -7,7 +7,6 @@ import datetime
 
 
 class CreateLabNodesClass:
-
     # variables #
     date_time = datetime.datetime.now()
     timestamp = date_time.strftime("%d%m%Y%H%M%S")
@@ -196,8 +195,8 @@ class CreateLabNodesClass:
         LinkNodeToNodeReq = self.session.put(NodeInterfacesUrl, dataRoutertoRouterLink)
         return "Link Node Nr. " + str(nodeNr) + " to other Node status : ", LinkNodeToNodeReq.json()
 
-    def linkNodeToOtherNodeEthernet(self, bridgeName, portToPortConnectionData_XNode, portToPortConnectionData_YNode, nodeXnr, nodeYnr, bridgeId):
-
+    def linkNodeToOtherNodeEthernet(self, bridgeName, portToPortConnectionData_XNode, portToPortConnectionData_YNode,
+                                    nodeXnr, nodeYnr):
         # First a bridge must be created #
         FormBridgeData = {
             "count": 1,
@@ -209,23 +208,20 @@ class CreateLabNodesClass:
             "postfix": 0
         }
 
-        bridgeVisibilityData = '{"visibility": 0}'
-
         nodeXinterfacesUrl = self.AllNodesUrl + '/' + str(nodeXnr) + '/interfaces'
-        bridgeUrl = self.AllNetworksUrl + '/' + str(bridgeId)
         nodeYinterfacesUrl = self.AllNodesUrl + '/' + str(nodeYnr) + '/interfaces'
 
         formBridgeReq = self.session.post(self.AllNetworksUrl, None, FormBridgeData)
-
         NodeXtoNodeYreq = self.session.put(nodeXinterfacesUrl, portToPortConnectionData_XNode)
         NodeYtoNodeXreq = self.session.put(nodeYinterfacesUrl, portToPortConnectionData_YNode)
-        # bridgeInvisibleReq = self.session.put(bridgeUrl, bridgeVisibilityData)
 
-        return 'Bridge formation status: ', formBridgeReq.json(), '\n' \
-               'Node X to Node Y connection status: ', NodeXtoNodeYreq.json(), '\n', 'Node X to Node Y connection ' \
-                                                                                     'status: ', \
-               NodeYtoNodeXreq.json(), '\n', 'Bridge Invisibility request status: ', \
-               # bridgeInvisibleReq.json()
+        return 'Bridge formation status: ', formBridgeReq.json(), 'Node X to Node Y connection status: ', NodeXtoNodeYreq.json(), 'Node X to Node Y connection ', 'status: ', NodeYtoNodeXreq.json(), '\n',
+
+    def makeBridgeInvisible(self, networkID):
+        bridgeVisibilityData = '{"visibility": 0}'
+        bridgeUrl = self.AllNetworksUrl + '/' + str(networkID)
+        bridgeInvisibleReq = self.session.put(bridgeUrl, bridgeVisibilityData)
+        return 'Bridge Invisibility request status: ', bridgeInvisibleReq.json()
 
     def startAll(self):
         """ Start all nodes """
