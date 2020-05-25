@@ -73,8 +73,8 @@ class CreateLabNodesClass:
             "icon": "Router.png",
             "image": "i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin",
             "name": name,
-            "left": positionFromLeft + "%",
-            "top": positionFromTop + "%",
+            "left": str(positionFromLeft) + "%",
+            "top": str(positionFromTop) + "%",
             "ram": "1024",
             "cpu": 1,
             "ethernet": nrsOfEthernets,
@@ -106,8 +106,8 @@ class CreateLabNodesClass:
             "config": "0",
             "delay": "0",
             "console": "vnc",
-            "left": positionFromLeft + "%",
-            "top": positionFromTop + "%",
+            "left": str(positionFromLeft + "%"),
+            "top": str(positionFromTop + "%"),
             "postfix": 0
         }
 
@@ -136,8 +136,8 @@ class CreateLabNodesClass:
             "config": "0",
             "delay": "0",
             "console": "vnc",
-            "left": positionFromLeft + "%",
-            "top": positionFromTop + "%",
+            "left": str(positionFromLeft + "%"),
+            "top": str(positionFromTop + "%"),
             "postfix": 0
         }
 
@@ -155,8 +155,8 @@ class CreateLabNodesClass:
             "icon": "Desktop.png",
             "config": "0",
             "delay": "0",
-            "left": positionFromLeft + "%",
-            "top": positionFromTop + "%",
+            "left": str(positionFromLeft + "%"),
+            "top": str(positionFromTop + "%"),
             "postfix": 1,
             "numberNodes": numberOfVPCs
         }
