@@ -186,14 +186,14 @@ class CreateLabNodesClass:
         """ Link a Node to the Internet Gateway """
 
         LinkNodeToGwData = '{"0":"1"}'
-        NodeInterfacesUrl = self.AllNodesUrl + '/' + nodeNr + '/interfaces'
+        NodeInterfacesUrl = self.AllNodesUrl + '/' + str(nodeNr) + '/interfaces'
         LinkNodeToGwReq = self.session.put(NodeInterfacesUrl, LinkNodeToGwData)
         return "Link Node Nr. " + nodeNr + " to Gateway status : ", LinkNodeToGwReq.json(),
 
     def linkNodeToOtherNodeSerial(self, dataRoutertoRouterLink, nodeNr):
         """ Link Node to Another Node """
 
-        NodeInterfacesUrl = self.AllNodesUrl + '/' + nodeNr + '/interfaces'
+        NodeInterfacesUrl = self.AllNodesUrl + '/' + str(nodeNr) + '/interfaces'
         LinkNodeToNodeReq = self.session.put(NodeInterfacesUrl, dataRoutertoRouterLink)
         return "Link Node Nr. " + nodeNr + " to other Node status : ", LinkNodeToNodeReq.json()
 
@@ -212,9 +212,9 @@ class CreateLabNodesClass:
 
         bridgeVisibilityData = '{"visibility": 0}'
 
-        nodeXinterfacesUrl = self.AllNodesUrl + '/' + nodeXnr + '/interfaces'
+        nodeXinterfacesUrl = self.AllNodesUrl + '/' + str(nodeXnr) + '/interfaces'
         bridgeUrl = self.AllNetworksUrl + '/' + bridgeId
-        nodeYinterfacesUrl = self.AllNodesUrl + '/' + nodeYnr + '/interfaces'
+        nodeYinterfacesUrl = self.AllNodesUrl + '/' + str(nodeYnr) + '/interfaces'
 
         formBridgeReq = self.session.post(self.AllNetworksUrl, None, FormBridgeData)
 
