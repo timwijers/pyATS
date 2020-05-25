@@ -12,7 +12,8 @@ Content-Type: application/x-www-form-urlencoded
 ###
 
 # curl -X GET -H 'Content-type: application/json' http://10.100.244.1/api/labs/Tim%20Wijers/pyATS%20testlab.unl
-GET http://10.100.244.1/api/labs/Tim%20Wijers/testlab.unl/nodes/
+GET http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/PyATS_TestLab_25mei.unl/networks
+
 Content-Type: application/json
 
 ###
