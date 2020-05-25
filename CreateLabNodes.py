@@ -213,7 +213,7 @@ class CreateLabNodesClass:
         bridgeVisibilityData = '{"visibility": 0}'
 
         nodeXinterfacesUrl = self.AllNodesUrl + '/' + str(nodeXnr) + '/interfaces'
-        bridgeUrl = self.AllNetworksUrl + '/' + bridgeId
+        bridgeUrl = self.AllNetworksUrl + '/' + str(bridgeId)
         nodeYinterfacesUrl = self.AllNodesUrl + '/' + str(nodeYnr) + '/interfaces'
 
         formBridgeReq = self.session.post(self.AllNetworksUrl, None, FormBridgeData)
