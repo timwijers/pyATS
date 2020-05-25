@@ -188,14 +188,14 @@ class CreateLabNodesClass:
         LinkNodeToGwData = '{"0":"1"}'
         NodeInterfacesUrl = self.AllNodesUrl + '/' + str(nodeNr) + '/interfaces'
         LinkNodeToGwReq = self.session.put(NodeInterfacesUrl, LinkNodeToGwData)
-        return "Link Node Nr. " + nodeNr + " to Gateway status : ", LinkNodeToGwReq.json(),
+        return "Link Node Nr. " + str(nodeNr) + " to Gateway status : ", LinkNodeToGwReq.json(),
 
     def linkNodeToOtherNodeSerial(self, dataRoutertoRouterLink, nodeNr):
         """ Link Node to Another Node """
 
         NodeInterfacesUrl = self.AllNodesUrl + '/' + str(nodeNr) + '/interfaces'
         LinkNodeToNodeReq = self.session.put(NodeInterfacesUrl, dataRoutertoRouterLink)
-        return "Link Node Nr. " + nodeNr + " to other Node status : ", LinkNodeToNodeReq.json()
+        return "Link Node Nr. " + str(nodeNr) + " to other Node status : ", LinkNodeToNodeReq.json()
 
     def linkNodeToOtherNodeEthernet(self, bridgeName, portToPortConnectionData_XNode, portToPortConnectionData_YNode, nodeXnr, nodeYnr, bridgeId):
 
