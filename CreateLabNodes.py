@@ -223,9 +223,9 @@ class CreateLabNodesClass:
         bridgeInvisibleReq = self.session.put(bridgeUrl, bridgeVisibilityData)
 
         return 'Bridge formation status: ', formBridgeReq.json(), '\n' \
-               'Node X to Node Y connection status: ', NodeXtoNodeYreq.json(), '\n' \ 
-               'Node X to Node Y connection status: ', NodeYtoNodeXreq.json(), '\n' \ 
-               'Bridge Invisibility request status: ', bridgeInvisibleReq.json()
+               'Node X to Node Y connection status: ', NodeXtoNodeYreq.json(), '\n', 'Node X to Node Y connection ' \
+                                                                                     'status: ', \
+               NodeYtoNodeXreq.json(), '\n', 'Bridge Invisibility request status: ', bridgeInvisibleReq.json()
 
     def startAll(self):
         """ Start all nodes """
