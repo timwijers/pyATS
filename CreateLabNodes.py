@@ -11,7 +11,7 @@ class CreateLabNodesClass:
     # variables #
     date_time = datetime.datetime.now()
     timestamp = date_time.strftime("%d%m%Y%H%M%S")
-    testLabName = 'PyATS_TestLab_' + timestamp
+    testLabName = 'PyATS_TestLab_25mei'
     apiBaseUrl = 'http://10.100.244.1/api'
     labsAuthor = '//Tim%20Wijers/'
     labsFolder = 'pyATS_TestLabs/'
@@ -192,7 +192,6 @@ class CreateLabNodesClass:
 
     def linkNodeToOtherNodeSerial(self, dataRoutertoRouterLink, nodeNr):
         """ Link Node to Another Node """
-        print(self.session.get(self.AllNodesUrl).json())
         NodeInterfacesUrl = self.AllNodesUrl + '/' + str(nodeNr) + '/interfaces'
         LinkNodeToNodeReq = self.session.put(NodeInterfacesUrl, dataRoutertoRouterLink)
         return "Link Node Nr. " + str(nodeNr) + " to other Node status : ", LinkNodeToNodeReq.json()
