@@ -83,7 +83,7 @@ class CreateLabNodesClass:
         }
 
         Node1AddReq = self.session.post(self.AllNodesUrl, None, Node1AddData)
-        return "Add R1 status : ", Node1AddReq.json()
+        return "Add ", name, " status : ", Node1AddReq.json()
 
     def createLinuxNode(self, name, positionFromLeft, positionFromTop, nrsOfEthernets, ramMbs, CPUs, uniqueIdentifier):
         """Add Linux Nodes to the lab """
@@ -106,8 +106,8 @@ class CreateLabNodesClass:
             "config": "0",
             "delay": "0",
             "console": "vnc",
-            "left": str(positionFromLeft + "%"),
-            "top": str(positionFromTop + "%"),
+            "left": str(positionFromLeft) + "%",
+            "top": str(positionFromTop) + "%",
             "postfix": 0
         }
 
@@ -136,8 +136,8 @@ class CreateLabNodesClass:
             "config": "0",
             "delay": "0",
             "console": "vnc",
-            "left": str(positionFromLeft + "%"),
-            "top": str(positionFromTop + "%"),
+            "left": str(positionFromLeft) + "%",
+            "top": str(positionFromTop) + "%",
             "postfix": 0
         }
 
@@ -155,8 +155,8 @@ class CreateLabNodesClass:
             "icon": "Desktop.png",
             "config": "0",
             "delay": "0",
-            "left": str(positionFromLeft + "%"),
-            "top": str(positionFromTop + "%"),
+            "left": str(positionFromLeft) + "%",
+            "top": str(positionFromTop) + "%",
             "postfix": 1,
             "numberNodes": numberOfVPCs
         }
