@@ -28,7 +28,7 @@ print(instclass.linkNodeToGW(4))
 print(instclass.linkNodeToGW(5))
 print(instclass.linkNodeToGW(6))
 
-print(instclass.linkNodeToOtherNodeEthernet('FortiRIOL5_Bridge', '{"1":"2"}','{"1":"2"}', 5, 4))
+print(instclass.linkNodeToOtherNodeEthernet('FortiRIOL5_Bridge', '{"1":"2"}','{"1":"2"}', 4, 5))
 print(instclass.linkNodeToOtherNodeEthernet('RIOL5VPC1_Bridge', '{"16":3}','{"0":3}', 4, 7))
 print(instclass.linkNodeToOtherNodeEthernet('RIOL5VPC2_Bridge', '{"32":4}','{"0":4}', 4, 8))
 print(instclass.linkNodeToOtherNodeEthernet('RIOL5VPC3_Bridge', '{"48":5}','{"0":5}', 4, 9))
