@@ -17,7 +17,7 @@ print(instclass.createFortiGateNode('fortigate', 10, 20, 1, 'fortigate'))
 print(instclass.createLinuxNode('dockerhost', 80, 60, 1, 4096, 2, 'dockerhost'))
 print(instclass.createVPCs('vpc', 30, 10, 3))
 
-print(instclass.linkNodeToOtherNodeSerial('{"1":"1:2"}', 1))
+print(instclass.linkNodeToOtherNodeSerial('{"1":"2:1"}', 1))
 print(instclass.linkNodeToOtherNodeSerial('{"17":"3:17"}', 2))
 print(instclass.linkNodeToOtherNodeSerial('{"33":"1:33"}', 3))
 
