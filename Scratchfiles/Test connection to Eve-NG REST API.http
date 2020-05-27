@@ -12,14 +12,15 @@ Content-Type: application/x-www-form-urlencoded
 ###
 
 # curl -X GET -H 'Content-type: application/json' http://10.100.244.1/api/labs/Tim%20Wijers/pyATS%20testlab.unl
-GET http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/PyATS_TestLab_25mei.unl/networks
+GET http://10.100.244.1/api/labs/Tim%20Wijers/pyATS_TestLabs/PyATS_TestLab_25mei.unl/nodes/2/interfaces
+
 
 Content-Type: application/json
 
 ###
 
 # curl -X GET -H 'Content-type: application/json' http://10.100.244.1/api/labs/Tim%20Wijers/pyATS%20testlab.unl/nodes
-DELETE http://10.100.244.1/api/labs/Tim%20Wijers/pyATS%20testlab.unl
+DELETE http://10.100.244.1/api/labs/Tim%20Wijers/testlab.unl
 
 Content-Type: application/json
 

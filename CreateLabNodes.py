@@ -191,6 +191,7 @@ class CreateLabNodesClass:
 
     def linkNodeToOtherNodeSerial(self, dataRoutertoRouterLink, nodeNr):
         """ Link Node to Another Node """
+
         NodeInterfacesUrl = self.AllNodesUrl + '/' + str(nodeNr) + '/interfaces'
         LinkNodeToNodeReq = self.session.put(NodeInterfacesUrl, dataRoutertoRouterLink)
         return "Link Node Nr. " + str(nodeNr) + " to other Node status : ", LinkNodeToNodeReq.json()
