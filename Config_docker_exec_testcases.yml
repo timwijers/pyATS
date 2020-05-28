@@ -50,7 +50,7 @@
       shell: docker exec -it "{{ container_name }}" apt-get install git -y
 
     - name: remove preexisting repo's
-      shell: docker exec -it "{{ container_name }}" rm -r /pyats/pyATS
+      shell: docker exec -it "{{ container_name }}" rm -r /pyats/pyATS  2>/dev/null
 
     - name: clone pyATs repository to docker container
       shell: docker exec -it "{{ container_name }}" git clone http://github.com/timwijers/pyATS
@@ -63,7 +63,7 @@
       shell: docker exec -it "{{ container_name }}" bash -c "yes | apt-get install apache2 ; service apache2 start"
 
     - name: remove preexisting ssh keys
-      shell: docker exec -it "{{ container_name }}" rm -r /root/.ssh/known_hosts
+      shell: docker exec -it "{{ container_name }}" rm -r /root/.ssh/known_hosts 2>/dev/null
 
     - name: execute configuration file in docker container
       shell: docker exec -it "{{ container_name }}" bash -c "source bin/activate ; cd /pyats/pyATS ;
