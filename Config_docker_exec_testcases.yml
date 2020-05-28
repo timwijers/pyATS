@@ -68,6 +68,7 @@
     - name: execute configuration file in docker container
       shell: docker exec -it "{{ container_name }}" bash -c "source bin/activate ; cd /pyats/pyATS ;
              pyats run job jobfile.py > result.txt"
+      ignore_errors: yes
 
     - name: save results to webserver in docker container
       shell: docker exec -it "{{ container_name }}" cp /pyats/pyATS/result.txt /var/www/html
