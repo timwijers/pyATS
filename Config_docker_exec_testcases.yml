@@ -8,8 +8,8 @@
 
   tasks:
 
-#    - name: Update/Upgrade dependencies
-#      apt: update_cache=yes upgrade=yes
+    #    - name: Update/Upgrade dependencies
+    #      apt: update_cache=yes upgrade=yes
 
     - name: Install python-apt using apt
       apt: name=python-apt state=latest update_cache=yes force_apt_get=yes
@@ -51,14 +51,14 @@
 
     - name: remove preexisting repo's if existing
       shell: docker exec -it "{{ container_name }}" rm -r /pyats/pyATS
-      ignore_errors: yes
+      #ignore_errors: yes
 
     - name: clone pyATs repository to docker container
       shell: docker exec -it "{{ container_name }}" git clone http://github.com/timwijers/pyATS
 
     - name: update pyATS repo in docker container
       shell: docker exec -it "{{ container_name }}" bash -c "cd /pyats/pyATS ;
-             git pull http://github.com/timwijers/pyATS"
+        git pull http://github.com/timwijers/pyATS"
 
     - name: Install apache webserver on docker container
       shell: docker exec -it "{{ container_name }}" bash -c "yes | apt-get install apache2 ; service apache2 start"
@@ -69,7 +69,7 @@
 
     - name: execute configuration file in docker container
       shell: docker exec -it "{{ container_name }}" bash -c "source bin/activate ; cd /pyats/pyATS ;
-             pyats run job jobfile.py > result.txt"
+        pyats run job jobfile.py > result.txt"
       ignore_errors: yes
 
     - name: save results to webserver in docker container
