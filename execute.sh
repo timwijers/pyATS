@@ -16,7 +16,7 @@ cd /etc/ansible/pyATS
 
 sudo git pull http://github.com/timwijers/pyATS
 
-sudo python 'CreateLabNodes.py'
+sudo python 'EveNGExecute.py'
 
 banner "Waking the Nodes in Eve-NG so a telnet session can be instantiated"
 cd

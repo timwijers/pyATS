@@ -9,7 +9,7 @@ import datetime
 class CreateLabNodesClass:
     # variables #
     date_time = datetime.datetime.now()
-    #timestamp = date_time.strftime("%d%m%Y%H%M%S")
+    # timestamp = date_time.strftime("%d%m%Y%H%M%S")
     daystamp = date_time.strftime("%d")
     testLabName = 'PyATS_TestLab_' + daystamp
     apiBaseUrl = 'http://10.100.244.1/api'
